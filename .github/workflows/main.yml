@@ -27,5 +27,7 @@ jobs:
         with:
           java-version: 11
           distribution: 'adopt'
-      - name: Build with Gradle
-        run: ./gradlew build
+          cache: gradle
+      - uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
