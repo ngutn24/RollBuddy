@@ -56,7 +56,7 @@ public class Modifier {
      */
     private int generateModifier(int abilityScore) {
         // Calculate how far from baseMod the abilityScore is
-        int deviation = abilityScore -= baseMod;
+        int deviation = abilityScore - baseMod;
 
         if (deviation >= 0) {
             return deviation / 2;
