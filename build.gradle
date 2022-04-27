@@ -1,0 +1,76 @@
+plugins {
+    id 'java'
+    id "com.github.node-gradle.node" version "3.2.1"
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'Backend/src'
+        }
+    }
+
+    test{
+        java{
+            srcDir 'Backend/src'
+        }
+    }
+}
+
+dependencies {
+    implementation 'junit:junit:4.13.1'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.1'
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.8.2")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Werror"
+}
+
+compileTestJava {
+    options.encoding = "UTF-8"
+    options.compilerArgs << "-Xlint:unchecked" << "-Werror"
+}
+
+
+task build_backend( group: 'Rollbuddy build') {
+    dependsOn build
+    description 'Builds the backend source code'
+
+}
+
+task build_frontend(type: NpmTask, group: 'Rollbuddy build'){
+    dependsOn npmInstall
+    args = ['run', 'build']
+}
+
+task full_build(group: 'Rollbuddy build'){
+    dependsOn build_backend
+    dependsOn build_frontend
+}
+
+
+
+node {
+    npmWorkDir = file('.gradle/npm')
+    nodeProjectDir = file('frontend/')
+    workDir = file('.gradle/nodejs')
+    version = '18.0.0'
+    download = true
+}
