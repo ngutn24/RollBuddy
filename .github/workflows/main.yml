@@ -17,9 +17,6 @@ on:
 jobs:
   backend_build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: Backend
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 11
@@ -29,13 +26,10 @@ jobs:
           distribution: "adopt"
           cache: gradle
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew build_backend
 
   frontend_test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
     steps:
       - uses: actions/checkout@v3
       - name: Set up Node v17
@@ -45,6 +39,5 @@ jobs:
           cache: "npm"
           cache-dependency-path: "frontend/package-lock.json"
       - name: Install deps and run tests
-        run: |
-          npm install
-          npm test
+        run: ./gradlew build_frontend
+
