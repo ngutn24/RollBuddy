@@ -1,15 +1,7 @@
-import logo from './assets/rollbuddy_logo.png';
-import './App.css';
+import {CharacterSheet1} from "./components/CharacterSheet/CharacterSheet1";
 
-function App() {
-  return (
-    <div>
-      <body className="Main-body">
-        <img src={logo} className="App-logo" alt="logo" />
-
-      </body>
-    </div>
-  );
+export default function App() {
+    document.body.style.backgroundColor = '#e5e5e5';
+    document.body.style.margin = '0';
+    return <CharacterSheet1 />;
 }
-
-export default App;
