@@ -30,6 +30,7 @@ sourceSets {
 
 dependencies {
     implementation 'junit:junit:4.13.1'
+    implementation "com.google.code.gson:gson:2.8.5"
     testImplementation group: 'junit', name: 'junit', version: '4.13.1'
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.8.2")
 }
@@ -53,6 +54,16 @@ task build_backend( group: 'Rollbuddy build') {
     dependsOn build
     description 'Builds the backend source code'
 
+}
+
+task test_backend(group: 'Rollbuddy Test'){
+    dependsOn test
+    description 'Tests teh backend source code'
+}
+
+task test_frontend(type: NpmTask, group: 'Rollbuddy Test'){
+    dependsOn npmInstall
+    args = ['run', 'test']
 }
 
 task build_frontend(type: NpmTask, group: 'Rollbuddy build'){
