@@ -1,3 +1,9 @@
+/** 
+ * The Dice ENUM encompasses the 8 different types of Dice 
+ * available to a player in D&D 5E. Each ENUM has an attached 
+ * integer value in accordance with dice type.
+*/
+
 public enum Dice{
     D4(4),
     D6(6),
