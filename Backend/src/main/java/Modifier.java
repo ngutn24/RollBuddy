@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * In Dungeons & Dragon, every character has 6 ability scores (STR, DEX, CON,
  * INT, WIS, CHA)

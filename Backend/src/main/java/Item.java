@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * A Dungeons and Dragon item which consists of a name, description, and
  * option attack bonus
