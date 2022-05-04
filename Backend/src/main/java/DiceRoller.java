@@ -29,7 +29,7 @@ public class DiceRoller {
      * @return Randomly generated number based on diceCount + the modifier + dice
      *         type
      */
-    int Roll(int diceCount, int modifier, enum Dice) {
+    int Roll(int diceCount, int modifier, enum DiceType) {
 
         assert (diceCount > 0) : "The dice count must be positive";
         assert (DiceType > 0) : "Cannot roll a negative sided dice";
@@ -38,7 +38,7 @@ public class DiceRoller {
         // Roll the dice
         while (diceCount != 0) {
             // Generate random number between 1-4
-            total += dice.nextInt(Dice.range) + 1;
+            total += dice.nextInt(DiceType.range) + 1;
             diceCount--;
         }
         // Modifiers get added at the end of all total diceRolls in DnD
