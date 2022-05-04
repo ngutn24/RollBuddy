@@ -1,3 +1,5 @@
+package main.java;
+
 /**
  * A simple java class which encompasses a character class type.
  * A user has the ability to input strings which we can store.
