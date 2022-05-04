@@ -29,7 +29,7 @@ public class DiceRoller {
      * @return Randomly generated number based on diceCount + the modifier + dice
      *         type
      */
-    int Roll(int diceCount, int modifier, enum DiceType) {
+    int Roll(int diceCount, int modifier, Dice DiceType) {
 
         assert (diceCount > 0) : "The dice count must be positive";
         assert (DiceType > 0) : "Cannot roll a negative sided dice";
