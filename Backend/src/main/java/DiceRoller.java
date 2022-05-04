@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class DiceRoller {
 
-    Random dice;
+    private Random dice;
 
     /**
      * Initialize a DiceRoller object based on the random library

@@ -1,19 +1,29 @@
+import java.util.HashMap;
+
 /**
  * An encompassing object which directly correlates to everything on a
- * players character sheet
+ * players character sheet. It is a collection of objects which make up
+ * the entire character
  */
 
 public class CharacterSheet {
-    // In function dice roller
-    DiceRoller dice;
 
-    int level;
-    int profBonus; // profBonus directly based off character level
-    int initiative;
-    int hitPoints;
-    int speed;
-    int armorClass;
-    Modifier STR, DEX, CON, INT, WIS, CHA;
+    // profBonus directly based off character level
+    private int profBonus;
+
+    // A set representing all the items owned by a character
+    private HashMap<String, Item> items = new HashMap<>();
+
+    private int level;
+    private int initiative;
+    private int hitPoints;
+    private int speed;
+    private int armorClass;
+    private int goldCount;
+
+    private ClassType classType;
+
+    private Modifier STR, DEX, CON, INT, WIS, CHA;
 
     /**
      * The following is constructor meant to initalize the entire character sheet.
@@ -27,169 +37,208 @@ public class CharacterSheet {
      * @param INT        A characters intelligence ability score
      * @param WIS        A characters wisdom ability score
      * @param CHA        A characters charisma ability score
+     * 
      * @param level      A characters level (profBonus determined by character
      *                   level)
      * @param hitPoints  A characters hit point total (health)
      * @param speed      A characters total movement speed
+     * @param goldCount  The total gold a player owns
      * @param armorClass A characters armor class
+     * @param mainClass  Represents the main class of a character is (Wizard, Barb,
+     *                   etc.)
+     * @param subClass   Represents what a character specializes in from their main
+     *                   class (CAN BE EMPTY STRING)
      */
     public CharacterSheet(
             int STR, int DEX, int CON, int INT, int WIS, int CHA,
-            int level, int initiative, int hitPoints, int speed, int armorClass) {
+            int level, int hitPoints, int speed, int goldCount,
+            int armorClass, String mainClass, String subClass) {
 
-        dice = new DiceRoller();
+        // Generate the modifier objects
         this.STR = new Modifier(STR);
         this.DEX = new Modifier(DEX);
         this.CON = new Modifier(CON);
         this.INT = new Modifier(INT);
         this.WIS = new Modifier(WIS);
         this.CHA = new Modifier(CHA);
+
         this.level = level;
         this.profBonus = 2 + (level - 1) / 4;
-        this.initiative = initiative;
+        this.initiative = DEX;
         this.hitPoints = hitPoints;
         this.speed = speed;
         this.armorClass = armorClass;
+        this.goldCount = goldCount;
+
+        this.classType = new ClassType(mainClass, subClass);
     }
 
     /**
-     * Execute a strength check
+     * Get the Strength modifier
      * 
-     * @param withProf A boolean which determines if the check is done with
-     *                 proficiency
-     * @return If withProf: D20 + mod + profBonus, else: D20 + mod
+     * @return A Modifier object for character Strength
      */
-    int STRCheck(boolean withProf) {
-        if (withProf)
-            return dice.D20(1, this.STR.getMod() + this.profBonus);
-        else
-            return dice.D20(1, this.STR.getMod());
+    Modifier getSTR() {
+        return this.STR;
     }
 
     /**
-     * Execute a dexterity check
+     * Get the Dexterity modifier
      * 
-     * @param withProf A boolean which determines if the check is done with
-     *                 proficiency
-     * @return If withProf: D20 + mod + profBonus, else: D20 + mod
+     * @return A Modifier object for character Dexterity
      */
-    int DEXCheck(boolean withProf) {
-        // TODO Follow STRCheck example
-        return -1;
+    Modifier getDEX() {
+        return this.DEX;
     }
 
     /**
-     * Execute a constitution check
+     * Get the Constitution modifier
      * 
-     * @param withProf A boolean which determines if the check is done with
-     *                 proficiency
-     * @return If withProf: D20 + mod + profBonus, else: D20 + mod
+     * @return A Modifier object for character Constitution
      */
-    int CONCheck(boolean withProf) {
-        // TODO Follow STRCheck example
-        return -1;
+    Modifier getCON() {
+        return this.CON;
     }
 
     /**
-     * Execute a intelligence check
+     * Get the Intelligence modifier
      * 
-     * @param withProf A boolean which determines if the check is done with
-     *                 proficiency
-     * @return If withProf: D20 + mod + profBonus, else: D20 + mod
+     * @return A Modifier object for character Intelligence
      */
-    int INTCheck(boolean withProf) {
-        // TODO Follow STRCheck example
-        return -1;
+    Modifier getINT() {
+        return this.INT;
     }
 
     /**
-     * Execute a wisdom check
+     * Get the Wisdom modifier
      * 
-     * @param withProf A boolean which determines if the check is done with
-     *                 proficiency
-     * @return If withProf: D20 + mod + profBonus, else: D20 + mod
+     * @return A Modifier object for character Wisdom
      */
-    int WISCheck(boolean withProf) {
-        // TODO Follow STRCheck example
-        return -1;
+    Modifier getWIS() {
+        return this.WIS;
     }
 
     /**
-     * Execute a charisma check
+     * Get the Charisma modifier
      * 
-     * @param withProf A boolean which determines if the check is done with
-     *                 proficiency
-     * @return If withProf: D20 + mod + profBonus, else: D20 + mod
+     * @return A Modifier object for character Charisma
      */
-    int CHACheck(boolean withProf) {
-        // TODO Follow STRCheck example
-        return -1;
+    Modifier getCHA() {
+        return this.CHA;
     }
 
     /**
-     * Roll an initiative check
+     * Get the character level
      * 
-     * @return D20 + initiative modifier
-     */
-    int rollInitiative() {
-        // TODO Roll D20 + initiative mod
-        return -1;
-    }
-
-    // ***** GETTERS *****//
-
-    /*
-     * I NEED TO DO SOME MORE THINKING ON HOW WE
-     * HANDLE THE GETTERS FOR THE MODIFIERS. SO FOR THE TIME BEING
-     * WE HAVE NO GETTERS FOR THEM
-     */
-
-    /**
-     * Get the characters level
-     * 
-     * @return The characters level
+     * @return A integer for character level
      */
     int getLevel() {
         return this.level;
     }
 
     /**
-     * Get the character armor class
+     * Get the character prof bonus
      * 
-     * @return The characters armor class
+     * @return A integer for character prof bonus
      */
-    int getAC() {
-        return this.armorClass;
+    int getProfBonus() {
+        return this.profBonus;
+    }
+
+    /**
+     * Get the character Initiative
+     * 
+     * @return A integer for character Initiative
+     */
+    int getInitiative() {
+        return this.initiative;
+    }
+
+    /**
+     * Get the character hit point total
+     * 
+     * @return A integer for character hit point total
+     */
+    int getHp() {
+        return this.hitPoints;
     }
 
     /**
      * Get the character speed
      * 
-     * @return The characters speed
+     * @return A integer for character speed
      */
     int getSpeed() {
         return this.speed;
     }
 
     /**
-     * Get the character hit point total
+     * Get the character armor class
      * 
-     * @return The characters hit point total
+     * @return A integer for character armor class
      */
-    int getHP() {
-        return this.hitPoints;
+    int getAC() {
+        return this.armorClass;
     }
 
     /**
-     * Get the character initative
+     * Get the character total gold count
      * 
-     * @return The characters initiative
+     * @return A integer for character total gold count
      */
-    int getInitiative() {
-        return this.initiative;
+    int getGold() {
+        return this.goldCount;
     }
 
-    // ***** SETTERS *****//
+    /**
+     * Get the characters class information
+     * 
+     * @return A ClassType object which contains strings
+     *         for the characters main and sub class names
+     */
+    ClassType getClassType() {
+        return this.classType;
+    }
+
+    /**
+     * Get all the items in a characters inventory
+     * 
+     * @return A HashMap with key-value pairs being String-Item object
+     */
+    HashMap<String, Item> getItems() {
+        return this.items;
+    }
+
+    /*
+     * All modifier (STR, DEX, CON, INT, WIS, CHA) setters use the
+     * setAbilityScore method built into the Modifier object, which
+     * updates the ability score and automatically calcualtes the new modiifer
+     * based on the new score
+     */
+
+    void setSTR(int newSTR) {
+        this.STR.setAbilityScore(newSTR);
+    }
+
+    void setDEX(int newDEX) {
+        this.DEX.setAbilityScore(newDEX);
+    }
+
+    void setCON(int newCON) {
+        this.CON.setAbilityScore(newCON);
+    }
+
+    void setINT(int newINT) {
+        this.INT.setAbilityScore(newINT);
+    }
+
+    void setWIS(int newWIS) {
+        this.WIS.setAbilityScore(newWIS);
+    }
+
+    void setCHA(int newCHA) {
+        this.CHA.setAbilityScore(newCHA);
+    }
 
     /**
      * Set the character level then subsequently update the profBonus
@@ -203,99 +252,98 @@ public class CharacterSheet {
     }
 
     /**
-     * Set the character armor class
+     * Set the character proficiency bonus
      * 
-     * @param newAC The new armor class of the character
+     * @param newProf The new proficiency bonus
      */
-    void setAC(int newAC) {
-        this.armorClass = newAC;
+    void setProfBonus(int newProf) {
+        // Should never be used, but here just in case!
+        this.profBonus = newProf;
     }
 
     /**
-     * Set the character speed
+     * Set the character initiative
      * 
-     * @param newSpeed The new speed of the character
-     */
-    void setSpeed(int newSpeed) {
-        this.speed = newSpeed;
-    }
-
-    /**
-     * Set the character hit point total
-     * 
-     * @param newHp The new character hit point total
-     */
-    void setHP(int newHp) {
-        this.hitPoints = newHp;
-    }
-
-    /**
-     * Set the character initiative modifier
-     * 
-     * @param newInitiative The new initiative modifier
+     * @param newInitiative The new initiative
      */
     void setInitiative(int newInitiative) {
         this.initiative = newInitiative;
     }
 
     /**
-     * Update the strength ability score using the methods
-     * inside the Modifier class
+     * Set the character hit point total
      * 
-     * @param newSTR
+     * @param newHp the new hit point total of the character
      */
-    void setSTR(int newSTR) {
-        this.STR.setAbilityScore(newSTR);
+    void setHP(int newHp) {
+        this.hitPoints = newHp;
     }
 
     /**
-     * Update the dexterity ability score using the methods
-     * inside the Modifier class
+     * Set the character speed
      * 
-     * @param newDEX
+     * @param newSpeed the new speed of the character
      */
-    void setDEX(int newDEX) {
-        this.DEX.setAbilityScore(newDEX);
+    void setSpeed(int newSpeed) {
+        // Very rarely if ever needs to be used
+        this.speed = newSpeed;
     }
 
     /**
-     * Update the constitution ability score using the methods
-     * inside the Modifier class
+     * Set the armor class of the character
      * 
-     * @param newCON
+     * @param newAC the new armor class of the character
      */
-    void setCON(int newCON) {
-        this.CON.setAbilityScore(newCON);
+    void setAC(int newAC) {
+        this.armorClass = newAC;
     }
 
     /**
-     * Update the intelligence ability score using the methods
-     * inside the Modifier class
+     * Set the total gold of the character
      * 
-     * @param newINT
+     * @param goldCount the new gold count of the character
      */
-    void setINT(int newINT) {
-        this.INT.setAbilityScore(newINT);
+    void setGold(int goldCount) {
+        this.goldCount = goldCount;
     }
 
     /**
-     * Update the wisdom ability score using the methods
-     * inside the Modifier class
+     * Set the name of the main class of the character in the
+     * ClassType object
      * 
-     * @param newWIS
+     * @param mainClass The new string name of the main class
      */
-    void setWIS(int newWIS) {
-        this.WIS.setAbilityScore(newWIS);
+    void setMainClass(String mainClass) {
+        // Should never be used, but here just in case!
+        this.classType.setMainClass(mainClass);
     }
 
     /**
-     * Update the charisma ability score using the methods
-     * inside the Modifier class
+     * Set the name of the sub class of the character in the
+     * CLassType object
      * 
-     * @param newCHA
+     * @param subClass The new string name of the subclass
      */
-    void setCHA(int newCHA) {
-        this.CHA.setAbilityScore(newCHA);
+    void setSubClass(String subClass) {
+        // Will likely be used if the characters start below level 3
+        this.classType.setSubClass(subClass);
+    }
+
+    /*
+     * All items are stored in a HashMap whose key-value
+     * pairs are the name of the item along with the item
+     * object.
+     */
+    void addItem(Item item) {
+        items.put(item.getName(), item);
+    }
+
+    void removeItem(Item item) {
+        items.remove(item.getName());
+    }
+
+    void updateItem(Item item) {
+        items.replace(item.getName(), item);
     }
 
 }

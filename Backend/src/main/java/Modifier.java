@@ -32,10 +32,10 @@
  */
 
 public class Modifier {
-    final int baseMod = 10;
+    private final int baseMod = 10;
 
-    int abilityScore;
-    int mod;
+    private int abilityScore;
+    private int mod;
 
     /**
      * Intialize a Modifier object containing the ability and corresponding modifier
