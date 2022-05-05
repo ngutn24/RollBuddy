@@ -4,10 +4,11 @@ import com.google.gson.Gson;
 
 
 public class CharacterSession {
-    //TODO: Add Character Sheet object field
     public final int sessionID;
     private Instant lastUpdated;
     private final Gson jsonConverter;
+    private CharacterSheet characterSheet;
+    private DiceRoller diceRoller;
 
     /**
      * Initializes a character session instance
@@ -19,10 +20,12 @@ public class CharacterSession {
         this.sessionID = sessionID;
         this.lastUpdated = Instant.now();
         this.jsonConverter = new Gson();
+        this.characterSheet = new CharacterSheet();
+        this.diceRoller = new DiceRoller();
     }
 
     /**
-     * Getter function for checking the session ID attached to this character session
+     * Get function for checking the session ID attached to this character session
      *
      * @return The integer session ID for this instance
      */
@@ -31,7 +34,7 @@ public class CharacterSession {
     }
 
     /**
-     * Getter function for checking the last time this instance was mutatated/updated
+     * Get function for checking the last time this instance was mutated/updated
      *
      * @return A string representation of the time this instance was last updated
      */
@@ -44,7 +47,8 @@ public class CharacterSession {
      *
      * @param characterData a json representation of the core ability scores
      */
-    public void generateCharacter(String characterData){
+    public void generateCharacter(final String characterData){
+        // TODO: Actually implement generating character
         // Extract Data from characterData
         // Pass the changes from characterSheet class
         lastUpdated = Instant.now();
@@ -56,7 +60,42 @@ public class CharacterSession {
      * @return The string json generated, representing the stored character sheet
      */
     public String getCharacterData(){
-        //TODO: Do character sheet json conversion
-        return "TO BE CHARACTER JSON STRING";
+        return jsonConverter.toJson(characterSheet);
+    }
+
+    public int rollDice(final int count, final String modifierOption, final String queriedType){
+
+        if(count < 0){
+            throw new RuntimeException("Invalid Dice Count Input");
+        }
+
+        Dice diceType = Dice.fromString(queriedType);
+
+        if(diceType == null){
+            throw new RuntimeException("Invalid Dice Type Inputted");
+        }
+
+        Modifier curModifier;
+        switch (modifierOption){
+            case "str":
+                curModifier = characterSheet.getSTR();
+                break;
+            case "dex":
+                curModifier = characterSheet.getDEX();
+                break;
+            case "int":
+                curModifier = characterSheet.getINT();
+                break;
+            case "cha":
+                curModifier = characterSheet.getCHA();
+                break;
+            case "con":
+                curModifier = characterSheet.getCON();
+                break;
+            default:
+                throw new RuntimeException("Invalid Modifier Option Inputted");
+        }
+
+        return diceRoller.Roll(count, curModifier.getMod(), diceType);
     }
 }

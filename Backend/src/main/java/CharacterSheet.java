@@ -75,6 +75,12 @@ public class CharacterSheet {
         this.classType = new ClassType(mainClass, subClass);
     }
 
+    public CharacterSheet() {
+        this(0, 0, 0, 0, 0, 0,
+                        0, 0, 0, 0, 0,
+                        "","");
+    }
+
     /**
      * Get the Strength modifier
      * 
