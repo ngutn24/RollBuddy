@@ -2,7 +2,7 @@ package main.java;
 
 /**
  * The Dice ENUM encompasses the 8 different types of Dice
- * available to a player in D&D 5E. Each ENUM has an attached
+ * available to a player in D and D 5E. Each ENUM has an attached
  * integer value in accordance with dice type.
  */
 

@@ -11,7 +11,7 @@ public class CharacterSessionTest {
 
 
     @DataPoints("Session IDs")
-    public static int[] ids = new int[] {0, 1, 123, 456, 25698721, 999999999};
+    public static String[] ids = new String[] {"0", "1", "123", "456", "25a98721", "999999999"};
 
     @DataPoint("Character Session JSON")
     public static String[] expectedJsonKeys = new String[]
@@ -22,11 +22,11 @@ public class CharacterSessionTest {
 
     @Before
     public void Setup(){
-        session = new CharacterSession(12345);
+        session = new CharacterSession("12345");
     }
 
     @Theory
-    public void TestSessionID(@FromDataPoints("Session IDs") int ID){
+    public void TestSessionID(@FromDataPoints("Session IDs") String ID){
         System.out.println("Testing Session ID: " + ID);
         CharacterSession session = new CharacterSession(ID);
         Assert.assertEquals(ID, session.getSessionID());
