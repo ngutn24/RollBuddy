@@ -2,9 +2,12 @@ package main.java;
 import java.time.Instant;
 import com.google.gson.Gson;
 
-
+/**
+ * An object that represents a user's individual session with the Rollbuddy service.
+ * This holds character sheet information and other important metadata related to the user's experience
+ */
 public class CharacterSession {
-    public final int sessionID;
+    public final String sessionID;
     private Instant lastUpdated;
     private final Gson jsonConverter;
     private CharacterSheet characterSheet;
@@ -16,7 +19,7 @@ public class CharacterSession {
      * There is no unique session ID checker, it is up to the client to ensure
      * unique IDs
      */
-    public CharacterSession(final int sessionID){
+    public CharacterSession(final String sessionID){
         this.sessionID = sessionID;
         this.lastUpdated = Instant.now();
         this.jsonConverter = new Gson();
@@ -27,9 +30,9 @@ public class CharacterSession {
     /**
      * Get function for checking the session ID attached to this character session
      *
-     * @return The integer session ID for this instance
+     * @return The string session ID for this instance
      */
-    public int getSessionID(){
+    public String getSessionID(){
         return sessionID;
     }
 
@@ -63,6 +66,14 @@ public class CharacterSession {
         return jsonConverter.toJson(characterSheet);
     }
 
+    /**
+     * Will roll dice based on parameters passed in and return the result
+     *
+     * @param count The amount of die requested to use
+     * @param modifierOption Which character sheet modifier to use
+     * @param queriedType What kinf die to use (ex: d10, d20)
+     * @return The result of running (count) (queriedType) die
+     */
     public int rollDice(final int count, final String modifierOption, final String queriedType){
 
         if(count < 0){
