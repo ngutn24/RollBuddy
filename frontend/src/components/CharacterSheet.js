@@ -32,7 +32,7 @@ const CharacterSheet = () => {
       .get("http://localhost:4567/character", { withCredentials: true })
       .then(async (res) => {
         const data = res.data;
-        await console.log(data); // TODO may not be a best practice to mix await/async with .then
+        console.log(data); // TODO may not be a best practice to mix await/async with .then
       });
   }, []);
 
