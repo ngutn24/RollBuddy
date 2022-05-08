@@ -1,14 +1,44 @@
 Testing Session Update Time
 !SESSION UPDATE TIME TEST PASSED
-Testing Session ID: 0
-SESSION ID TEST PASSED
-Testing Session ID: 1
-SESSION ID TEST PASSED
-Testing Session ID: 123
-SESSION ID TEST PASSED
-Testing Session ID: 456
-SESSION ID TEST PASSED
-Testing Session ID: 25698721
-SESSION ID TEST PASSED
-Testing Session ID: 999999999
-SESSION ID TEST PASSED
+Testing Invalid Dice Inputs
+Testing Invalid Dice Count
+ INVALID DICE COUNT TEST PASSED
+!Testing Invalid modifier option
+%INVALID MODIFIER OPTION TEST PASSED
+!Testing Invalid dice type input
+ INVALID DICE TYPE INPUT PASSED
+INVALID DICE INPUTS PASSED
+1Testing Default Character Sheet Json Conversion
+Checking for: profBonus
+Checking for: items
+Checking for: level
+Checking for: initiative
+Checking for: hitPoints
+Checking for: speed
+Checking for: armorClass
+Checking for: goldCount
+Checking for: classType
+Checking for: mainClass
+Checking for: subClass
+Checking for: baseMod
+Checking for: abilityScore
+Checking for: mod
+Checking for: STR
+Checking for: DEX
+Checking for: CON
+Checking for: INT
+Checking for: WIS
+Checking for: CHA
+-TESTING DEFAULT CHARACTER SHEET JSON PASSED
+Testing Session ID: 0
+SESSION ID TEST PASSED
+Testing Session ID: 1
+SESSION ID TEST PASSED
+Testing Session ID: 123
+SESSION ID TEST PASSED
+Testing Session ID: 456
+SESSION ID TEST PASSED
+Testing Session ID: 25a98721
+SESSION ID TEST PASSED
+Testing Session ID: 999999999
+SESSION ID TEST PASSED

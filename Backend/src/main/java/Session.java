@@ -10,22 +10,31 @@ public class Session {
     private static Map<String, CharacterSession> sess;
 
     public static void main(String[] args) {
+
+        /*
+         * For testing purposes. go to http://localhost:4567/hello to see if the server
+         * is running
+         */
+        get("/hello", (req, res) -> {
+            String name = req.queryParams("name");
+            return "Hello, " + (name != null ? name : "friend");
+        });
+
         sess = new HashMap<>();
         /*
-         * creates a session for a character based on stats which will be in the
-         * format of a comma seperated string with STR, DEX, CON, INT, WIS, CHA, Level,
-         * hitPoints,
-         * gold, armor, main class, subclass
+         * creates a session for a character
          */
-        post("/character/:stats", (req, res) -> {
-            CharacterSession currSession = new CharacterSession(Integer.parseInt(req.session().id()));
-            currSession.generateCharacter(req.params(":stats"));
+        post("/character/create", (req, res) -> {
+            CharacterSession currSession = new CharacterSession(req.session().id());
             sess.put(req.session().id(), currSession); // can change the characterSession constructor to String
             return req.session().id();
         });
 
         /*
-         * updates the session's character sheet using the same stats format as creating
+         * updates the session's character sheet based on stats which will be in the
+         * format of a % seperated string with STR, DEX, CON, INT, WIS, CHA, Level,
+         * hitPoints,
+         * gold, armor, main class, subclass
          */
         put("/update/:stats", (req, res) -> {
             CharacterSession currSession = sess.get(req.session().id());
@@ -39,6 +48,12 @@ public class Session {
         get("/character", (req, res) -> {
             CharacterSession currSession = sess.get(req.session().id());
             return currSession.getCharacterData();
+        });
+
+        get("/roll/:count/:mod/:dice", (req, res) -> {
+            CharacterSession currSession = sess.get(req.session().id());
+            return currSession.rollDice(Integer.parseInt(req.params(":count")), req.params(":mod"),
+                    req.params(":dice"));
         });
 
     }
