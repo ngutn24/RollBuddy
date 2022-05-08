@@ -1,5 +1,6 @@
 package main.java;
 import java.time.Instant;
+
 import com.google.gson.Gson;
 
 /**
@@ -71,8 +72,9 @@ public class CharacterSession {
      *
      * @param count The amount of die requested to use
      * @param modifierOption Which character sheet modifier to use
-     * @param queriedType What kinf die to use (ex: d10, d20)
+     * @param queriedType What kind die to use (ex: d10, d20)
      * @return The result of running (count) (queriedType) die
+     * @throws RuntimeException if any input is invalid
      */
     public int rollDice(final int count, final String modifierOption, final String queriedType){
 
@@ -87,7 +89,7 @@ public class CharacterSession {
         }
 
         Modifier curModifier;
-        switch (modifierOption){
+        switch (modifierOption.toLowerCase()){
             case "str":
                 curModifier = characterSheet.getSTR();
                 break;

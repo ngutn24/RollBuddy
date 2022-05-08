@@ -34,9 +34,9 @@ public class Session {
          * hitPoints,
          * gold, armor, main class, subclass
          */
-        Spark.get("/update/:stats", (req, res) -> {
+        Spark.get("/update", (req, res) -> {
             CharacterSession currSession = sess.get(req.session().id());
-            currSession.generateCharacter(req.params(":stats"));
+            currSession.generateCharacter(req.queryParams("stats"));
             return req.session().id();
         });
 
@@ -48,10 +48,19 @@ public class Session {
             return currSession.getCharacterData();
         });
 
-        Spark.get("/roll/:count/:mod/:dice", (req, res) -> {
+        Spark.get("/roll", (req, res) -> {
+
             CharacterSession currSession = sess.get(req.session().id());
-            return currSession.rollDice(Integer.parseInt(req.params(":count")), req.params(":mod"),
-                    req.params(":dice"));
+            int count = Integer.parseInt(req.queryParams("count"));
+            String abilityType = req.queryParams("mod");
+            String diceType = req.queryParams("dice");
+
+            if (abilityType == null || diceType == null){
+                res.status(400);
+                return "Bad Roll Request";
+            }
+            return currSession.rollDice(Integer.parseInt(req.queryParams("count")), req.queryParams("mod"),
+                    req.queryParams("dice"));
         });
         //Spark.stop();
     }
