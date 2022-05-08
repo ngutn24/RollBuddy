@@ -1,7 +1,7 @@
 package main.java;
 
 /**
- * In Dungeons & Dragon, every character has 6 ability scores (STR, DEX, CON,
+ * In Dungeons and Dragon, every character has 6 ability scores (STR, DEX, CON,
  * INT, WIS, CHA)
  * Genreally, the stats range from 1 to 20 but theoretically can be any number
  * An ability score of 10 is the average, which nets you a modifier of +0 to

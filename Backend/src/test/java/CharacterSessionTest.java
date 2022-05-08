@@ -2,29 +2,34 @@ package test.java;
 
 import main.java.CharacterSession;
 import org.junit.*;
-import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.FromDataPoints;
-import org.junit.experimental.theories.Theories;
-import org.junit.experimental.theories.Theory;
+import org.junit.experimental.theories.*;
 import org.junit.runner.RunWith;
 
 @RunWith(Theories.class)
 public class CharacterSessionTest {
     private static CharacterSession session;
 
+
     @DataPoints("Session IDs")
-    public static int[] ids = new int[] {0, 1, 123, 456, 25698721, 999999999};
+    public static String[] ids = new String[] {"0", "1", "123", "456", "25a98721", "999999999"};
+
+    @DataPoint("Character Session JSON")
+    public static String[] expectedJsonKeys = new String[]
+            {"profBonus", "items", "level", "initiative", "hitPoints",
+            "speed", "armorClass", "goldCount", "classType", "mainClass",
+            "subClass", "baseMod", "abilityScore", "mod",
+            "STR", "DEX", "CON", "INT", "WIS", "CHA"};
 
     @Before
     public void Setup(){
-        session = new CharacterSession(12345);
+        session = new CharacterSession("12345");
     }
 
     @Theory
-    public void TestSessionID(@FromDataPoints("Session IDs") int ID){
+    public void TestSessionID(@FromDataPoints("Session IDs") String ID){
         System.out.println("Testing Session ID: " + ID);
         CharacterSession session = new CharacterSession(ID);
-        assert(session.getSessionID() == ID);
+        Assert.assertEquals(ID, session.getSessionID());
         System.out.println("SESSION ID TEST PASSED");
     }
 
@@ -35,8 +40,57 @@ public class CharacterSessionTest {
         String preTime = session.getLastUpdated();
         session.generateCharacter("MEEP");
         String postTime = session.getLastUpdated();
-        assert(!preTime.equals(postTime));
+        Assert.assertNotEquals(postTime, preTime);
         System.out.println("SESSION UPDATE TIME TEST PASSED");
+    }
+
+    @Theory
+    public void testDefaultCharacterSheetJson(@FromDataPoints("Character Session JSON") String[] keyList){
+        System.out.println("Testing Default Character Sheet Json Conversion");
+        String json = session.getCharacterData();
+        for(String key : keyList){
+            System.out.println("Checking for: " + key);
+            Assert.assertTrue(json.contains(key));
+        }
+        System.out.println("TESTING DEFAULT CHARACTER SHEET JSON PASSED");
+    }
+
+    @Test
+    public void testInvalidDiceRollInputs(){
+        System.out.println("Testing Invalid Dice Inputs");
+
+        System.out.println("Testing Invalid Dice Count");
+        RuntimeException thrown =
+                Assert.assertThrows("Exception from dice rolling was expected",
+                RuntimeException.class,
+                () -> session.rollDice(-1, "str", "d4"));
+
+        Assert.assertEquals("Invalid Dice Count Input", thrown.getMessage());
+
+        System.out.println("INVALID DICE COUNT TEST PASSED");
+
+        System.out.println("Testing Invalid modifier option");
+
+        thrown = Assert.assertThrows("Exception from dice rolling was expected",
+                        RuntimeException.class,
+                        () -> session.rollDice(2, "asd", "d4"));
+
+        Assert.assertEquals("Invalid Modifier Option Inputted", thrown.getMessage());
+
+        System.out.println("INVALID MODIFIER OPTION TEST PASSED");
+
+        System.out.println("Testing Invalid dice type input");
+
+        thrown = Assert.assertThrows("Exception from dice rolling was expected",
+                RuntimeException.class,
+                () -> session.rollDice(2, "str", "d654"));
+
+        Assert.assertEquals("Invalid Dice Type Inputted", thrown.getMessage());
+
+        System.out.println("INVALID DICE TYPE INPUT PASSED");
+
+        System.out.println("INVALID DICE INPUTS PASSED");
+
     }
 
 }
