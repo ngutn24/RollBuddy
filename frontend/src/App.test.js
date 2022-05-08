@@ -8,6 +8,6 @@ describe("App", () => {
     render(<App />);
     const logo = screen.getByRole("img");
     expect(logo).toHaveAttribute("src", "rollbuddy_logo.png", { exact: false });
-    expect(logo).toHaveAttribute("alt", "logo");
+    expect(logo).toHaveAttribute("alt", "RollBuddy logo");
   });
 });
