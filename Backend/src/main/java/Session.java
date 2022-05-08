@@ -1,6 +1,7 @@
 package main.java;
 
 import spark.Spark;
+import spark.Filter;
 
 import java.util.HashMap;
 import java.util.Map;
