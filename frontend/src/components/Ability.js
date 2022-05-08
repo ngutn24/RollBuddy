@@ -8,6 +8,7 @@ const Ability = ({
   setAbilities,
   abilityID,
 }) => {
+  // TODO: Prune to only allow numerical values, cast to int?
   const setAbilitiesHandler = (e) => {
     console.log(abilities);
     setAbilities({ ...abilities, [abilityID]: e.target.value });
