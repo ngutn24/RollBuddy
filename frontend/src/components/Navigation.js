@@ -18,7 +18,7 @@ const Navigation = () => {
             src={logo}
             height="40"
             className="d-inline-block align-top"
-            alt="RollBuddy"
+            alt="RollBuddy logo"
             style={{ filter: "invert(85%)" }}
           />
         </Navbar.Brand>

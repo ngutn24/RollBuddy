@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import AbilityList from "./AbilityList.js";
 import CharacterInfo from "./CharacterInfo.js";
@@ -14,7 +14,6 @@ const CharacterSheet = () => {
     if (id) {
       console.log("Loading id from storage... ", id);
       setCharacterID(id);
-      //console.log(characterID);
     } else {
       // TODO: Hardcoded URL, use github env variables in the future?
       // NOTE: withCredentials will store the session cookie for later
