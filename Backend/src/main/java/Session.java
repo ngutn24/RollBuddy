@@ -27,7 +27,7 @@ public class Session {
         /*
          * updates the session's character sheet using the same stats format as creating
          */
-        post("/update/:stats", (req, res) -> {
+        put("/update/:stats", (req, res) -> {
             CharacterSession currSession = sess.get(req.session().id());
             currSession.generateCharacter(req.params(":stats"));
             return req.session().id();

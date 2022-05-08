@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="test.java.CharacterSessionTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2022-05-08T06:39:37" hostname="JACOBPAVIL" time="0.045">
+  <properties/>
+  <testcase name="testSessionUpdateTime" classname="test.java.CharacterSessionTest" time="0.04"/>
+  <testcase name="TestSessionID" classname="test.java.CharacterSessionTest" time="0.005"/>
+  <system-out><![CDATA[Testing Session Update Time
+SESSION UPDATE TIME TEST PASSED
+Testing Session ID: 0
+SESSION ID TEST PASSED
+Testing Session ID: 1
+SESSION ID TEST PASSED
+Testing Session ID: 123
+SESSION ID TEST PASSED
+Testing Session ID: 456
+SESSION ID TEST PASSED
+Testing Session ID: 25698721
+SESSION ID TEST PASSED
+Testing Session ID: 999999999
+SESSION ID TEST PASSED
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
