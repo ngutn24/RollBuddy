@@ -8,12 +8,14 @@ import {
   ThemeProvider,
 } from "react-bootstrap";
 import Navigation from "./components/Navigation";
+import AbilityList from "./components/AbilityList";
 import "./App.css";
 
 function App() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   return (
     <ThemeProvider breakpoints={["lg", "md", "sm", "xs", "xxs"]}>
       <body className="Main-body">
@@ -41,13 +43,16 @@ function App() {
               <p>This is also part of a row.</p>
             </Col>
           </Row>
+          <Row>
+            <AbilityList />
+          </Row>
         </Container>
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
       </body>
 
       {/* FOOTER */}
       <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-        <div class="container text-center">
+        <div className="container text-center">
           <small>Copyright &copy;2022 RollBuddy</small>
         </div>
       </footer>
