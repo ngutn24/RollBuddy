@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Row } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const Ability = ({
   abilityName,

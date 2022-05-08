@@ -1,5 +1,4 @@
 import { React, useState } from "react";
-import { Col } from "react-bootstrap";
 import Ability from "./Ability.js";
 
 const AbilityList = () => {
