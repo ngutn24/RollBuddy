@@ -8,8 +8,20 @@ import java.util.Map;
 public class Session {
 
     public static void main(String[] args) {
-        
         Map<String, CharacterSession> sess = new HashMap<>();
+        
+        /*
+         * Allow CORS for API clients, by default this must allowed for authentication cookies required for session id storage.
+         */
+        Spark.after((Filter) (request, response) -> {
+            // this will need to be updated in the future, since sessions require setting a cookie, we must define
+            // an origin, but we do not yet have an api endpoint.
+            response.header("Access-Control-Allow-Origin", "http://localhost:3000");
+            response.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+            response.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+            response.header("Access-Control-Allow-Credentials", "true");
+        });
+
         /*
          * For testing purposes. go to http://localhost:4567/hello to see if the server
          * is running
