@@ -18,7 +18,7 @@ function App() {
 
   return (
     <ThemeProvider breakpoints={["lg", "md", "sm", "xs", "xxs"]}>
-      <body className="Main-body">
+      <div className="Main-body">
         <Navigation />
         {/* container defaults to fluid=lg  */}
         <Container style={{ padding: "20px" }}>
@@ -48,10 +48,10 @@ function App() {
           </Row>
         </Container>
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
-      </body>
+      </div>
 
       {/* FOOTER */}
-      <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+      <footer id="sticky-footer" className="py-4 bg-dark text-white-50">
         <div className="container text-center">
           <small>Copyright &copy;2022 RollBuddy</small>
         </div>
