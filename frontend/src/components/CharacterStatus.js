@@ -29,15 +29,16 @@ var hpInput = {
 var hpText = {
   fontWeight: "400",
   fontSize: "3rem",
+  display: "inline",
 };
 
 const CharacterStatus = () => {
   return (
     <Row style={statusRow}>
       <Col lg={4} style={{ textAlign: "left" }}>
-        <text style={hpText}>HP:</text>
+        <p style={hpText}>HP:</p>
         <input style={hpInput} />
-        <text style={hpText}>/</text>
+        <p style={hpText}>/</p>
         <input style={hpInput} />
       </Col>
       <Col lg={2} align="center">
