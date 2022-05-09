@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import {
     DropdownButton,
     Dropdown,
@@ -34,6 +34,27 @@ import {
     const handleSelectRollProficiency = (e) => {
         setRollProficiency(e);
     }
+
+    useEffect(() => {
+        const localRollInfo = JSON.parse(localStorage.getItem("rollInfo"));
+        if (localRollInfo) {
+          console.log("Loading rollInfo from storage... ", localRollInfo);
+          setRollType(localRollInfo.rollType);
+          setRollCondition(localRollInfo.rollCondition);
+          setRollAbility(localRollInfo.rollAbility);
+          setRollProficiency(localRollInfo.rollProficiency);
+        }
+      }, []);
+    
+      useEffect(() => {
+        const rollInfo = {
+          rollType: rollType,
+          rollCondition: rollCondition,
+          rollAbility: rollAbility,
+          rollProficiency: rollProficiency,
+        };
+        localStorage.setItem("rollInfo", JSON.stringify(rollInfo));
+      }, [rollType, rollCondition, rollAbility, rollProficiency]);
 
     return (
         <div align="center" style={RollWindow}>

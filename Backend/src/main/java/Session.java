@@ -17,7 +17,7 @@ public class Session {
         Spark.after((Filter) (request, response) -> {
             // this will need to be updated in the future, since sessions require setting a cookie, we must define
             // an origin, but we do not yet have an api endpoint.
-            response.header("Access-Control-Allow-Origin", "http://localhost:3000");
+            response.header("Access-Control-Allow-Origin", "*");
             response.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
             response.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
             response.header("Access-Control-Allow-Credentials", "true");
@@ -54,10 +54,18 @@ public class Session {
         });
 
         /*
-         * returns the stats for the current session
+         * returns the stats for the current session. if there is not an active session,
+         * create one.
          */
         Spark.get("/character", (req, res) -> {
-            CharacterSession currSession = sess.get(req.session().id());
+            String id = req.session().id();
+            CharacterSession currSession;
+            if (id == null) {
+                currSession = new CharacterSession(req.session().id());
+                sess.put(req.session().id(), currSession);
+            } else {
+                currSession = sess.get(id);
+            }
             return currSession.getCharacterData();
         });
 

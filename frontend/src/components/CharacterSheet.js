@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import AbilityList from "./AbilityList.js";
 import CharacterInfo from "./CharacterInfo.js";
@@ -7,39 +7,42 @@ import RollMenu from "./RollMenu.js";
 import axios from "axios";
 
 const CharacterSheet = () => {
-  const [characterID, setCharacterID] = useState();
+  //const [characterID, setCharacterID] = useState();
 
   // JS Logic
-  // Runs once: get sessionID from local storage (if found), otherwise request a new session.
+  // Runs once: Initialize session, save id, and request initial data.
   useEffect(() => {
-    const id = JSON.parse(localStorage.getItem("characterID"));
-    if (id) {
-      console.log("Loading id from storage... ", id);
-      setCharacterID(id);
-    } else {
-      // TODO: Hardcoded URL, use github env variables in the future?
-      // NOTE: withCredentials will store the session cookie for later
-      axios
-        .get("http://localhost:4567/create", { withCredentials: true })
-        .catch((e) => {}) // TODO: tests fail if `console.log` is called here.
-        .then((res) => {
-          const session = res.data;
-          localStorage.setItem("characterID", JSON.stringify(session));
-          setCharacterID(id); // TODO may not be a best practice to mix await/async with .then
-        });
-
-      console.log("Fetched id from api...", characterID);
-    }
-
     axios
-      .get("http://localhost:4567/character", { withCredentials: true })
-      .catch((e) => {}) // TODO: tests fail if `console.log` is called here.
+      .get("http://localhost:4567/character", {
+        withCredentials: true,
+      })
       .then((res) => {
-        if (res) {
-          const data = res.data;
-          // eslint-disable-next-line
-          console.log(data); // TODO may not be a best practice to mix await/async with .then
-        }
+        console.log("Character data", res.data);
+        return axios.get(
+          "http://localhost:4567/update?stats=" +
+            encodeURIComponent(
+              JSON.stringify({
+                CHA: 20,
+                CON: 20,
+                DEX: 20,
+                INT: 20,
+                STR: 20,
+                WIS: 20,
+              })
+            ),
+          {
+            withCredentials: true,
+            headers: { crossDomain: true },
+          }
+        );
+      })
+      .then((res) => {
+        return axios.get("http://localhost:4567/character", {
+          withCredentials: true,
+        });
+      })
+      .then((res) => {
+        console.log("Character data", res.data);
       });
     // eslint-disable-next-line
   }, []); // run hook only once on mount, not on change to state. ignore this hook dependency warning.
