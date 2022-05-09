@@ -32,7 +32,6 @@ const CharacterSheet = () => {
             ),
           {
             withCredentials: true,
-            headers: { crossDomain: true },
           }
         );
       })
