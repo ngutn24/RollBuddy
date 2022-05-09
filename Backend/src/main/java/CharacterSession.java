@@ -1,5 +1,6 @@
 package main.java;
 import java.time.Instant;
+import java.util.Map;
 
 import com.google.gson.Gson;
 
@@ -52,9 +53,18 @@ public class CharacterSession {
      * @param characterData a json representation of the core ability scores
      */
     public void generateCharacter(final String characterData){
-        // TODO: Actually implement generating character
         // Extract Data from characterData
         // Pass the changes from characterSheet class
+        Map args = jsonConverter.fromJson(characterData, Map.class);
+
+        // TODO: Write a better way to update character stats
+        characterSheet.setSTR(((Double)args.get("STR")).intValue());
+        characterSheet.setCHA(((Double)args.get("CHA")).intValue());
+        characterSheet.setDEX(((Double)args.get("DEX")).intValue());
+        characterSheet.setCON(((Double)args.get("CON")).intValue());
+        characterSheet.setINT(((Double)args.get("INT")).intValue());
+        characterSheet.setWIS(((Double)args.get("WIS")).intValue());
+
         lastUpdated = Instant.now();
     }
 
