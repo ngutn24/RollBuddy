@@ -14,14 +14,18 @@ public class Session {
         /*
          * Allow CORS for API clients, by default this must allowed for authentication cookies required for session id storage.
          */
-        Spark.after((Filter) (request, response) -> {
-            // this will need to be updated in the future, since sessions require setting a cookie, we must define
-            // an origin, but we do not yet have an api endpoint.
-            response.header("Access-Control-Allow-Origin", "*");
-            response.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
-            response.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
-            response.header("Access-Control-Allow-Credentials", "true");
-        });
+//        Spark.afterAfter((Filter) (request, response) -> {
+//            // this will need to be updated in the future, since sessions require setting a cookie, we must define
+//            // an origin, but we do not yet have an api endpoint.
+//            response.header("Access-Control-Allow-Origin", "*");
+//            response.header("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+//            response.header("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+//            response.header("Access-Control-Allow-Credentials", "true");
+//        });
+
+        CORSFilter filter = new CORSFilter();
+        filter.apply();// make this easier to use in development
+        // this would be disabled in production
 
         /*
          * For testing purposes. go to http://localhost:4567/hello to see if the server
@@ -60,7 +64,7 @@ public class Session {
         Spark.get("/character", (req, res) -> {
             String id = req.session().id();
             CharacterSession currSession;
-            if (id == null) {
+            if (!sess.containsKey(id)) {
                 currSession = new CharacterSession(req.session().id());
                 sess.put(req.session().id(), currSession);
             } else {
