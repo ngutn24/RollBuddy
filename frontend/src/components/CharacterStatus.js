@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 
 var statusRow = {
@@ -33,16 +34,46 @@ var hpText = {
 };
 
 const CharacterStatus = () => {
+  const [currentHP, setCurrentHP] = useState("");
+  const [maxHP, setMaxHP] = useState("");
+  const [armorClass, setArmorClass] = useState("");
+  const [speed, setSpeed] = useState("");
+
+  useEffect(() => {
+    const localCharStatus = JSON.parse(localStorage.getItem("charStatus"));
+    if (localCharStatus) {
+      console.log("Loading charStatus from storage... ", localCharStatus);
+      setCurrentHP(localCharStatus.currentHP);
+      setMaxHP(localCharStatus.maxHP);
+      setArmorClass(localCharStatus.armorClass);
+      setSpeed(localCharStatus.speed);
+    }
+  }, []);
+
+  useEffect(() => {
+    const charStatus = {
+      currentHP: currentHP,
+      maxHP: maxHP,
+      armorClass: armorClass,
+      speed: speed,
+    };
+    localStorage.setItem("charStatus", JSON.stringify(charStatus));
+  }, [currentHP, maxHP, armorClass, speed]);
+
+  const updateStateHandler = (setState) => (e) => {
+    setState(e.target.value);
+  };
+
   return (
     <Row style={statusRow}>
-      <Col lg={4} style={{ textAlign: "left" }}>
+      <Col lg={4} style={{textAlign: "left"}}>
         <p style={hpText}>HP:</p>
-        <input style={hpInput} />
+        <input style={hpInput} value={currentHP} onChange={updateStateHandler(setCurrentHP)} />
         <p style={hpText}>/</p>
-        <input style={hpInput} />
+        <input style={hpInput} value={maxHP} onChange={updateStateHandler(setMaxHP)} />
       </Col>
       <Col lg={2} align="center">
-        <input style={input} />
+        <input style={input} value={armorClass} onChange={updateStateHandler(setArmorClass)} />
         <h4>Armor Class</h4>
       </Col>
       <Col lg={2} align="center">
@@ -54,7 +85,7 @@ const CharacterStatus = () => {
         <h4>Initiative</h4>
       </Col>
       <Col lg={2} align="center">
-        <input style={input} />
+        <input style={input} value={speed} onChange={updateStateHandler(setSpeed)} />
         <h4>Speed</h4>
       </Col>
     </Row>
