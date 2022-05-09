@@ -18,7 +18,7 @@ const CharacterSheet = () => {
       // TODO: Hardcoded URL, use github env variables in the future?
       // NOTE: withCredentials will store the session cookie for later
       axios
-        .get("http://localhost:4567/createw", { withCredentials: true })
+        .get("http://localhost:4567/create", { withCredentials: true })
         .catch((e) => {}) // TODO: tests fail if `console.log` is called here.
         .then((res) => {
           const session = res.data;
