@@ -20,7 +20,7 @@ const Ability = ({
     outline: "black solid 2px", 
     borderRadius: "20px", 
     backgroundColor: "white", 
-    margin: "1rem 0rem 1rem 1rem"
+    margin: "1rem 0.5rem 1rem 0.5rem"
   }
 
   return (

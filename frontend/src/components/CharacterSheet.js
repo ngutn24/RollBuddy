@@ -1,7 +1,8 @@
 import { React, useEffect } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import AbilityList from "./AbilityList.js";
 import CharacterInfo from "./CharacterInfo.js";
+import RollMenu from "./RollMenu.js";
 
 const CharacterSheet = () => {
   //const [characterID, setCharacterID] = useState("");
@@ -31,7 +32,16 @@ const CharacterSheet = () => {
         <CharacterInfo />
       </Row>
       <Row>
+        <Col>
+
+        </Col>
         <AbilityList />
+      </Row>
+      <Row>
+        <Col>
+        
+        </Col>
+        <RollMenu />
       </Row>
     </Container>
   );
