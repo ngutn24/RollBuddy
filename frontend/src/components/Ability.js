@@ -16,16 +16,18 @@ const Ability = ({
 
   // Formats ability score component to be a centered rounded box with a white background
   var AbilityScore = {
-    maxWidth: "8rem", 
-    outline: "black solid 2px", 
-    borderRadius: "20px", 
-    backgroundColor: "white", 
-    margin: "1rem 0rem 1rem 1rem"
-  }
+    maxWidth: "8rem",
+    outline: "black solid 2px",
+    borderRadius: "20px",
+    backgroundColor: "white",
+    margin: "1rem 0rem 1rem 1rem",
+  };
 
   return (
     <div align="center" style={AbilityScore}>
-      <h1 style={{textDecorationLine: "underline", fontSize: "1rem"}}>{abilityName}</h1>
+      <h1 style={{ textDecorationLine: "underline", fontSize: "1rem" }}>
+        {abilityName}
+      </h1>
       <h1>+0</h1> {/* This will be the ability score modifier */}
       <input
         onChange={setAbilitiesHandler}
@@ -37,7 +39,7 @@ const Ability = ({
           padding: "4px 4px",
           margin: "8px 0",
           boxSizing: "border-box",
-          textAlign: "center"
+          textAlign: "center",
         }}
       />
       <div style={{ display: "inline-block" }}>

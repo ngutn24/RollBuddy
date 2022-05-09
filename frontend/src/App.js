@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
 import { ThemeProvider } from "react-bootstrap";
 import Navigation from "./components/Navigation";
 import CharacterSheet from "./components/CharacterSheet";
-import axios from "axios";
 import "./App.css";
 
 function App() {

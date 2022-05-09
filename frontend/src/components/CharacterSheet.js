@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import AbilityList from "./AbilityList.js";
 import CharacterInfo from "./CharacterInfo.js";
@@ -32,9 +32,10 @@ const CharacterSheet = () => {
       .get("http://localhost:4567/character", { withCredentials: true })
       .then(async (res) => {
         const data = res.data;
-        console.log(data); // TODO may not be a best practice to mix await/async with .then
+        await console.log(data); // TODO may not be a best practice to mix await/async with .then
       });
-  }, []);
+    // eslint-disable-next-line
+  }, []); // run hook only once on mount, not on change to state. ignore this hook dependency warning.
 
   return (
     <Container style={{ padding: "20px" }}>
