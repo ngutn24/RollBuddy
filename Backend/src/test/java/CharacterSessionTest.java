@@ -38,7 +38,7 @@ public class CharacterSessionTest {
     public void testSessionUpdateTime(){
         System.out.println("Testing Session Update Time");
         String preTime = session.getLastUpdated();
-        session.generateCharacter("MEEP");
+        session.generateCharacter("{\"STR\":2,\"CHA\":0,\"DEX\":1,\"CON\":5,\"INT\":1,\"WIS\":5}");
         String postTime = session.getLastUpdated();
         Assert.assertNotEquals(postTime, preTime);
         System.out.println("SESSION UPDATE TIME TEST PASSED");

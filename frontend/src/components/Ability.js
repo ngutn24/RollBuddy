@@ -16,12 +16,12 @@ const Ability = ({
 
   // Formats ability score component to be a centered rounded box with a white background
   var AbilityScore = {
-    maxWidth: "8rem",
-    outline: "black solid 2px",
-    borderRadius: "20px",
-    backgroundColor: "white",
-    margin: "1rem 0rem 1rem 1rem",
-  };
+    maxWidth: "8rem", 
+    outline: "black solid 2px", 
+    borderRadius: "20px", 
+    backgroundColor: "white", 
+    margin: "1rem 0.5rem 1rem 0.5rem"
+  }
 
   return (
     <div align="center" style={AbilityScore}>
