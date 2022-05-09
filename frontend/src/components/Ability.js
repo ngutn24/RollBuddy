@@ -25,7 +25,9 @@ const Ability = ({
 
   return (
     <div align="center" style={AbilityScore}>
-      <h1 style={{textDecorationLine: "underline", fontSize: "1rem"}}>{abilityName}</h1>
+      <h1 style={{ textDecorationLine: "underline", fontSize: "1rem" }}>
+        {abilityName}
+      </h1>
       <h1>+0</h1> {/* This will be the ability score modifier */}
       <input
         onChange={setAbilitiesHandler}
@@ -37,7 +39,7 @@ const Ability = ({
           padding: "4px 4px",
           margin: "8px 0",
           boxSizing: "border-box",
-          textAlign: "center"
+          textAlign: "center",
         }}
       />
       <div style={{ display: "inline-block" }}>

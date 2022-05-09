@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "homepage": "https://ngutn24.github.io/RollBuddy",
+  "proxy": "http://localhost:4567",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
