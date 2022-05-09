@@ -1,5 +1,7 @@
 package main.java;
 import java.time.Instant;
+import java.util.Map;
+
 import com.google.gson.Gson;
 
 /**
@@ -51,9 +53,18 @@ public class CharacterSession {
      * @param characterData a json representation of the core ability scores
      */
     public void generateCharacter(final String characterData){
-        // TODO: Actually implement generating character
         // Extract Data from characterData
         // Pass the changes from characterSheet class
+        Map args = jsonConverter.fromJson(characterData, Map.class);
+
+        // TODO: Write a better way to update character stats
+        characterSheet.setSTR(((Double)args.get("STR")).intValue());
+        characterSheet.setCHA(((Double)args.get("CHA")).intValue());
+        characterSheet.setDEX(((Double)args.get("DEX")).intValue());
+        characterSheet.setCON(((Double)args.get("CON")).intValue());
+        characterSheet.setINT(((Double)args.get("INT")).intValue());
+        characterSheet.setWIS(((Double)args.get("WIS")).intValue());
+
         lastUpdated = Instant.now();
     }
 
@@ -71,8 +82,9 @@ public class CharacterSession {
      *
      * @param count The amount of die requested to use
      * @param modifierOption Which character sheet modifier to use
-     * @param queriedType What kinf die to use (ex: d10, d20)
+     * @param queriedType What kind die to use (ex: d10, d20)
      * @return The result of running (count) (queriedType) die
+     * @throws RuntimeException if any input is invalid
      */
     public int rollDice(final int count, final String modifierOption, final String queriedType){
 
@@ -87,7 +99,7 @@ public class CharacterSession {
         }
 
         Modifier curModifier;
-        switch (modifierOption){
+        switch (modifierOption.toLowerCase()){
             case "str":
                 curModifier = characterSheet.getSTR();
                 break;
