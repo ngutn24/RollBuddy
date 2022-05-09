@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import AbilityList from "./AbilityList.js";
 import CharacterInfo from "./CharacterInfo.js";
@@ -7,8 +7,6 @@ import RollMenu from "./RollMenu.js";
 import axios from "axios";
 
 const CharacterSheet = () => {
-  const [characterID, setCharacterID] = useState();
-
   // JS Logic
   // Runs once: Initialize session, save id, and request initial data.
   useEffect(() => {
