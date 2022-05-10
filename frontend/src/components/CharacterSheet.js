@@ -74,9 +74,7 @@ const CharacterSheet = () => {
       </Row>
       <Row className="flex-column-reverse flex-md-row">
         <Col></Col>
-        <Col>
-          <RollMenu />
-        </Col>
+        <RollMenu />
       </Row>
     </Container>
   );
