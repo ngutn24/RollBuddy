@@ -115,6 +115,9 @@ public class CharacterSession {
             case "con":
                 curModifier = characterSheet.getCON();
                 break;
+            case "wis":
+                curModifier = characterSheet.getWIS();
+                break;
             default:
                 throw new RuntimeException("Invalid Modifier Option Inputted");
         }
