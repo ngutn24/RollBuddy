@@ -78,6 +78,11 @@ task full_build(group: 'Rollbuddy build'){
     dependsOn build_frontend
 }
 
+task full_test(group: 'Rollbuddy test'){
+    dependsOn test_backend
+    dependsOn test_frontend
+}
+
 
 
 node {
