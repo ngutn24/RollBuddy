@@ -1,39 +1,49 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-const Ability = ({
-  abilityName,
-  inputText,
-  abilities,
-  setAbilities,
-  abilityID,
-}) => {
-  // TODO: Prune to only allow numerical values, cast to int?
+// Formats ability score component to be a centered rounded box with a white background
+var AbilityScore = {
+  maxWidth: "8rem",
+  outline: "black solid 2px",
+  borderRadius: "20px",
+  backgroundColor: "white",
+  margin: "1rem 0.5rem 1rem 0.5rem",
+};
+
+const Ability = ({ displayName, score, abilities, setAbilities, id }) => {
   const setAbilitiesHandler = (e) => {
-    console.log(abilities);
-    setAbilities({ ...abilities, [abilityID]: e.target.value });
+    const re = RegExp(/^[0-9\b]+$/);
+    // if blank, set value to 0 (avoids NaN). otherwise, if the input value is a valid int, update states.
+    if (e.target.value === "") {
+      setAbilities({ ...abilities, [id]: 0 });
+    } else if (re.test(e.target.value)) {
+      setAbilities({ ...abilities, [id]: parseInt(e.target.value) });
+    }
   };
 
-  // Formats ability score component to be a centered rounded box with a white background
-  var AbilityScore = {
-    maxWidth: "8rem", 
-    outline: "black solid 2px", 
-    borderRadius: "20px", 
-    backgroundColor: "white", 
-    margin: "1rem 0.5rem 1rem 0.5rem"
-  }
+  const decrementHandler = () => {
+    const val = parseInt(score) - 1;
+    if (val > -1) {
+      setAbilities({ ...abilities, [id]: val });
+    }
+  };
+
+  const incrementHandler = () => {
+    const val = parseInt(score) + 1;
+    setAbilities({ ...abilities, [id]: val });
+  };
 
   return (
     <div align="center" style={AbilityScore}>
       <h1 style={{ textDecorationLine: "underline", fontSize: "1rem" }}>
-        {abilityName}
+        {displayName}
       </h1>
       <h1>+0</h1> {/* This will be the ability score modifier */}
       <input
         onChange={setAbilitiesHandler}
         type="text"
         className="abilityText"
-        value={inputText}
+        value={score}
         style={{
           width: "5rem",
           padding: "4px 4px",
@@ -43,8 +53,8 @@ const Ability = ({
         }}
       />
       <div style={{ display: "inline-block" }}>
-        <Button>-</Button>
-        <Button>+</Button>
+        <Button onClick={decrementHandler}>-</Button>
+        <Button onClick={incrementHandler}>+</Button>
       </div>
     </div>
   );
