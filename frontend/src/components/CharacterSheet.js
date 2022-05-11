@@ -7,7 +7,14 @@ import RollMenu from "./RollMenu.js";
 import axios from "axios";
 
 const CharacterSheet = () => {
-  const [abilities, setAbilities] = useState({});
+  const [abilities, setAbilities] = useState({
+    STR: 10,
+    DEX: 10,
+    CON: 10,
+    INT: 10,
+    WIS: 10,
+    CHA: 10,
+  });
   const isMounted = useRef(false); // used to skip effects on initial render.
 
   // fetch character data from the API, will initialize a new character if not found.
