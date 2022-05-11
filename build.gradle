@@ -83,7 +83,10 @@ task full_test(group: 'Rollbuddy test'){
     dependsOn test_frontend
 }
 
-
+task run_backend(type: JavaExec, group: 'Rollbuddy Run (dev)') {
+  classpath sourceSets.main.runtimeClasspath
+  main = "main.java.Session"
+}
 
 node {
     npmWorkDir = file('.gradle/npm')
