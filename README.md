@@ -56,8 +56,10 @@ Executing the systems of this service require different steps:
 2. Running the `npm_start` task will run a local server 
 
 #### Backend
-1. The easiest way to run the backend server is to open up the project in IntelliJ
-2. Press the green button next to the `main` method in `Session.java` and the backend server should run
+1. Run the `run_backend` Gradle task to start the backend.
+
+  _Alternatively_, you can run it in Inellij:
+> Press the green button next to the `main` method in `Session.java` and the server will be executed:
 ![executionImage](readmeresources/backendexecution.png)
 
 ## Current Working Use Case
