@@ -31,7 +31,7 @@ const RollMenu = () => {
   // Selector states
   const [rollType, setRollType] = useState("Attack");
   const [rollCondition, setRollCondition] = useState("Normal");
-  const [rollAbility, setRollAbility] = useState("str");
+  const [rollAbility, setRollAbility] = useState("Strength");
   const [rollProficiency, setRollProficiency] = useState("Proficent");
   const [rollDice, setRollDice] = useState("4");
   // Roller States

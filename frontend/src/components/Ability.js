@@ -1,7 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { calculateMod } from "./Helpers";
 
-// Formats ability score component to be a centered rounded box with a white background
+// Formats ability score component to be a cesntered rounded box with a white background
 var AbilityScore = {
   maxWidth: "8rem",
   outline: "black solid 2px",
@@ -38,7 +39,11 @@ const Ability = ({ displayName, score, abilities, setAbilities, id }) => {
       <h1 style={{ textDecorationLine: "underline", fontSize: "1rem" }}>
         {displayName}
       </h1>
-      <h1>+0</h1> {/* This will be the ability score modifier */}
+      <h1>
+        {calculateMod(score) >= 0 ? "+" : ""}
+        {calculateMod(score)}
+      </h1>
+      {/* This will be the ability score modifier */}
       <input
         onChange={setAbilitiesHandler}
         type="text"
