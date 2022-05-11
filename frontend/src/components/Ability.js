@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { calculateMod } from "./Helpers";
 
-// Formats ability score component to be a cesntered rounded box with a white background
+// Formats ability score component to be a centered rounded box with a white background
 var AbilityScore = {
   maxWidth: "8rem",
   outline: "black solid 2px",
