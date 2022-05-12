@@ -1,4 +1,7 @@
-[![CI](https://img.shields.io/github/workflow/status/ngutn24/RollBuddy/CI)](https://github.com/ngutn24/RollBuddy/actions/workflows/main.yml)
+[![CI](https://github.com/ngutn24/RollBuddy/actions/workflows/main.yml/badge.svg)](https://github.com/ngutn24/RollBuddy/actions/workflows/main.yml)
+[![CD](https://github.com/ngutn24/RollBuddy/actions/workflows/cd.yml/badge.svg)](https://github.com/ngutn24/RollBuddy/actions/workflows/cd.yml)
+[![pages-build-deployment](https://github.com/ngutn24/RollBuddy/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/ngutn24/RollBuddy/actions/workflows/pages/pages-build-deployment)
+
 
 # RollBuddy
 **Roll Buddy is a virtual Dungeons and Dragons character sheet service that does most of the management associated with a pen-and-paper character sheet for you. It allows users to enter in all the important information such as character stats, skills, and gear and then calculates the roll modifiers and bonuses that are used for various actions in the game. It also allows users to roll various dice in the app so that they do not need to bring physical dice in order to play.**
