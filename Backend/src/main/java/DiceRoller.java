@@ -2,8 +2,6 @@ package main.java;
 
 import java.util.Random;
 
-import static org.junit.Assert.assertTrue;
-
 /**
  * A local dice roller which generates a random number output based on the
  * requested dice type
