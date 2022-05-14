@@ -2,6 +2,8 @@ package main.java;
 
 import java.util.Random;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * A local dice roller which generates a random number output based on the
  * requested dice type
@@ -29,9 +31,11 @@ public class DiceRoller {
      * @return Randomly generated number based on diceCount + the modifier + dice
      *         type
      */
-    int Roll(int diceCount, int modifier, Dice DiceType) {
+    public int Roll(int diceCount, int modifier, Dice DiceType) {
 
-        assert (diceCount > 0) : "The dice count must be positive";
+        if (diceCount < 1) {
+            throw new IllegalArgumentException("You must roll at least 1 dice. Received input: " + diceCount);
+        }
 
         int total = 0;
         // Roll the dice
