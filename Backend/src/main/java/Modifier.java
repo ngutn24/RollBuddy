@@ -3,7 +3,7 @@ package main.java;
 /**
  * In Dungeons and Dragon, every character has 6 ability scores (STR, DEX, CON,
  * INT, WIS, CHA)
- * Genreally, the stats range from 1 to 20 but theoretically can be any number
+ * Generally, the stats range from 1 to 20 but theoretically can be any number
  * An ability score of 10 is the average, which nets you a modifier of +0 to
  * that ability
  * Example:
@@ -72,7 +72,7 @@ public class Modifier {
      * 
      * @param abilityScore The new ability score
      */
-    void setAbilityScore(int abilityScore) {
+    public void setAbilityScore(int abilityScore) {
         this.abilityScore = abilityScore;
         this.mod = generateModifier(abilityScore);
     }
@@ -80,14 +80,14 @@ public class Modifier {
     /**
      * Get the ability score
      */
-    int getAbilityScore() {
+    public int getAbilityScore() {
         return this.abilityScore;
     }
 
     /**
      * Get the modifier
      */
-    int getMod() {
+    public int getMod() {
         return this.mod;
     }
 }

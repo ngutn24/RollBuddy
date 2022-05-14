@@ -6,10 +6,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * JUnit test class verifying outputs for DiceRoller class
+ */
 public class DiceRollerTest {
-    /**
-     * JUnit test class verifying outputs for DiceRoller class
-     */
+
     public DiceRoller dice = new DiceRoller();
 
     /**
