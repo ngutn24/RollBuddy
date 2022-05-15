@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, DropdownButton, Dropdown } from "react-bootstrap";
 
 const CharacterInfo = () => {
   const [name, setName] = useState("");
@@ -7,8 +7,20 @@ const CharacterInfo = () => {
   const [charClass, setCharClass] = useState("");
   const [race, setRace] = useState("");
   const [bg, setBg] = useState("");
-  const [alignment, setAlignment] = useState("");
+  const [alignment, setAlignment] = useState("True Neutral");
   const [exp, setExp] = useState(0);
+
+  let alignments = [
+    { label: "Lawful Good" }, 
+    { label: "Neutral Good" }, 
+    { label: "Chaotic Good" }, 
+    { label: "Lawful Neutral" }, 
+    { label: "True Neutral" }, 
+    { label: "Chaotic Neutral" }, 
+    { label: "Lawful Evil" }, 
+    { label: "True Evil" }, 
+    { label: "Chaotic Evil" }
+  ]
 
   useEffect(() => {
     const localCharInfo = JSON.parse(localStorage.getItem("charInfo"));
@@ -41,6 +53,10 @@ const CharacterInfo = () => {
     setState(e.target.value);
   };
 
+  const updateDropdownStateHandler = (setState) => (e) => {
+    setState(e);
+  };
+
   return (
     <Row>
       <Col lg={3}>
@@ -64,10 +80,12 @@ const CharacterInfo = () => {
             <h1>BG:</h1>
             <input value={bg} onChange={updateStateHandler(setBg)} />
             <h1>Alignment:</h1>
-            <input
-              value={alignment}
-              onChange={updateStateHandler(setAlignment)}
-            />
+            <DropdownButton
+              title={alignment}
+              onSelect={updateDropdownStateHandler(setAlignment)}
+            >
+              {alignments.map((align) => <Dropdown.Item eventKey={align.label}>{align.label}</Dropdown.Item>)}
+            </DropdownButton>
           </Col>
         </Row>
       </Col>
