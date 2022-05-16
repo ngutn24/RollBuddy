@@ -62,18 +62,44 @@ public class ItemTest {
     }
 
     /**
-     * Test that setting an item field updates field
+     * Test that setting an item name functions as intended
      */
     @Test
-    public void testSetters() {
+    public void testSetName() {
         Item test = new Item("testName", "testDescription", 1);
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                test.setName("")
+        );
+        String expectMsg = "Name field cannot be empty";
+        assertEquals(expectMsg, exception.getMessage());
+
         test.setName("newName");
-        test.setDescription("newDescription");
-        test.setItemCount(2);
-
         assertEquals("newName", test.getName());
-        assertEquals("newDescription", test.getDescription());
-        assertEquals(2, test.getItemCount());
+    }
 
+    @Test
+    public void testSetDescription() {
+        Item test = new Item("testName", "testDescription", 1);
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                test.setDescription("")
+        );
+        String expectMsg = "Description field cannot be empty";
+        assertEquals(expectMsg, exception.getMessage());
+
+        test.setDescription("newDescription");
+        assertEquals("newDescription", test.getDescription());
+    }
+
+    @Test
+    public void testSetItemCount() {
+        Item test = new Item("testName", "testDescription", 1);
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                test.setItemCount(0)
+        );
+        String expectMsg = "Item count field must be > 0";
+        assertEquals(expectMsg, exception.getMessage());
+
+        test.setItemCount(2);
+        assertEquals(2, test.getItemCount());
     }
 }

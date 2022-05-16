@@ -66,6 +66,9 @@ public class Item {
      * @param name The new string name of the item
      */
     public void setName(String name) {
+        if (Objects.equals(name, ""))
+        { throw new IllegalArgumentException("Name field cannot be empty"); }
+
         this.name = name;
     }
 
@@ -75,6 +78,9 @@ public class Item {
      * @param description The new string description of the item
      */
     public void setDescription(String description) {
+        if (Objects.equals(description, ""))
+        { throw new IllegalArgumentException("Description field cannot be empty"); }
+
         this.description = description;
     }
 
@@ -84,6 +90,9 @@ public class Item {
      * @param itemCount The new integer amount representing how many duplicates
      */
     public void setItemCount(int itemCount) {
+        if (itemCount < 1)
+        { throw new IllegalArgumentException("Item count field must be > 0"); }
+
         this.itemCount = itemCount;
     }
 
