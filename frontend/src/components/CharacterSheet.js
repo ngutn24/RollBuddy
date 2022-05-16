@@ -6,6 +6,7 @@ import CharacterStatus from "./CharacterStatus.js";
 import RollMenu from "./RollMenu.js";
 import MiscMenu from "./MiscMenu.js";
 import axios from "axios";
+import TabMenu from "./TabMenu.js";
 
 const CharacterSheet = () => {
   const [abilities, setAbilities] = useState({
@@ -78,18 +79,21 @@ const CharacterSheet = () => {
         <CharacterStatus />
       </Row>
       <Row>
-        <Col></Col>
-        <AbilityList abilities={abilities} setAbilities={setAbilities} />
-      </Row>
-      <Row className="flex-column-reverse flex-md-row">
-        <Col>
-          
+        <Col sm={8}>
+          <Row>
+            <AbilityList abilities={abilities} setAbilities={setAbilities} />
+          </Row>
+          <Row className="flex-column-reverse flex-md-row">
+            <Col>
+              <MiscMenu />
+            </Col>
+            <Col>
+              <RollMenu />
+            </Col>
+          </Row>
         </Col>
-        <Col>
-          <MiscMenu />
-        </Col>
-        <Col>
-          <RollMenu />
+        <Col sm={4}>
+          <TabMenu />
         </Col>
       </Row>
     </Container>

@@ -150,9 +150,9 @@ const RollMenu = () => {
         >
           <Dropdown.Item eventKey="No">No</Dropdown.Item> {/* +0 */}
           <Dropdown.Item eventKey="Proficient">Proficient</Dropdown.Item>{" "}
-          {/* +2 */}
+          {/* + proficiency bonus */}
           <Dropdown.Item eventKey="Expertise">Expertise</Dropdown.Item>{" "}
-          {/* +4 */}
+          {/* + 2*proficiency bonus */}
         </DropdownButton>
       </ButtonGroup>
       <div className="roller-inputs" style={{ padding: "0.5rem" }}>
