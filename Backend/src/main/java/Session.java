@@ -1,10 +1,11 @@
 package main.java;
 
 import spark.Spark;
-import spark.Filter;
+
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Session {
 
@@ -40,9 +41,10 @@ public class Session {
          * creates a session for a character
          */
         Spark.get("/create", (req, res) -> {
-            CharacterSession currSession = new CharacterSession(req.session().id());
-            sess.put(req.session().id(), currSession); // can change the characterSession constructor to String
-            return req.session().id();
+            String id = UUID.randomUUID().toString();
+            CharacterSession currSession = new CharacterSession(id);
+            sess.put(id, currSession); // can change the characterSession constructor to String
+            return currSession.getCharacterData();
         });
 
         /*
@@ -52,9 +54,12 @@ public class Session {
          * gold, armor, main class, subclass
          */
         Spark.get("/update", (req, res) -> {
-            CharacterSession currSession = sess.get(req.session().id());
-            currSession.generateCharacter(req.queryParams("stats"));
-            return req.session().id();
+            String id = req.queryParams("id");
+            CharacterSession currSession = sess.get(id);
+            String stats = req.queryParams("stats");
+
+            currSession.generateCharacter(stats);
+            return "Update Complete";
         });
 
         /*
@@ -62,11 +67,12 @@ public class Session {
          * create one.
          */
         Spark.get("/character", (req, res) -> {
-            String id = req.session().id();
+            String id = req.queryParams("id");
             CharacterSession currSession;
             if (!sess.containsKey(id)) {
-                currSession = new CharacterSession(req.session().id());
-                sess.put(req.session().id(), currSession);
+                String newId = UUID.randomUUID().toString();
+                currSession = new CharacterSession(newId);
+                sess.put(newId, currSession);
             } else {
                 currSession = sess.get(id);
             }
@@ -75,7 +81,8 @@ public class Session {
 
         Spark.get("/roll", (req, res) -> {
 
-            CharacterSession currSession = sess.get(req.session().id());
+            String id = req.queryParams("id");
+            CharacterSession currSession = sess.get(id);
             int count = Integer.parseInt(req.queryParams("count"));
             String abilityType = req.queryParams("mod");
             String diceType = req.queryParams("dice");
@@ -84,8 +91,8 @@ public class Session {
                 res.status(400);
                 return "Bad Roll Request";
             }
-            return currSession.rollDice(Integer.parseInt(req.queryParams("count")), req.queryParams("mod"),
-                    req.queryParams("dice"));
+            return currSession.rollDice(count, abilityType,
+                    diceType);
         });
         //Spark.stop();
     }
