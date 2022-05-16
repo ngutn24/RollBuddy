@@ -18,12 +18,11 @@ public class DiceRollerTest {
      */
     @Test
     public void testInvalidInputs() {
-        try {
-            dice.Roll(-1, 0, Dice.D4);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            assertEquals("You must roll at least 1 dice. Received input: -1", e.getMessage());
-        }
+        Exception exception = assertThrows(IllegalArgumentException.class, () ->
+                dice.Roll(-1, 0, Dice.D4));
+
+        String expectedMsg = "You must roll at least 1 dice. Received input: -1";
+        assertEquals(expectedMsg, exception.getMessage());
     }
 
     /**
