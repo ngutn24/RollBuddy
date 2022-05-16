@@ -36,6 +36,7 @@ public class CharacterSheetTest {
     private final String race = "testRace";
     private final String campaign = "testCampaign";
     private final String alignment = "testAlignment";
+    private final String background = "testBackground";
     private final String mainClassName = "mainClass";
     private final String subClassName = "subClass";
 
@@ -50,7 +51,7 @@ public class CharacterSheetTest {
     @Before
     public void Setup() {
         characterSheet = new CharacterSheet(strScore, dexScore, conScore, intScore, wisScore, chaScore,
-                name, race, campaign, alignment, hitPoints, speed, goldCount, armorClass, exp,
+                name, race, campaign, alignment, background, hitPoints, speed, goldCount, armorClass, exp,
                 mainClassName, mainLevel, subClassName, subLevel);
     }
 
@@ -82,6 +83,7 @@ public class CharacterSheetTest {
         assertEquals(race, characterSheet.getRace());
         assertEquals(campaign, characterSheet.getCampaign());
         assertEquals(alignment, characterSheet.getAlignment());
+        assertEquals(background, characterSheet.getBackground());
         // Assert sheet generated numbers
         assertEquals(3, characterSheet.getProfBonus());
         assertEquals(1, characterSheet.getInitiative());
@@ -163,6 +165,7 @@ public class CharacterSheetTest {
         characterSheet.setRace("newRace");
         characterSheet.setCampaign("newCampaign");
         characterSheet.setAlignment("newAlignment");
+        characterSheet.setBackground("newBackground");
         characterSheet.setHP(100);
         characterSheet.setSpeed(25);
         characterSheet.setAC(20);
@@ -173,6 +176,7 @@ public class CharacterSheetTest {
         assertEquals("newRace", characterSheet.getRace());
         assertEquals("newCampaign", characterSheet.getCampaign());
         assertEquals("newAlignment", characterSheet.getAlignment());
+        assertEquals("newBackground", characterSheet.getBackground());
         assertEquals(100, characterSheet.getHp());
         assertEquals(25, characterSheet.getSpeed());
         assertEquals(20, characterSheet.getAC());

@@ -21,6 +21,7 @@ public class CharacterSheet {
     private String race;
     private String campaign;
     private String alignment;
+    private String background;
     private int initiative;
     private int hitPoints;
     private int speed;
@@ -49,6 +50,7 @@ public class CharacterSheet {
      * @param race       A characters race
      * @param campaign   A characters campaign name
      * @param alignment  A characters alignment
+     * @param background A characters background
      * @param hitPoints  A characters hit point total (health)
      * @param speed      A characters total movement speed
      * @param goldCount  The total gold a player owns
@@ -58,7 +60,7 @@ public class CharacterSheet {
      */
     public CharacterSheet(
             int STR, int DEX, int CON, int INT, int WIS, int CHA,
-            String name, String race, String campaign, String alignment,
+            String name, String race, String campaign, String alignment, String background,
             int hitPoints, int speed, int goldCount, int armorClass, int exp,
             String mainClass, int mainLevel, String subClass, int subLevel) {
 
@@ -74,6 +76,7 @@ public class CharacterSheet {
         this.race = race;
         this.campaign = campaign;
         this.alignment = alignment;
+        this.background = background;
         this.profBonus = 2 + ((mainLevel + subLevel) - 1) / 4;
         this.initiative = this.DEX.getMod();
         this.hitPoints = hitPoints;
@@ -88,7 +91,7 @@ public class CharacterSheet {
 
     public CharacterSheet() {
         this(10, 10, 10, 10, 10, 10,
-                "testName", "testRace", "testCampaign", "Evil",
+                "testName", "testRace", "testCampaign", "Evil", "Hollow one",
                 10, 30, 100, 15, 10,
                 "testMainClass", 4, "testSubClass", 1);
     }
@@ -181,6 +184,15 @@ public class CharacterSheet {
      */
     public String getAlignment() {
         return this.alignment;
+    }
+
+    /**
+     * Get the background for the character
+     *
+     * @return A string background for the character
+     */
+    public String getBackground() {
+        return background;
     }
 
     /**
@@ -346,6 +358,13 @@ public class CharacterSheet {
     public void setAlignment(String alignment) {
         this.alignment = alignment;
     }
+
+    /**
+     * Set the background of the character
+     *
+     * @param background The new background
+     */
+    public void setBackground(String background) { this.background = background; }
 
     /**
      * Set the character proficiency bonus based on total level
