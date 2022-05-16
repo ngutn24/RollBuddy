@@ -3,7 +3,8 @@ import { DropdownButton, Dropdown, Button, ButtonGroup } from "react-bootstrap";
 import axios from "axios";
 
 const RollWindow = {
-  maxWidth: "25rem",
+  display: "block",
+  overflow: "auto",
   outline: "black solid 2px",
   borderRadius: "20px",
   backgroundColor: "white",
