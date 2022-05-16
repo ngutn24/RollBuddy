@@ -4,6 +4,7 @@ import AbilityList from "./AbilityList.js";
 import CharacterInfo from "./CharacterInfo.js";
 import CharacterStatus from "./CharacterStatus.js";
 import RollMenu from "./RollMenu.js";
+import MiscMenu from "./MiscMenu.js";
 import axios from "axios";
 
 const CharacterSheet = () => {
@@ -77,11 +78,19 @@ const CharacterSheet = () => {
         <CharacterStatus />
       </Row>
       <Row>
+        <Col></Col>
         <AbilityList abilities={abilities} setAbilities={setAbilities} />
       </Row>
       <Row className="flex-column-reverse flex-md-row">
-        <Col></Col>
-        <RollMenu />
+        <Col>
+          
+        </Col>
+        <Col>
+          <MiscMenu />
+        </Col>
+        <Col>
+          <RollMenu />
+        </Col>
       </Row>
     </Container>
   );

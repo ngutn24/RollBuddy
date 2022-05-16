@@ -84,7 +84,7 @@ const CharacterInfo = () => {
               title={alignment}
               onSelect={updateDropdownStateHandler(setAlignment)}
             >
-              {alignments.map((align) => <Dropdown.Item eventKey={align.label}>{align.label}</Dropdown.Item>)}
+              {alignments.map((align) => <Dropdown.Item key={align.label} eventKey={align.label}>{align.label}</Dropdown.Item>)}
             </DropdownButton>
           </Col>
         </Row>
