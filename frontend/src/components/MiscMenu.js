@@ -32,19 +32,19 @@ const MiscMenu = () => {
     useEffect(() => {
         const localmiscInfo = JSON.parse(localStorage.getItem("miscInfo"));
         if (localmiscInfo) {
-        console.log("Loading miscInfo from storage... ", localmiscInfo);
-        setHasInspiration(localmiscInfo.hasInspiration);
-        setDeathSuccesses(localmiscInfo.deathSuccesses);
-        setDeathFailures(localmiscInfo.deathFailures);
+            console.log("Loading miscInfo from storage... ", localmiscInfo);
+            setHasInspiration(localmiscInfo.hasInspiration);
+            setDeathSuccesses(localmiscInfo.deathSuccesses);
+            setDeathFailures(localmiscInfo.deathFailures);
         }
     }, []);
 
     // store state to local storage
     useEffect(() => {
         const miscInfo = {
-        hasInspiration: hasInspiration,
-        deathSuccesses: deathSuccesses,
-        deathFailures: deathFailures,
+            hasInspiration: hasInspiration,
+            deathSuccesses: deathSuccesses,
+            deathFailures: deathFailures,
         };
         localStorage.setItem("miscInfo", JSON.stringify(miscInfo));
     }, [hasInspiration, deathSuccesses, deathFailures]);
