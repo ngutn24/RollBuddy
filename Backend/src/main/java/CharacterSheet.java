@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * An encompassing object which directly correlates to everything on a
- * players character sheet. It is a collection of objects which make up
+ * player's character sheet. It is a collection of objects which make up
  * the entire character
  */
 
@@ -76,7 +76,7 @@ public class CharacterSheet {
         this.campaign = campaign;
         this.alignment = alignment;
         this.profBonus = 2 + ((mainLevel+subLevel) - 1) / 4;
-        this.initiative = DEX;
+        this.initiative = this.DEX.getMod();
         this.hitPoints = hitPoints;
         this.speed = speed;
         this.goldCount = goldCount;
@@ -278,6 +278,7 @@ public class CharacterSheet {
 
     public void setDEX(int newDEX) {
         this.DEX.setAbilityScore(newDEX);
+        setInitiative(this.DEX.getMod());
     }
 
     public void setCON(int newCON) {
@@ -337,7 +338,7 @@ public class CharacterSheet {
     /**
      * Set the character proficiency bonus based on total level
      */
-    public void setProfBonus() {
+    private void setProfBonus() {
         int mainLevel = this.mainClass.getLevel();
         int subLevel = this.subClass.getLevel();
         int totalLevel = mainLevel + subLevel;
@@ -349,7 +350,7 @@ public class CharacterSheet {
      *
      * @param newInitiative The new initiative
      */
-    public void setInitiative(int newInitiative) {
+    private void setInitiative(int newInitiative) {
         this.initiative = newInitiative;
     }
 
@@ -447,16 +448,63 @@ public class CharacterSheet {
      * pairs are the name of the item along with the item
      * object.
      */
-    public void addItem(Item item) {
-        items.put(item.getName(), item);
+
+    /**
+     * Function for adding an item into the items hash map.
+     * If the item already exists, we increment the itemCount.
+     *
+     * @param itemId The identification of this specific item
+     * @param item The item we want to add
+     */
+    public void addItem(String itemId, Item item) {
+        // If items already exists, increment the item count
+        if (items.containsKey(itemId)) {
+            Item duplicate = items.remove(itemId);
+            duplicate.setItemCount(duplicate.getItemCount() + item.getItemCount());
+            items.put(itemId, duplicate);
+        }
+        // Else just add the item to the table
+        items.put(itemId, item);
     }
 
-    public void removeItem(Item item) {
-        items.remove(item.getName());
+    /**
+     * Function to decrement an item count. If the count goes below 1
+     * the item is no longer stored
+     *
+     * @param itemId The name of the item we are decrementing
+     * @param removeCount The amount we are removing
+     */
+    public void decrementItem(String itemId, int removeCount) {
+        if (items.containsKey(itemId)) {
+            Item stored = items.remove(itemId);
+            int newCount = stored.getItemCount() - removeCount;
+            if (newCount > 0 ) {
+                stored.setItemCount(newCount);
+                items.put(itemId, stored);
+            }
+        }
     }
 
-    public void updateItem(Item item) {
-        items.replace(item.getName(), item);
+    /**
+     * Function to remove an item from the Hashmap
+     *
+     * @param itemId The Item being removed (regardless of count)
+     */
+    public void removeItem(String itemId) {
+        items.remove(itemId);
+    }
+
+    /**
+     * Function to update na item from the HashMap
+     * (Name, description or count)
+     *
+     * @param itemId The id of the item being updated
+     * @param item The updated item
+     */
+    public void updateItem(String itemId, Item item) {
+        // Should be used when description or name are changing,
+        // but can be used to update count as well
+        items.replace(itemId, item);
     }
 
 }

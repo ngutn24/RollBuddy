@@ -29,7 +29,7 @@ public class CharClass {
      * 
      * @return A string name representing the class
      */
-    String getClassName() {
+    public String getClassName() {
         return charClass;
     }
 
@@ -38,19 +38,19 @@ public class CharClass {
      * 
      * @return An integer representing the class level
      */
-    int getLevel() { return level; }
+    public int getLevel() { return level; }
 
     /**
      * Set the name of the class (SHOULD NEVER BE USED)
      * 
      * @param charClass The new name of the class
      */
-    void setClassName(String charClass) { this.charClass = charClass; }
+    public void setClassName(String charClass) { this.charClass = charClass; }
 
     /**
      * Set the level of the class
      * 
      * @param level The new level of the class
      */
-    void setLevel(int level) { this.level = level; }
+    public void setLevel(int level) { this.level = level; }
 }
