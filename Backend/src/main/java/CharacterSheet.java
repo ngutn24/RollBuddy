@@ -38,14 +38,13 @@ public class CharacterSheet {
      * The following is constructor meant to initalize the entire character sheet.
      * The requested variables are all necessary for any given character. Some
      * variables are automatically calculated
-     * 
+     *
      * @param STR        A character strength ability score
      * @param DEX        A character dexterity ability score
      * @param CON        A character constitution ability score
      * @param INT        A character intelligence ability score
      * @param WIS        A character wisdom ability score
      * @param CHA        A character charisma ability score
-     *
      * @param name       A characters name
      * @param race       A characters race
      * @param campaign   A characters campaign name
@@ -75,7 +74,7 @@ public class CharacterSheet {
         this.race = race;
         this.campaign = campaign;
         this.alignment = alignment;
-        this.profBonus = 2 + ((mainLevel+subLevel) - 1) / 4;
+        this.profBonus = 2 + ((mainLevel + subLevel) - 1) / 4;
         this.initiative = this.DEX.getMod();
         this.hitPoints = hitPoints;
         this.speed = speed;
@@ -96,7 +95,7 @@ public class CharacterSheet {
 
     /**
      * Get the Strength modifier
-     * 
+     *
      * @return A Modifier object for character Strength
      */
     public Modifier getSTR() {
@@ -105,7 +104,7 @@ public class CharacterSheet {
 
     /**
      * Get the Dexterity modifier
-     * 
+     *
      * @return A Modifier object for character Dexterity
      */
     public Modifier getDEX() {
@@ -114,7 +113,7 @@ public class CharacterSheet {
 
     /**
      * Get the Constitution modifier
-     * 
+     *
      * @return A Modifier object for character Constitution
      */
     public Modifier getCON() {
@@ -123,7 +122,7 @@ public class CharacterSheet {
 
     /**
      * Get the Intelligence modifier
-     * 
+     *
      * @return A Modifier object for character Intelligence
      */
     public Modifier getINT() {
@@ -132,7 +131,7 @@ public class CharacterSheet {
 
     /**
      * Get the Wisdom modifier
-     * 
+     *
      * @return A Modifier object for character Wisdom
      */
     public Modifier getWIS() {
@@ -141,7 +140,7 @@ public class CharacterSheet {
 
     /**
      * Get the Charisma modifier
-     * 
+     *
      * @return A Modifier object for character Charisma
      */
     public Modifier getCHA() {
@@ -153,32 +152,40 @@ public class CharacterSheet {
      *
      * @return A string name for the character
      */
-    public String getName() { return this.name; }
+    public String getName() {
+        return this.name;
+    }
 
     /**
      * Get the race of the character
      *
      * @return A string name for the race of the character
      */
-    public String getRace() { return this.race; }
+    public String getRace() {
+        return this.race;
+    }
 
     /**
      * Get the campaign name of the character
      *
      * @return A string name for the campaign
      */
-    public String getCampaign() { return this.campaign; }
+    public String getCampaign() {
+        return this.campaign;
+    }
 
     /**
      * Get the alignment for the character
      *
      * @return A string alignment for the character
      */
-    public String getAlignment() { return this.alignment; }
+    public String getAlignment() {
+        return this.alignment;
+    }
 
     /**
      * Get the character prof bonus
-     * 
+     *
      * @return An integer for character prof bonus
      */
     public int getProfBonus() {
@@ -187,7 +194,7 @@ public class CharacterSheet {
 
     /**
      * Get the character Initiative
-     * 
+     *
      * @return An integer for character Initiative
      */
     public int getInitiative() {
@@ -196,7 +203,7 @@ public class CharacterSheet {
 
     /**
      * Get the character hit point total
-     * 
+     *
      * @return An integer for character hit point total
      */
     public int getHp() {
@@ -205,7 +212,7 @@ public class CharacterSheet {
 
     /**
      * Get the character speed
-     * 
+     *
      * @return An integer for character speed
      */
     public int getSpeed() {
@@ -214,7 +221,7 @@ public class CharacterSheet {
 
     /**
      * Get the character armor class
-     * 
+     *
      * @return An integer for character armor class
      */
     public int getAC() {
@@ -223,7 +230,7 @@ public class CharacterSheet {
 
     /**
      * Get the character total gold count
-     * 
+     *
      * @return An integer for character total gold count
      */
     public int getGold() {
@@ -235,11 +242,13 @@ public class CharacterSheet {
      *
      * @return An integer for the character experience total
      */
-    public int getExp() { return this.exp; }
+    public int getExp() {
+        return this.exp;
+    }
 
     /**
      * Get the characters mainClass information
-     * 
+     *
      * @return A CharClass object which contains a string
      * pertaining to the characters class name and an integer
      * level
@@ -248,17 +257,20 @@ public class CharacterSheet {
         return this.mainClass;
     }
 
-    /** Get the character subClass information
+    /**
+     * Get the character subClass information
      *
      * @return A CharClass object which contains a string
      * pertaining to the characters class name and an integer
      * level
      */
-    public CharClass getSubClass() { return this.subClass; }
+    public CharClass getSubClass() {
+        return this.subClass;
+    }
 
     /**
      * Get all the items in a characters inventory
-     * 
+     *
      * @return A HashMap with key-value pairs being String-Item object
      */
     public HashMap<String, Item> getItems() {
@@ -342,7 +354,7 @@ public class CharacterSheet {
         int mainLevel = this.mainClass.getLevel();
         int subLevel = this.subClass.getLevel();
         int totalLevel = mainLevel + subLevel;
-        this.profBonus = 2 + (totalLevel - 1) / 4 ;
+        this.profBonus = 2 + (totalLevel - 1) / 4;
     }
 
     /**
@@ -356,7 +368,7 @@ public class CharacterSheet {
 
     /**
      * Set the character hit point total
-     * 
+     *
      * @param newHp the new hit point total of the character
      */
     public void setHP(int newHp) {
@@ -365,7 +377,7 @@ public class CharacterSheet {
 
     /**
      * Set the character speed
-     * 
+     *
      * @param newSpeed the new speed of the character
      */
     public void setSpeed(int newSpeed) {
@@ -375,7 +387,7 @@ public class CharacterSheet {
 
     /**
      * Set the armor class of the character
-     * 
+     *
      * @param newAC the new armor class of the character
      */
     public void setAC(int newAC) {
@@ -384,7 +396,7 @@ public class CharacterSheet {
 
     /**
      * Set the total gold of the character
-     * 
+     *
      * @param goldCount the new gold count of the character
      */
     public void setGold(int goldCount) {
@@ -396,12 +408,14 @@ public class CharacterSheet {
      *
      * @param exp The new exp total of the character
      */
-    public void setExp(int exp) { this.exp = exp; }
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
 
     /**
      * Set the name of the main class in the charClass
      * object
-     * 
+     *
      * @param mainClass The new string name of the main class
      */
     public void setMainClassName(String mainClass) {
@@ -454,7 +468,7 @@ public class CharacterSheet {
      * If the item already exists, we increment the itemCount.
      *
      * @param itemId The identification of this specific item
-     * @param item The item we want to add
+     * @param item   The item we want to add
      */
     public void addItem(String itemId, Item item) {
         // If items already exists, increment the item count
@@ -471,14 +485,14 @@ public class CharacterSheet {
      * Function to decrement an item count. If the count goes below 1
      * the item is no longer stored
      *
-     * @param itemId The name of the item we are decrementing
+     * @param itemId      The name of the item we are decrementing
      * @param removeCount The amount we are removing
      */
     public void decrementItem(String itemId, int removeCount) {
         if (items.containsKey(itemId)) {
             Item stored = items.remove(itemId);
             int newCount = stored.getItemCount() - removeCount;
-            if (newCount > 0 ) {
+            if (newCount > 0) {
                 stored.setItemCount(newCount);
                 items.put(itemId, stored);
             }
@@ -499,7 +513,7 @@ public class CharacterSheet {
      * (Name, description or count)
      *
      * @param itemId The id of the item being updated
-     * @param item The updated item
+     * @param item   The updated item
      */
     public void updateItem(String itemId, Item item) {
         // Should be used when description or name are changing,
