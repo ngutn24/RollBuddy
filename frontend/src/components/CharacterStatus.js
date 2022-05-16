@@ -77,11 +77,11 @@ const CharacterStatus = () => {
         <h4>Armor Class</h4>
       </Col>
       <Col lg={2} align="center">
-        <h4>+2</h4> {/* Proficiency bonus is calculated based on your level */}
+        <h4>+2</h4> {/* TODO: replace value with proficiency bonus calculated from backend */}
         <h4>Profiency Bonus</h4>
       </Col>
       <Col lg={2} align="center">
-        <h4>+2</h4> {/* Initiative is the same as your DEX modifier */}
+        <h4>+2</h4> {/* TODO: replace value with DEX modifier calcuated from backend */}
         <h4>Initiative</h4>
       </Col>
       <Col lg={2} align="center">
