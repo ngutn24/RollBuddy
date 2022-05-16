@@ -246,26 +246,26 @@ public class DiceRollerTest {
         // Roll a single dice 100 times.
         for (i = 0; i < 100; i++) {
             // No mod
-            output = dice.Roll(1, 0, Dice.D20);
+            output = dice.Roll(1, 0, Dice.D100);
             assertTrue(output <= 100 && output >= 1);
             // +1 mod
-            output = dice.Roll(1, 1, Dice.D20);
+            output = dice.Roll(1, 1, Dice.D100);
             assertTrue(output <= 101 && output >= 2);
             // -1 mod
-            output = dice.Roll(1, -1, Dice.D20);
+            output = dice.Roll(1, -1, Dice.D100);
             assertTrue(output <= 99 && output >= 0);
         }
 
         // Roll multiple (3) dice a 100 times
         for (i = 0; i < 100; i++) {
             // No mod
-            output = dice.Roll(3, 0, Dice.D20);
+            output = dice.Roll(3, 0, Dice.D100);
             assertTrue(output <= 300 && output >= 3);
             // +1 mod
-            output = dice.Roll(3, 1, Dice.D20);
+            output = dice.Roll(3, 1, Dice.D100);
             assertTrue(output <= 301 && output >= 4);
             // -1 mod
-            output = dice.Roll(3, -1, Dice.D20);
+            output = dice.Roll(3, -1, Dice.D100);
             assertTrue(output <= 299 && output >= 2);
         }
     }
