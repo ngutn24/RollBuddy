@@ -21,17 +21,18 @@ public class DiceRoller {
     /**
      * This function represents a dice roll. The theoretical range of the number
      * of sided dice is infinite, so long as it is positive
-     * 
+     *
      * @param diceCount The number of times we want a specific dice to be rolled
      * @param modifier  The modifer that gets tagged at the end of a "dice roll"
      * @param DiceType  The type of dice being rolled
-     * 
      * @return Randomly generated number based on diceCount + the modifier + dice
-     *         type
+     * type
      */
-    int Roll(int diceCount, int modifier, Dice DiceType) {
+    public int Roll(int diceCount, int modifier, Dice DiceType) {
 
-        assert (diceCount > 0) : "The dice count must be positive";
+        if (diceCount < 1) {
+            throw new IllegalArgumentException("You must roll at least 1 dice. Received input: " + diceCount);
+        }
 
         int total = 0;
         // Roll the dice

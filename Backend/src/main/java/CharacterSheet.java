@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 /**
  * An encompassing object which directly correlates to everything on a
- * players character sheet. It is a collection of objects which make up
+ * player's character sheet. It is a collection of objects which make up
  * the entire character
  */
 
@@ -16,45 +16,53 @@ public class CharacterSheet {
     // A set representing all the items owned by a character
     private HashMap<String, Item> items = new HashMap<>();
 
-    private int level;
+    // Basic information about a character
+    private String name;
+    private String race;
+    private String campaign;
+    private String alignment;
+    private String background;
     private int initiative;
     private int hitPoints;
     private int speed;
     private int armorClass;
     private int goldCount;
+    private int exp;
 
-    private ClassType classType;
+    // CharClass objects representing the main/subclass of the character
+    private CharClass mainClass, subClass;
 
+    // The 6 main ability scores in 5E D&D
     private Modifier STR, DEX, CON, INT, WIS, CHA;
 
     /**
      * The following is constructor meant to initalize the entire character sheet.
      * The requested variables are all necessary for any given character. Some
-     * variables are
-     * automatically calcualted
-     * 
-     * @param STR        A characters strength ability score
-     * @param DEX        A characters dexterity ability score
-     * @param CON        A characters constitution ability score
-     * @param INT        A characters intelligence ability score
-     * @param WIS        A characters wisdom ability score
-     * @param CHA        A characters charisma ability score
-     * 
-     * @param level      A characters level (profBonus determined by character
-     *                   level)
+     * variables are automatically calculated
+     *
+     * @param STR        A character strength ability score
+     * @param DEX        A character dexterity ability score
+     * @param CON        A character constitution ability score
+     * @param INT        A character intelligence ability score
+     * @param WIS        A character wisdom ability score
+     * @param CHA        A character charisma ability score
+     * @param name       A characters name
+     * @param race       A characters race
+     * @param campaign   A characters campaign name
+     * @param alignment  A characters alignment
+     * @param background A characters background
      * @param hitPoints  A characters hit point total (health)
      * @param speed      A characters total movement speed
      * @param goldCount  The total gold a player owns
      * @param armorClass A characters armor class
-     * @param mainClass  Represents the main class of a character is (Wizard, Barb,
-     *                   etc.)
-     * @param subClass   Represents what a character specializes in from their main
-     *                   class (CAN BE EMPTY STRING)
+     * @param mainClass  CharClass object representing the main class name and level
+     * @param subClass   CharClass object representing the sub class name and level
      */
     public CharacterSheet(
             int STR, int DEX, int CON, int INT, int WIS, int CHA,
-            int level, int hitPoints, int speed, int goldCount,
-            int armorClass, String mainClass, String subClass) {
+            String name, String race, String campaign, String alignment, String background,
+            int hitPoints, int speed, int goldCount, int armorClass, int exp,
+            String mainClass, int mainLevel, String subClass, int subLevel) {
 
         // Generate the modifier objects
         this.STR = new Modifier(STR);
@@ -64,277 +72,408 @@ public class CharacterSheet {
         this.WIS = new Modifier(WIS);
         this.CHA = new Modifier(CHA);
 
-        this.level = level;
-        this.profBonus = 2 + (level - 1) / 4;
-        this.initiative = DEX;
+        this.name = name;
+        this.race = race;
+        this.campaign = campaign;
+        this.alignment = alignment;
+        this.background = background;
+        this.profBonus = 2 + ((mainLevel + subLevel) - 1) / 4;
+        this.initiative = this.DEX.getMod();
         this.hitPoints = hitPoints;
         this.speed = speed;
-        this.armorClass = armorClass;
         this.goldCount = goldCount;
+        this.armorClass = armorClass;
+        this.exp = exp;
 
-        this.classType = new ClassType(mainClass, subClass);
+        this.mainClass = new CharClass(mainClass, mainLevel);
+        this.subClass = new CharClass(subClass, subLevel);
     }
 
     public CharacterSheet() {
-        this(0, 0, 0, 0, 0, 0,
-                        0, 0, 0, 0, 0,
-                        "","");
+        this(10, 10, 10, 10, 10, 10,
+                "testName", "testRace", "testCampaign", "Evil", "Hollow one",
+                10, 30, 100, 15, 10,
+                "testMainClass", 4, "testSubClass", 1);
     }
 
     /**
      * Get the Strength modifier
-     * 
+     *
      * @return A Modifier object for character Strength
      */
-    Modifier getSTR() {
+    public Modifier getSTR() {
         return this.STR;
     }
 
     /**
      * Get the Dexterity modifier
-     * 
+     *
      * @return A Modifier object for character Dexterity
      */
-    Modifier getDEX() {
+    public Modifier getDEX() {
         return this.DEX;
     }
 
     /**
      * Get the Constitution modifier
-     * 
+     *
      * @return A Modifier object for character Constitution
      */
-    Modifier getCON() {
+    public Modifier getCON() {
         return this.CON;
     }
 
     /**
      * Get the Intelligence modifier
-     * 
+     *
      * @return A Modifier object for character Intelligence
      */
-    Modifier getINT() {
+    public Modifier getINT() {
         return this.INT;
     }
 
     /**
      * Get the Wisdom modifier
-     * 
+     *
      * @return A Modifier object for character Wisdom
      */
-    Modifier getWIS() {
+    public Modifier getWIS() {
         return this.WIS;
     }
 
     /**
      * Get the Charisma modifier
-     * 
+     *
      * @return A Modifier object for character Charisma
      */
-    Modifier getCHA() {
+    public Modifier getCHA() {
         return this.CHA;
     }
 
     /**
-     * Get the character level
-     * 
-     * @return A integer for character level
+     * Get the name of the character
+     *
+     * @return A string name for the character
      */
-    int getLevel() {
-        return this.level;
+    public String getName() {
+        return this.name;
+    }
+
+    /**
+     * Get the race of the character
+     *
+     * @return A string name for the race of the character
+     */
+    public String getRace() {
+        return this.race;
+    }
+
+    /**
+     * Get the campaign name of the character
+     *
+     * @return A string name for the campaign
+     */
+    public String getCampaign() {
+        return this.campaign;
+    }
+
+    /**
+     * Get the alignment for the character
+     *
+     * @return A string alignment for the character
+     */
+    public String getAlignment() {
+        return this.alignment;
+    }
+
+    /**
+     * Get the background for the character
+     *
+     * @return A string background for the character
+     */
+    public String getBackground() {
+        return background;
     }
 
     /**
      * Get the character prof bonus
-     * 
-     * @return A integer for character prof bonus
+     *
+     * @return An integer for character prof bonus
      */
-    int getProfBonus() {
+    public int getProfBonus() {
         return this.profBonus;
     }
 
     /**
      * Get the character Initiative
-     * 
-     * @return A integer for character Initiative
+     *
+     * @return An integer for character Initiative
      */
-    int getInitiative() {
+    public int getInitiative() {
         return this.initiative;
     }
 
     /**
      * Get the character hit point total
-     * 
-     * @return A integer for character hit point total
+     *
+     * @return An integer for character hit point total
      */
-    int getHp() {
+    public int getHp() {
         return this.hitPoints;
     }
 
     /**
      * Get the character speed
-     * 
-     * @return A integer for character speed
+     *
+     * @return An integer for character speed
      */
-    int getSpeed() {
+    public int getSpeed() {
         return this.speed;
     }
 
     /**
      * Get the character armor class
-     * 
-     * @return A integer for character armor class
+     *
+     * @return An integer for character armor class
      */
-    int getAC() {
+    public int getAC() {
         return this.armorClass;
     }
 
     /**
      * Get the character total gold count
-     * 
-     * @return A integer for character total gold count
+     *
+     * @return An integer for character total gold count
      */
-    int getGold() {
+    public int getGold() {
         return this.goldCount;
     }
 
     /**
-     * Get the characters class information
-     * 
-     * @return A ClassType object which contains strings
-     *         for the characters main and sub class names
+     * Get the character experience total
+     *
+     * @return An integer for the character experience total
      */
-    ClassType getClassType() {
-        return this.classType;
+    public int getExp() {
+        return this.exp;
+    }
+
+    /**
+     * Get the characters mainClass information
+     *
+     * @return A CharClass object which contains a string
+     * pertaining to the characters class name and an integer
+     * level
+     */
+    public CharClass getMainClass() {
+        return this.mainClass;
+    }
+
+    /**
+     * Get the character subClass information
+     *
+     * @return A CharClass object which contains a string
+     * pertaining to the characters class name and an integer
+     * level
+     */
+    public CharClass getSubClass() {
+        return this.subClass;
     }
 
     /**
      * Get all the items in a characters inventory
-     * 
+     *
      * @return A HashMap with key-value pairs being String-Item object
      */
-    HashMap<String, Item> getItems() {
+    public HashMap<String, Item> getItems() {
         return this.items;
     }
 
     /*
      * All modifier (STR, DEX, CON, INT, WIS, CHA) setters use the
      * setAbilityScore method built into the Modifier object, which
-     * updates the ability score and automatically calcualtes the new modiifer
-     * based on the new score
+     * updates the ability score and automatically calculates the new
+     * modifier based on the new score
      */
 
-    void setSTR(int newSTR) {
+    public void setSTR(int newSTR) {
         this.STR.setAbilityScore(newSTR);
     }
 
-    void setDEX(int newDEX) {
+    public void setDEX(int newDEX) {
         this.DEX.setAbilityScore(newDEX);
+        setInitiative(this.DEX.getMod());
     }
 
-    void setCON(int newCON) {
+    public void setCON(int newCON) {
         this.CON.setAbilityScore(newCON);
     }
 
-    void setINT(int newINT) {
+    public void setINT(int newINT) {
         this.INT.setAbilityScore(newINT);
     }
 
-    void setWIS(int newWIS) {
+    public void setWIS(int newWIS) {
         this.WIS.setAbilityScore(newWIS);
     }
 
-    void setCHA(int newCHA) {
+    public void setCHA(int newCHA) {
         this.CHA.setAbilityScore(newCHA);
     }
 
     /**
-     * Set the character level then subsequently update the profBonus
-     * based on the new level
-     * 
-     * @param newLevel The new level of the character
+     * Set the name of the character
+     *
+     * @param name The new name of the character
      */
-    void setLevel(int newLevel) {
-        this.level = newLevel;
-        this.profBonus = 2 + (newLevel - 1) / 4;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
-     * Set the character proficiency bonus
-     * 
-     * @param newProf The new proficiency bonus
+     * Set the race of the character
+     *
+     * @param race The new race name of the character
      */
-    void setProfBonus(int newProf) {
-        // Should never be used, but here just in case!
-        this.profBonus = newProf;
+    public void setRace(String race) {
+        // Rarely ever used
+        this.race = race;
+    }
+
+    /**
+     * Set the campaign name
+     *
+     * @param campaign The new campaign name
+     */
+    public void setCampaign(String campaign) {
+        // Rarely ever used
+        this.campaign = campaign;
+    }
+
+    /**
+     * Set the alignment of the character
+     *
+     * @param alignment The new alignment
+     */
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
+    }
+
+    /**
+     * Set the background of the character
+     *
+     * @param background The new background
+     */
+    public void setBackground(String background) { this.background = background; }
+
+    /**
+     * Set the character proficiency bonus based on total level
+     */
+    private void setProfBonus() {
+        int mainLevel = this.mainClass.getLevel();
+        int subLevel = this.subClass.getLevel();
+        int totalLevel = mainLevel + subLevel;
+        this.profBonus = 2 + (totalLevel - 1) / 4;
     }
 
     /**
      * Set the character initiative
-     * 
+     *
      * @param newInitiative The new initiative
      */
-    void setInitiative(int newInitiative) {
+    private void setInitiative(int newInitiative) {
         this.initiative = newInitiative;
     }
 
     /**
      * Set the character hit point total
-     * 
+     *
      * @param newHp the new hit point total of the character
      */
-    void setHP(int newHp) {
+    public void setHP(int newHp) {
         this.hitPoints = newHp;
     }
 
     /**
      * Set the character speed
-     * 
+     *
      * @param newSpeed the new speed of the character
      */
-    void setSpeed(int newSpeed) {
+    public void setSpeed(int newSpeed) {
         // Very rarely if ever needs to be used
         this.speed = newSpeed;
     }
 
     /**
      * Set the armor class of the character
-     * 
+     *
      * @param newAC the new armor class of the character
      */
-    void setAC(int newAC) {
+    public void setAC(int newAC) {
         this.armorClass = newAC;
     }
 
     /**
      * Set the total gold of the character
-     * 
+     *
      * @param goldCount the new gold count of the character
      */
-    void setGold(int goldCount) {
+    public void setGold(int goldCount) {
         this.goldCount = goldCount;
     }
 
     /**
-     * Set the name of the main class of the character in the
-     * ClassType object
-     * 
-     * @param mainClass The new string name of the main class
+     * Set the EXP total of the character
+     *
+     * @param exp The new exp total of the character
      */
-    void setMainClass(String mainClass) {
-        // Should never be used, but here just in case!
-        this.classType.setMainClass(mainClass);
+    public void setExp(int exp) {
+        this.exp = exp;
     }
 
     /**
-     * Set the name of the sub class of the character in the
-     * CLassType object
-     * 
-     * @param subClass The new string name of the subclass
+     * Set the name of the main class in the charClass
+     * object
+     *
+     * @param mainClass The new string name of the main class
      */
-    void setSubClass(String subClass) {
-        // Will likely be used if the characters start below level 3
-        this.classType.setSubClass(subClass);
+    public void setMainClassName(String mainClass) {
+        // Should never be used, but here just in case!
+        this.mainClass.setClassName(mainClass);
+    }
+
+    /**
+     * Set the level of the main class in the charClass
+     * object
+     *
+     * @param level The new level of the main class
+     */
+    public void setMainClassLevel(int level) {
+        this.mainClass.setLevel(level);
+        // Update prof bonus
+        setProfBonus();
+    }
+
+    /**
+     * Set the name of the subclass in the charClass
+     * object
+     *
+     * @param subClass The new name of the subclass
+     */
+    public void setSubClassName(String subClass) {
+        this.subClass.setClassName(subClass);
+    }
+
+    /**
+     * Set the level of the subclass in the charClass
+     * object
+     *
+     * @param level The new level of the subclass
+     */
+    public void setSubClassLevel(int level) {
+        this.subClass.setLevel(level);
+        // Update prof bonus
+        setProfBonus();
     }
 
     /*
@@ -342,16 +481,63 @@ public class CharacterSheet {
      * pairs are the name of the item along with the item
      * object.
      */
-    void addItem(Item item) {
-        items.put(item.getName(), item);
+
+    /**
+     * Function for adding an item into the items hash map.
+     * If the item already exists, we increment the itemCount.
+     *
+     * @param itemId The identification of this specific item
+     * @param item   The item we want to add
+     */
+    public void addItem(String itemId, Item item) {
+        // If items already exists, increment the item count
+        if (items.containsKey(itemId)) {
+            Item duplicate = items.remove(itemId);
+            duplicate.setItemCount(duplicate.getItemCount() + item.getItemCount());
+            items.put(itemId, duplicate);
+        }
+        // Else just add the item to the table
+        items.put(itemId, item);
     }
 
-    void removeItem(Item item) {
-        items.remove(item.getName());
+    /**
+     * Function to decrement an item count. If the count goes below 1
+     * the item is no longer stored
+     *
+     * @param itemId      The name of the item we are decrementing
+     * @param removeCount The amount we are removing
+     */
+    public void decrementItem(String itemId, int removeCount) {
+        if (items.containsKey(itemId)) {
+            Item stored = items.remove(itemId);
+            int newCount = stored.getItemCount() - removeCount;
+            if (newCount > 0) {
+                stored.setItemCount(newCount);
+                items.put(itemId, stored);
+            }
+        }
     }
 
-    void updateItem(Item item) {
-        items.replace(item.getName(), item);
+    /**
+     * Function to remove an item from the Hashmap
+     *
+     * @param itemId The Item being removed (regardless of count)
+     */
+    public void removeItem(String itemId) {
+        items.remove(itemId);
+    }
+
+    /**
+     * Function to update na item from the HashMap
+     * (Name, description or count)
+     *
+     * @param itemId The id of the item being updated
+     * @param item   The updated item
+     */
+    public void updateItem(String itemId, Item item) {
+        // Should be used when description or name are changing,
+        // but can be used to update count as well
+        items.replace(itemId, item);
     }
 
 }

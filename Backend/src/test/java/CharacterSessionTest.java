@@ -15,10 +15,10 @@ public class CharacterSessionTest {
 
     @DataPoint("Character Session JSON")
     public static String[] expectedJsonKeys = new String[]
-            {"profBonus", "items", "level", "initiative", "hitPoints",
-            "speed", "armorClass", "goldCount", "classType", "mainClass",
-            "subClass", "baseMod", "abilityScore", "mod",
-            "STR", "DEX", "CON", "INT", "WIS", "CHA"};
+            {"id","character","profBonus", "items", "name", "race", "campaign", "alignment",
+                    "background", "initiative", "hitPoints", "speed", "armorClass", "goldCount",
+                    "exp", "mainClass", "subClass", "charClass", "level", "baseMod", "abilityScore", "mod",
+                    "STR", "DEX", "CON", "INT", "WIS", "CHA"};
 
     @Before
     public void Setup(){
