@@ -1,10 +1,10 @@
-# Getting Started with Create React App
+# RollBuddy Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Run and Build
 
-## Available Scripts
+To run the live development server, build, run tests and install dependencies _without_ gradle, you will need to install Node.js which includes npm: [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
-In the project directory, you can run:
+> Note: all of the following commands must be ran from this folder, `frontend`.
 
 ### `npm start`
 
@@ -29,42 +29,19 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The following is the component structure of the frontend, as well as their positions within the application.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Component Diagram](/frontend/component-diagram.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [App](./src/App.js): The root div, the initial entry point of components.
+- [Navigation](./src/components/Navigation.js): Fixed navigation bar, contianing the project logo and links to various pages. Planned to contain user information when accounts and authentication are implemented.
+- [CharacterSheet](./src/components/CharacterSheet.js): Contains all other character builder components, also contains API calls to initialize saved data from the backend to state which is passed as a prop to the appropriate components.
+- [CharacterInfo](./src/components/CharacterInfo.js): Contains character information such as name, race, alignment, level, etc. Currently, this information is saved to local storage for persistence.
+- [CharacterStatus](./src/components/CharacterStatus.js): Contains character attributes such as current and max HP, armor class and speed, as well as the calculated proficiency bonus and initiative. Currently, this information is saved to local storage for persistence.
+- [AbilityList](./src/components/AbilityList.js): Simply a container to hold $n$ Abilities (see below). Changes to values in any ability will trigger an API call to update ability scores in the backend.
+- [Ability](./src/components/AbilityList.js): This component corresponds to a single ability and its attributes: a modifier and score. Users can increment the score using the buttons.
+- [MiscMenu](./src/components/MiscMenu.js): contains an inspiration modifier, as well as a simple success and failure counter. These values are persisted through local storage.
+- [RollMenu](./src/components/RollMenu.js): handles simulating dice rolls, as intended by the user. The type of roll and various attributes are modified through the drop-downs, and the roll value is returned by an API call which uses the stored ability modifiers to add/subtract from the rolled dice as intended. Selected dropdown and textbox values are persisted through local storage.
+- [TabMenu](./src/components/TabMenu.js): each tab corresponds to a different function, currently a proficiency tracker (with modifiers) and a textbox to track items. Once again, values are persisted through local storage.
