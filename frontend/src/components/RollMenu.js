@@ -2,6 +2,10 @@ import { React, useState, useEffect } from "react";
 import { DropdownButton, Dropdown, Button, ButtonGroup } from "react-bootstrap";
 import axios from "axios";
 
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
+import 'react-awesome-button/dist/themes/theme-red.css';
+
 const RollWindow = {
   display: "block",
   overflow: "auto",
@@ -201,6 +205,27 @@ const RollMenu = () => {
       >
         ROLL
       </Button>{" "}
+
+      <AwesomeButton
+          size= "large"
+          type="primary"
+          ripple
+
+          style={{
+            margin: "1rem",
+            width: "80%",
+            height: "5rem",
+            fontSize: "2rem",
+          }}
+          onPress={() => {
+            fetchDiceRoll()
+          }}
+      >
+        ROLL
+      </AwesomeButton>
+
+
+
       {/* Have this display the final calculated value */}
     </div>
   );
