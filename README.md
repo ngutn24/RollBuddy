@@ -35,6 +35,8 @@ To run the frontend, please run the following command from *a separate* terminal
 ./gradlew npm_start
 ```
 
+You can now use the application by visiting [http://localhost:3000](http://localhost:3000) on your browser of choice. Enjoy, and please report any bugs you encounter ([see below](#How-to-report-a-bug)).
+
 > **NOTE:** the service is currently being hosted on the [GitHub Pages](https://ngutn24.github.io/RollBuddy/) of this repository, however it is *not currently functional*. Please follow the above above instructions to run the backend and frontend locally while we resolve these issues. Thank you 𓁹‿𓁹
 
 ## How to report a bug
