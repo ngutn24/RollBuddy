@@ -100,16 +100,49 @@ const MiscMenu = () => {
                     <label style={textLabel}>Successes</label>
                     <div style={{ float: "right" }}>
                         {successes}
-                        <Button onClick={decrementSuccessHandler}>-</Button>
-                        <Button onClick={incrementSuccessHandler}>+</Button>
+                        <Button
+                            style={{
+                                width: "2.2rem",
+                                textShadow: "2px 2px 2px black",
+                                borderRadius: "10",
+                                margin: "0.2rem 0.4rem 0.5rem 0.3rem",
+                            }}
+                            onClick={decrementSuccessHandler}>-</Button>
+                        <Button
+                            style={{
+                                width: "2.2rem",
+                                textShadow: "2px 2px 2px black",
+                                borderRadius: "10",
+                                margin: "0.2rem 0.4rem 0.5rem 0.3rem",
+                                color: "antiquewhite",
+                            }}
+                            onClick={incrementSuccessHandler}>+</Button>
                     </div> 
                 </div>
                 <br></br>
                 <label style={textLabel}>Failures</label>
                 <div style={{ float: "right" }}>
                     {faiilures}
-                    <Button onClick={decrementFailureHandler}>-</Button>
-                    <Button onClick={incrementFailureHandler}>+</Button>
+                    <Button
+                        style={{
+                            width: "2.2rem",
+                            textShadow: "2px 2px 2px black",
+                            borderRadius: "10",
+                            raised: "true",
+                            margin: "0.2rem 0.4rem 0.5rem 0.3rem",
+                            color: "antiquewhite",
+                        }}
+                        onClick={decrementFailureHandler}>-</Button>
+                    <Button
+                        style={{
+                            width: "2.2rem",
+                            textShadow: "2px 2px 2px black",
+                            borderRadius: "10",
+                            raised: "true",
+                            margin: "0.2rem 0.4rem 0.5rem 0.3rem",
+                            color: "antiquewhite",
+                        }}
+                        onClick={incrementFailureHandler}>+</Button>
                 </div>
             </div>
         </div>
