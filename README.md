@@ -4,7 +4,7 @@
 
 # RollBuddy User Manual
 
-**Roll Buddy is a virtual Dungeons and Dragons character sheet service that does most of the management associated with a pen-and-paper character sheet for you. It allows users to enter in all the important information such as character stats, skills, and gear and then calculates the roll modifiers and bonuses that are used for various actions in the game. It also allows users to roll various dice in the app so that they do not need to bring physical dice in order to play.**
+**RollBuddy is a virtual Dungeons and Dragons character sheet service that does most of the management associated with a pen-and-paper character sheet for you. It allows users to enter in all the important information such as character stats, skills, and gear and then calculates the roll modifiers and bonuses that are used for various actions in the game. It also allows users to roll various dice in the app so that they do not need to bring physical dice in order to play.**
 
 **Compare to other existing DND character sheet services, RollBuddy is a much more straightforward service that helps you create your character quickly and get you rolling to play the game. Besides the essential functionality, the character's information is stored on the server like many other systems, so it is easier for the user to access it anywhere.**
 
