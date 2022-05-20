@@ -26,13 +26,8 @@ const CharacterSheet = () => {
   // fetch character data from the API, will initialize a new character if not found.
   const fetchCharacter = () => {
     const characterID = JSON.parse(localStorage.getItem("characterID"));
-    // // console.log("Loaded with characterID: ", characterID);
-    // if (characterID != null) {
-    //   setCharacterID(characterID);
-    // }
 
     let id = "";
-
     if (characterID != null) {
       setCharacterID(characterID);
       id = "?id=" + characterID;
@@ -111,7 +106,7 @@ const CharacterSheet = () => {
     // eslint-disable-next-line
   }, [abilities]);
 
-  // save CharID to localstorage when written.
+  // save characterID to localstorage when state is updated.
   useEffect(() => {
     localStorage.setItem("characterID", JSON.stringify(characterID));
   }, [characterID]);
