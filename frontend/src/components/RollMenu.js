@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { DropdownButton, Dropdown, Button, ButtonGroup } from "react-bootstrap";
+import { baseURL } from "./CharacterSheet";
 import axios from "axios";
 
 const RollWindow = {
@@ -28,7 +29,7 @@ const abilityCode = {
   Charisma: "cha",
 };
 
-const RollMenu = () => {
+const RollMenu = ({ id }) => {
   // Selector states
   const [rollType, setRollType] = useState("Attack");
   const [rollCondition, setRollCondition] = useState("Normal");
@@ -54,13 +55,20 @@ const RollMenu = () => {
   };
 
   const fetchDiceRoll = () => {
-    const url =
-      "http://localhost:4567/roll?mod=" +
-      abilityCode[rollAbility] +
-      "&count=" +
-      count +
-      "&dice=d" +
-      rollDice;
+    // TODO: cleanup url construction/definition to ensure safety.
+    const url = encodeURI(
+      baseURL +
+        "/roll" +
+        "?id=" +
+        id +
+        "&mod=" +
+        abilityCode[rollAbility] +
+        "&count=" +
+        count +
+        "&dice=d" +
+        rollDice
+    );
+
     axios
       .get(url, {
         withCredentials: true,
