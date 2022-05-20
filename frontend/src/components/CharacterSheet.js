@@ -8,7 +8,11 @@ import MiscMenu from "./MiscMenu.js";
 import axios from "axios";
 import TabMenu from "./TabMenu.js";
 
+export const baseURL = "http://localhost:4567";
+
 const CharacterSheet = () => {
+  // stores ID used to reference current character in *all* API calls.
+  const [characterID, setCharacterID] = useState();
   const [abilities, setAbilities] = useState({
     STR: 10,
     DEX: 10,
@@ -21,32 +25,64 @@ const CharacterSheet = () => {
 
   // fetch character data from the API, will initialize a new character if not found.
   const fetchCharacter = () => {
+    const characterID = JSON.parse(localStorage.getItem("characterID"));
+
+    let id = "";
+    if (characterID != null) {
+      setCharacterID(characterID);
+      id = "?id=" + characterID;
+    }
+
+    // TODO: cleanup url construction/definition to ensure safety.
+    const url = encodeURI(baseURL + "/character" + id);
+
+    console.log("fetching URL: ", url);
+
     axios
-      .get("http://localhost:4567/character", {
+      .get(url, {
         withCredentials: true,
       })
       .then((res) => {
+        console.log(res.data);
+
+        // set character ID if this call initializes a new character
+        if (characterID === null) {
+          console.log("Setting the chartacterID: ", res.data.id);
+          setCharacterID(res.data.id);
+        }
+
         setAbilities({
-          STR: res.data.STR.abilityScore,
-          DEX: res.data.DEX.abilityScore,
-          CON: res.data.CON.abilityScore,
-          INT: res.data.INT.abilityScore,
-          WIS: res.data.WIS.abilityScore,
-          CHA: res.data.CHA.abilityScore,
+          STR: res.data.character.STR.abilityScore,
+          DEX: res.data.character.DEX.abilityScore,
+          CON: res.data.character.CON.abilityScore,
+          INT: res.data.character.INT.abilityScore,
+          WIS: res.data.character.WIS.abilityScore,
+          CHA: res.data.character.CHA.abilityScore,
         });
       });
   };
 
   // post abilities to API, updating backend representation of the character.
   const updateAbilities = () => {
+    if (characterID == null) {
+      console.log("[ERROR] No valid character ID found. Cannot update values.");
+      return;
+    }
+
+    // TODO: cleanup url construction/definition to ensure safety.
+    let url = encodeURI(
+      baseURL +
+        "/update" +
+        "?id=" +
+        characterID +
+        "&stats=" +
+        JSON.stringify(abilities)
+    );
+
     axios
-      .get(
-        "http://localhost:4567/update?stats=" +
-          encodeURIComponent(JSON.stringify(abilities)),
-        {
-          withCredentials: true,
-        }
-      )
+      .get(url, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log("[DEBUG] Updated character for session: ", res.data);
       });
@@ -70,6 +106,11 @@ const CharacterSheet = () => {
     // eslint-disable-next-line
   }, [abilities]);
 
+  // save characterID to localstorage when state is updated.
+  useEffect(() => {
+    localStorage.setItem("characterID", JSON.stringify(characterID));
+  }, [characterID]);
+
   return (
     <Container style={{ padding: "20px" }}>
       <Row>
@@ -88,7 +129,7 @@ const CharacterSheet = () => {
               <MiscMenu />
             </Col>
             <Col>
-              <RollMenu />
+              <RollMenu id={characterID} />
             </Col>
           </Row>
         </Col>

@@ -74,7 +74,8 @@ public class CharacterSession {
      * @return The string json generated, representing the stored character sheet
      */
     public String getCharacterData(){
-        return jsonConverter.toJson(characterSheet);
+        return String.format("{\"id\":\"%s\",\"character\":%s}",
+                sessionID, jsonConverter.toJson(characterSheet));
     }
 
     /**
