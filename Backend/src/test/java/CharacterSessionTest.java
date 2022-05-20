@@ -15,7 +15,7 @@ public class CharacterSessionTest {
 
     @DataPoint("Character Session JSON")
     public static String[] expectedJsonKeys = new String[]
-            {"id","character","profBonus", "items", "name", "race", "campaign", "alignment",
+            {"profBonus", "items", "name", "race", "campaign", "alignment",
                     "background", "initiative", "hitPoints", "speed", "armorClass", "goldCount",
                     "exp", "mainClass", "subClass", "charClass", "level", "baseMod", "abilityScore", "mod",
                     "STR", "DEX", "CON", "INT", "WIS", "CHA"};
