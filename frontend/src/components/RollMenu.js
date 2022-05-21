@@ -37,7 +37,7 @@ const RollMenu = ({ id }) => {
   const [rollProficiency, setRollProficiency] = useState("Proficent");
   const [rollDice, setRollDice] = useState("4");
   // Roller States
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const [value, setValue] = useState(0);
 
   const handleSelectState = (setState) => (e) => {

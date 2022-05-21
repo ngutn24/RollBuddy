@@ -8,7 +8,7 @@ import MiscMenu from "./MiscMenu.js";
 import axios from "axios";
 import TabMenu from "./TabMenu.js";
 
-export const baseURL = "http://localhost:4567";
+export const baseURL = process.env.REACT_APP_API_URL;
 
 const CharacterSheet = () => {
   // stores ID used to reference current character in *all* API calls.
