@@ -12,7 +12,9 @@
 
 To use RollBuddy, simply visit: https://ngutn24.github.io/RollBuddy/
 
-If you wish to host the services yourself, please continue to the [following section](#software-installation-and-set-up) of this manual.
+And that's it! If you encounter any bugs, please submit a [bug repot](#How-to-report-a-bug).
+
+***Optionally***, if you wish to host the services yourself, please continue to the [following section](#software-installation-and-set-up) of this manual.
 
 ### Software installation and set up
 
