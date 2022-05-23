@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { DropdownButton, Dropdown, Button, ButtonGroup } from "react-bootstrap";
+import { DropdownButton, Dropdown, ButtonGroup } from "react-bootstrap";
 import { baseURL } from "./CharacterSheet";
 import axios from "axios";
 
