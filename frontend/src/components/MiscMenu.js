@@ -1,14 +1,19 @@
-import { React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import border from '../assets/window_bg.png'
 
 var ComponentWindow = {
-  display: "block",
-  overflow: "auto",
-  outline: "black solid 2px",
-  borderRadius: "20px",
-  backgroundColor: "white",
-  margin: "1rem 1rem 1rem 1rem",
-  padding: "1rem 1rem 1rem 1rem",
+    display: "block",
+    overflow: "auto",
+    outline: "black solid 2px",
+    borderRadius: "20px",
+    backgroundColor: "white",
+    margin: "1rem 1rem 1rem 1rem",
+    padding: "1rem 1rem 1rem 1rem",
+    backgroundImage: `url(${border})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    boxShadow: "2px 2px 4px #000000"
 };
 
 var checkBox = {
@@ -112,16 +117,58 @@ const MiscMenu = () => {
           <label style={textLabel}>Successes</label>
           <div style={{ float: "right" }}>
             {successes}
-            <Button onClick={decrementSuccessHandler}>-</Button>
-            <Button onClick={incrementSuccessHandler}>+</Button>
+            <Button
+              style={{
+                  width: "3rem",
+                  textShadow: "2px 2px 2px black",
+                  borderRadius: "10",
+                  raised: "true",
+                  margin: "0.2rem 0.2rem 0.5rem 0rem",
+                  color: "antiquewhite",
+                  fontSize: "2rem",
+                  padding: "0rem"
+              }}
+              onClick={decrementSuccessHandler}>-</Button>
+            <Button
+                style={{
+                    width: "3rem",
+                    textShadow: "2px 2px 2px black",
+                    borderRadius: "10",
+                    raised: "true",
+                    margin: "0.2rem 0rem 0.5rem 0.2rem",
+                    color: "antiquewhite",
+                    fontSize: "2rem",
+                    padding: "0rem"
+                }}
+                onClick={incrementSuccessHandler}>+</Button>
           </div>
         </div>
         <br></br>
         <label style={textLabel}>Failures</label>
         <div style={{ float: "right" }}>
           {faiilures}
-          <Button onClick={decrementFailureHandler}>-</Button>
-          <Button onClick={incrementFailureHandler}>+</Button>
+          <Button
+            style={{
+                width: "3rem",
+                textShadow: "2px 2px 2px black",
+                borderRadius: "10",
+                raised: "true",
+                margin: "0.2rem 0.2rem 0.5rem 0rem",
+                fontSize: "2rem",
+                padding: "0rem"
+            }}
+            onClick={decrementFailureHandler}>-</Button>
+          <Button
+              style={{
+                  width: "3rem",
+                  textShadow: "2px 2px 2px black",
+                  borderRadius: "10",
+                  raised: "true",
+                  margin: "0.2rem 0rem 0.5rem 0.2rem",
+                  fontSize: "2rem",
+                  padding: "0rem"
+              }}
+              onClick={incrementFailureHandler}>+</Button>
         </div>
       </div>
     </div>

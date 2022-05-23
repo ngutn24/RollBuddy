@@ -3,13 +3,19 @@ import { DropdownButton, Dropdown, Button, ButtonGroup } from "react-bootstrap";
 import { baseURL } from "./CharacterSheet";
 import axios from "axios";
 
+import border from '../assets/window_bg.png'
+
 const RollWindow = {
-  display: "block",
-  overflow: "auto",
-  outline: "black solid 2px",
-  borderRadius: "20px",
-  backgroundColor: "white",
-  margin: "1rem 1rem 1rem 1rem",
+    display: "block",
+    overflow: "auto",
+    outline: "black solid 2px",
+    borderRadius: "20px",
+    backgroundColor: "white",
+    margin: "1rem 1rem 1rem 1rem",
+    backgroundImage: `url(${border})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    boxShadow: "2px 2px 4px #000000"
 };
 
 const RollInputCount = {
