@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
+import border from '../assets/window_bg.png'
 
 var statusRow = {
   width: "100%",
@@ -9,6 +10,10 @@ var statusRow = {
   backgroundColor: "white",
   margin: "1rem 0.5rem 1rem 0.5rem",
   padding: "1rem 1rem 1rem 1rem",
+  backgroundImage: `url(${border})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  boxShadow: "2px 2px 4px #000000"
 };
 
 var input = {

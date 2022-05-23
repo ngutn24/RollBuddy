@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Row, Col, DropdownButton, Dropdown } from "react-bootstrap";
+import border from '../assets/window_bg.png'
 
 var charDetails = {
   maxWidth: "100%",
@@ -7,7 +8,11 @@ var charDetails = {
   borderRadius: "20px",
   backgroundColor: "white",
   margin: "0.5rem 0.5rem 0.5rem 0.5rem",
-  padding: "1rem 1rem 1rem 1rem"
+  padding: "1rem 1rem 1rem 1rem",
+  backgroundImage: `url(${border})`,
+  backgroundPosition: "center",
+  backgroundSize: "cover",
+  boxShadow: "2px 2px 4px #000000"
 };
 
 const CharacterInfo = () => {

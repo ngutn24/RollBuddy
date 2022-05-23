@@ -1,6 +1,7 @@
 import React from "react";
 import {Button} from "react-bootstrap";
 import {calculateMod} from "./Helpers";
+import border from '../assets/window_bg.png'
 
 // Formats ability score component to be a centered rounded box with a white background
 var AbilityScore = {
@@ -9,6 +10,10 @@ var AbilityScore = {
     borderRadius: "20px",
     backgroundColor: "white",
     margin: "1rem 0.5rem 1rem 0.5rem",
+    backgroundImage: `url(${border})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    boxShadow: "2px 2px 4px #000000"
 };
 
 const Ability = ({displayName, score, abilities, setAbilities, id}) => {
@@ -61,23 +66,26 @@ const Ability = ({displayName, score, abilities, setAbilities, id}) => {
             <div style={{display: "inline-block"}}>
                 <Button
                     style={{
-                        width: "2.2rem",
-                        textShadow: "2px 2px 2px black",
-                        borderRadius: "10",
-                        raised: "true",
-                        margin: "0.2rem 0.4rem 0.5rem 0.3rem",
-                        color: "antiquewhite",
-                    }}
-                    onClick={decrementHandler}
-                >- </Button>
-                &nbsp;
-                <Button
-                    style={{
+                        width: "3rem",
                         textShadow: "2px 2px 2px black",
                         borderRadius: "10",
                         raised: "true",
                         margin: "0.2rem 0rem 0.5rem 0rem",
-                        color: "darkgoldenrod",
+                        fontSize: "2rem",
+                        padding: "0rem"
+                    }}
+                    onClick={decrementHandler}
+                >-</Button>
+                &nbsp;
+                <Button
+                    style={{
+                        width: "3rem",
+                        textShadow: "2px 2px 2px black",
+                        borderRadius: "10",
+                        raised: "true",
+                        margin: "0.2rem 0rem 0.5rem 0rem",
+                        fontSize: "2rem",
+                        padding: "0rem"
                     }}
                     onClick={incrementHandler}>+
                 </Button>

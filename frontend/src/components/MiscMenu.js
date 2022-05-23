@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import border from '../assets/window_bg.png'
 
 var ComponentWindow = {
     display: "block",
@@ -9,6 +10,10 @@ var ComponentWindow = {
     backgroundColor: "white",
     margin: "1rem 1rem 1rem 1rem",
     padding: "1rem 1rem 1rem 1rem",
+    backgroundImage: `url(${border})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    boxShadow: "2px 2px 4px #000000"
 };
 
 var checkBox = {
@@ -102,19 +107,26 @@ const MiscMenu = () => {
                         {successes}
                         <Button
                             style={{
-                                width: "2.2rem",
+                                width: "3rem",
                                 textShadow: "2px 2px 2px black",
                                 borderRadius: "10",
-                                margin: "0.2rem 0.4rem 0.5rem 0.3rem",
+                                raised: "true",
+                                margin: "0.2rem 0.2rem 0.5rem 0rem",
+                                color: "antiquewhite",
+                                fontSize: "2rem",
+                                padding: "0rem"
                             }}
                             onClick={decrementSuccessHandler}>-</Button>
                         <Button
                             style={{
-                                width: "2.2rem",
+                                width: "3rem",
                                 textShadow: "2px 2px 2px black",
                                 borderRadius: "10",
-                                margin: "0.2rem 0.4rem 0.5rem 0.3rem",
+                                raised: "true",
+                                margin: "0.2rem 0rem 0.5rem 0.2rem",
                                 color: "antiquewhite",
+                                fontSize: "2rem",
+                                padding: "0rem"
                             }}
                             onClick={incrementSuccessHandler}>+</Button>
                     </div> 
@@ -125,22 +137,24 @@ const MiscMenu = () => {
                     {faiilures}
                     <Button
                         style={{
-                            width: "2.2rem",
+                            width: "3rem",
                             textShadow: "2px 2px 2px black",
                             borderRadius: "10",
                             raised: "true",
-                            margin: "0.2rem 0.4rem 0.5rem 0.3rem",
-                            color: "antiquewhite",
+                            margin: "0.2rem 0.2rem 0.5rem 0rem",
+                            fontSize: "2rem",
+                            padding: "0rem"
                         }}
                         onClick={decrementFailureHandler}>-</Button>
                     <Button
                         style={{
-                            width: "2.2rem",
+                            width: "3rem",
                             textShadow: "2px 2px 2px black",
                             borderRadius: "10",
                             raised: "true",
-                            margin: "0.2rem 0.4rem 0.5rem 0.3rem",
-                            color: "antiquewhite",
+                            margin: "0.2rem 0rem 0.5rem 0.2rem",
+                            fontSize: "2rem",
+                            padding: "0rem"
                         }}
                         onClick={incrementFailureHandler}>+</Button>
                 </div>

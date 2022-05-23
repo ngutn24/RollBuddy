@@ -2,13 +2,14 @@ import {React, useState, useEffect} from "react";
 import {DropdownButton, Dropdown, ButtonGroup} from "react-bootstrap";
 import axios from "axios";
 
-import icon2 from  '../assets/2.png'
-import FloatingButtons from 'react-floating-buttons'
+//import icon2 from  '../assets/2.png'
+//import FloatingButtons from 'react-floating-buttons'
 
 import {AwesomeButton} from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import 'react-awesome-button/dist/themes/theme-red.css';
 
+import border from '../assets/window_bg.png'
 
 const RollWindow = {
     display: "block",
@@ -17,6 +18,10 @@ const RollWindow = {
     borderRadius: "20px",
     backgroundColor: "white",
     margin: "1rem 1rem 1rem 1rem",
+    backgroundImage: `url(${border})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    boxShadow: "2px 2px 4px #000000"
 };
 
 const RollInputCount = {
@@ -38,7 +43,7 @@ const abilityCode = {
 
 const RollMenu = () => {
 
-    const dice_face = [
+    /*const dice_face = [
         {onClick: () => handleSelectState(4), src: icon2},
         {onClick: () => handleSelectState(4), src: icon2},
         {onClick: () => handleSelectState(4), src: icon2},
@@ -46,7 +51,7 @@ const RollMenu = () => {
         {onClick: () => handleSelectState(4), src: icon2},
         {onClick: () => handleSelectState(4), src: icon2},
         {onClick: () => handleSelectState(4), src: icon2},
-    ]
+    ]*/
 
 
     // Selector states
@@ -230,9 +235,8 @@ const RollMenu = () => {
 
 
 
-            <FloatingButtons buttonType='hori-dots' dimension={50} buttonsList={dice_face} top= {'calc(90%)'}
-                             left={'calc(90%)'}
-                             direction="circular" degree={"360"} distance={"75"}/>
+            {/*<FloatingButtons buttonType='hori-dots' dimension={50} buttonsList={dice_face} top= {'calc(90%)'}
+                             left={'calc(90%)'} direction="circular" degree={"360"} distance={"75"}/>*/}
 
             <AwesomeButton
                 size="large"

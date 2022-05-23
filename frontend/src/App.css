@@ -10,6 +10,7 @@
 .Main-body {
   background-image: url('./assets/rollbuddy_bg.png');
   background-size: cover;
+  background-position: "center";
   min-height: 100vh;
   display: flex;
   flex-direction: column;
