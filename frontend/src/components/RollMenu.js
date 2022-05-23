@@ -1,5 +1,6 @@
-import {React, useState, useEffect} from "react";
-import {DropdownButton, Dropdown, ButtonGroup} from "react-bootstrap";
+import { React, useState, useEffect } from "react";
+import { DropdownButton, Dropdown, Button, ButtonGroup } from "react-bootstrap";
+import { baseURL } from "./CharacterSheet";
 import axios from "axios";
 
 //import icon2 from  '../assets/2.png'
@@ -41,7 +42,16 @@ const abilityCode = {
     Charisma: "cha",
 };
 
-const RollMenu = () => {
+const RollMenu = ({ id }) => {
+  // Selector states
+  const [rollType, setRollType] = useState("Attack");
+  const [rollCondition, setRollCondition] = useState("Normal");
+  const [rollAbility, setRollAbility] = useState("Strength");
+  const [rollProficiency, setRollProficiency] = useState("Proficent");
+  const [rollDice, setRollDice] = useState("4");
+  // Roller States
+  const [count, setCount] = useState(0);
+  const [value, setValue] = useState(0);
 
     /*const dice_face = [
         {onClick: () => handleSelectState(4), src: icon2},
@@ -54,15 +64,35 @@ const RollMenu = () => {
     ]*/
 
 
-    // Selector states
-    const [rollType, setRollType] = useState("Attack");
-    const [rollCondition, setRollCondition] = useState("Normal");
-    const [rollAbility, setRollAbility] = useState("Strength");
-    const [rollProficiency, setRollProficiency] = useState("Proficent");
-    const [rollDice, setRollDice] = useState("4");
-    // Roller States
-    const [count, setCount] = useState(0);
-    const [value, setValue] = useState(0);
+  const fetchDiceRoll = () => {
+    // TODO: cleanup url construction/definition to ensure safety.
+    const url = encodeURI(
+      baseURL +
+        "/roll" +
+        "?id=" +
+        id +
+        "&mod=" +
+        abilityCode[rollAbility] +
+        "&count=" +
+        count +
+        "&dice=d" +
+        rollDice
+    );
+
+    axios
+      .get(url, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setValue(res.data);
+        console.log("[DEBUG] Fetched dice roll: ", {
+          mod: rollAbility,
+          count: count,
+          dice: "d" + rollDice,
+          value: res.data,
+        });
+      });
+  };
 
     const handleSelectState = (setState) => (e) => {
         setState(e);
@@ -76,29 +106,6 @@ const RollMenu = () => {
         } else if (re.test(e.target.value)) {
             setState(parseInt(e.target.value));
         }
-    };
-
-    const fetchDiceRoll = () => {
-        const url =
-            "http://localhost:4567/roll?mod=" +
-            abilityCode[rollAbility] +
-            "&count=" +
-            count +
-            "&dice=d" +
-            rollDice;
-        axios
-            .get(url, {
-                withCredentials: true,
-            })
-            .then((res) => {
-                setValue(res.data);
-                console.log("[DEBUG] Fetched dice roll: ", {
-                    mod: rollAbility,
-                    count: count,
-                    dice: "d" + rollDice,
-                    value: res.data,
-                });
-            });
     };
 
     // load state from local storage

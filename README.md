@@ -6,35 +6,38 @@
 
 **RollBuddy is a virtual Dungeons and Dragons character sheet service that does most of the management associated with a pen-and-paper character sheet for you. It allows users to enter in all the important information such as character stats, skills, and gear and then calculates the roll modifiers and bonuses that are used for various actions in the game. It also allows users to roll various dice in the app so that they do not need to bring physical dice in order to play.**
 
-**Compare to other existing DND character sheet services, RollBuddy is a much more straightforward service that helps you create your character quickly and get you rolling to play the game. Besides the essential functionality, the character's information is stored on the server like many other systems, so it is easier for the user to access it anywhere.**
+**Compared to other existing DND character sheet services, RollBuddy is a much more straightforward service that helps you create your character quickly and get you rolling to play the game. Besides the essential functionality, the character's information is stored on the server like many other systems, so it is easier for the user to access it anywhere.**
 
 ## Software installation and set up
 
-The service is being hosted on the [GitHub Pages](https://ngutn24.github.io/RollBuddy/)
-of this repository, there is no need to set anything up to use this service.
+To run this application, you will need to install the following software. Follow the links and download the appropriate version for your operating system:
 
-If you would like to edit the code for this service and run it locally on your end, here are steps for setting it up:
+- ### JAVA JDK version 8 or above (https://adoptopenjdk.net/)
+  In order to run **Gradle** and execute **Java** code of RollBuddy system, it requires at least **JAVA JDK version 8** or above. Follow the instructions in the link.
 
-### IDE of your choice
+- ### Gradle version 7.1.1 or above (https://gradle.org/install/)
+  **Gradle** will help you to install all other dependency Rollbuddy required. Running the `./gradlew` script for any task should install gradle. Follow the instructions in the link.
 
-To conveniently edited, build and run the code, it is essential to have an IDE to handle those for you. There are a lot of choices, below are some suggestions. You could follow the download page instruction to install the corresponding version for your system:
+### Running the application
+Clone the repository and change to the repo's directory:
+```sh
+git clone https://github.com/ngutn24/RollBuddy
+cd RollBuddy
+```
 
-- ##### Jetbrains IntelliJ (https://www.jetbrains.com/idea/download/#section=windows)
+To run the backend, please run the following command:
+```sh
+./gradlew run_backend
+``` 
 
-  IntelliJ is one of the most powerful and popular Integrated Development Environments (IDE) for Java.
+To run the frontend, please run the following command from *a separate* terminal window or tab:
+```sh
+./gradlew npm_start
+```
 
-- ##### Visual studio Code (https://code.visualstudio.com/)
-  Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications. Visual Studio Code is free and available on your favorite platform - Linux, macOS, and Windows.
+You can now use the application by visiting [http://localhost:3000](http://localhost:3000) on your browser of choice. Enjoy, and please report any bugs you encounter ([see below](#How-to-report-a-bug)).
 
-### JAVA JDK version 8 or above (https://adoptopenjdk.net/)
-
-In order to run **Gradle** and execute **Java** code of RollBuddy system, it requires at least **JAVA JDK version 8** or above. Follow the instructions in the link.
-
-### Gradle version 7.1.1 or above (https://gradle.org/install/)
-
-**Gradle** will help you to install all other dependency Rollbuddy required. Running the `./gradlew` script for any task should install gradle. If not, you can install it yourself
-
-- After install all the necessary software, run Gradle full_build either through IDE command line, `./gradlew full_build` or on the IntelliJ sidebar, and it will install the rest of the dependency library for the project.
+> **NOTE:** the service is currently being hosted on the [GitHub Pages](https://ngutn24.github.io/RollBuddy/) of this repository, however it is *not currently functional*. Please follow the above above instructions to run the backend and frontend locally while we resolve these issues. Thank you 𓁹‿𓁹
 
 ## How to report a bug
 
@@ -82,6 +85,17 @@ Documentation for these two systems can be found in their READMEs:
 
 - [Backend](/Backend/README.md)
 - [Frontend](/frontend/README.md)
+
+## Recommended IDEs
+
+To conveniently edited, build and run the code, it is essential to have an IDE to handle those for you. There are a lot of choices, below are some suggestions. You could follow the download page instruction to install the corresponding version for your system:
+
+- ### [Jetbrains IntelliJ](https://www.jetbrains.com/idea/download) (Backend)
+
+  IntelliJ is one of the most powerful and popular Integrated Development Environments (IDE) for Java.
+
+- ### [Visual studio Code](https://code.visualstudio.com/) (Backend + Frontend)
+  Visual Studio Code is a code editor redefined and optimized for building and debugging modern web and cloud applications. Visual Studio Code is free and available on your favorite platform - Linux, macOS, and Windows.
 
 ## Building, Testing, and Executing
 
