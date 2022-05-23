@@ -162,7 +162,7 @@ Executing the systems of this service require different steps:
 #### Frontend
 
 1. The `build_frontend` task needs to be run, to create a static build
-2. Running the `npm_start` task will run a local server
+2. Running the `run_frontend` task will run a local server
 
 #### Backend
 
