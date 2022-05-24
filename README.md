@@ -23,6 +23,7 @@ To run this application, you will need to install the following software. Follow
 - ### JAVA JDK version 8 or above (https://adoptium.net/temurin/releases/?version=11)
 
   In order to run **Gradle** and execute **Java** code of RollBuddy system, it requires at least **JAVA JDK version 8** or above. Follow the instructions in the link.
+   - NOTE: if you're installing the JDK on Windows, select the option *Set JAVA_HOME variable* to be installed as shown here: ![install_jdk_win](https://user-images.githubusercontent.com/19383474/169927940-a40a77cf-a731-4af9-8c26-87abb9d76b63.png)
 
 - ### Gradle version 7.1.1 or above (https://gradle.org/install/)
   **Gradle** will help you to install all other dependency Rollbuddy required. Running the `./gradlew` script for any task should install gradle. Follow the instructions in the link.
