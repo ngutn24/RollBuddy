@@ -34,7 +34,8 @@ var inputBox = {
     boxSizing: "border-box",
     textAlign: "center",
     border: "2px solid black",
-    backgroundColor: "lightgrey",
+    font: "bold 15px cursive",
+    opacity: "0.8"
 };
 
 

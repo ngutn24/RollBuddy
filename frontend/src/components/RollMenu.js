@@ -1,8 +1,13 @@
 import {React, useState, useEffect} from "react";
-import {DropdownButton, Dropdown, Button, ButtonGroup} from "react-bootstrap";
+import {DropdownButton, Dropdown, ButtonGroup} from "react-bootstrap";
 import {baseURL} from "./CharacterSheet";
 import axios from "axios";
 import border from '../assets/window_bg.png'
+
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
+import 'react-awesome-button/dist/themes/theme-red.css';
+
 
 const RollWindow = {
     display: "block",
@@ -34,6 +39,15 @@ const abilityCode = {
     Wisdom: "wis",
     Charisma: "cha",
 };
+
+const rollButtonFont = {
+    margin: "1rem",
+    width: "80%",
+    height: "5rem",
+    fontSize: "2rem",
+};
+
+
 
 const RollMenu = ({id}) => {
     // Selector states
@@ -204,17 +218,16 @@ const RollMenu = ({id}) => {
                 <h4>Roll Value: </h4>
                 <h2>{value}</h2>
             </div>
-            <Button
-                onClick={fetchDiceRoll}
-                style={{
-                    margin: "1rem",
-                    width: "80%",
-                    height: "5rem",
-                    fontSize: "2rem",
-                }}
+
+            <AwesomeButton
+                size= "large"
+                type="primary"
+                ripple
+                style={rollButtonFont}
+                onPress={() => {fetchDiceRoll()}}
             >
                 ROLL
-            </Button>{" "}
+            </AwesomeButton>{" "}
             {/* Have this display the final calculated value */}
         </div>
     );
