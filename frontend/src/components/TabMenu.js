@@ -13,7 +13,8 @@ var ComponentWindow = {
     backgroundImage: `url(${border})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
-    boxShadow: "2px 2px 4px #000000"
+    boxShadow: "2px 2px 4px #000000",
+    border: "double",
 };
 
 const TabMenu = () => {
