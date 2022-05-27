@@ -1,5 +1,6 @@
-import { React, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Tab, Tabs } from "react-bootstrap";
+import border from '../assets/window_bg.png'
 
 var ComponentWindow = {
     display: "block",
@@ -9,6 +10,11 @@ var ComponentWindow = {
     backgroundColor: "white",
     margin: "1rem 1rem 1rem 1rem",
     padding: "1rem 1rem 1rem 1rem",
+    backgroundImage: `url(${border})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    boxShadow: "2px 2px 4px #000000",
+    border: "double",
 };
 
 const TabMenu = () => {
@@ -65,7 +71,11 @@ const TabMenu = () => {
                 <Tab eventKey="proficiencies" title="Proficiencies">
                     {skills.map((skill) => 
                         <div>
-                            <label>{skill.label} ({skill.abilityType})</label>
+                            <label
+                            style={{
+                                font: "bold 18px cursive",
+                            }}
+                            >{skill.label} ({skill.abilityType})</label>
                             <label>: +0</label> {/* TODO: replace with corresponding ability modifier */}
                         </div>
                     )}
