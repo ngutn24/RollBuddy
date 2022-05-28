@@ -1,4 +1,4 @@
-package main.java;
+package main.java.legacy;
 
 /**
  * In Dungeons and Dragon, every character has 6 ability scores (STR, DEX, CON,
@@ -33,7 +33,7 @@ package main.java;
  * Stregnth modifier = -2
  */
 
-public class Modifier {
+public class LegacyModifier {
     private final int baseMod = 10;
 
     private int abilityScore;
@@ -44,7 +44,7 @@ public class Modifier {
      *
      * @param abilityScore Specified ability score
      */
-    public Modifier(int abilityScore) {
+    public LegacyModifier(int abilityScore) {
         this.abilityScore = abilityScore;
         this.mod = generateModifier(abilityScore);
     }

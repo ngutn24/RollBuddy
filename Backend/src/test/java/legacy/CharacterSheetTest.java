@@ -1,9 +1,9 @@
-package test.java;
+package test.java.legacy;
 
-import main.java.CharClass;
-import main.java.CharacterSheet;
-import main.java.Item;
-import main.java.Modifier;
+import main.java.legacy.CharClass;
+import main.java.legacy.CharacterSheet;
+import main.java.legacy.Item;
+import main.java.legacy.LegacyModifier;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -58,12 +58,12 @@ public class CharacterSheetTest {
     @Test
     public void testCharacterSheet() {
         // Tons of asserts to make sure everything is properly generated and stored
-        Modifier Str = characterSheet.getSTR();
-        Modifier Dex = characterSheet.getDEX();
-        Modifier Con = characterSheet.getCON();
-        Modifier Int = characterSheet.getINT();
-        Modifier Wis = characterSheet.getWIS();
-        Modifier Cha = characterSheet.getCHA();
+        LegacyModifier Str = characterSheet.getSTR();
+        LegacyModifier Dex = characterSheet.getDEX();
+        LegacyModifier Con = characterSheet.getCON();
+        LegacyModifier Int = characterSheet.getINT();
+        LegacyModifier Wis = characterSheet.getWIS();
+        LegacyModifier Cha = characterSheet.getCHA();
         // Assert correct ability scores are stored based on ability scores
         assertEquals(strScore, Str.getAbilityScore());
         assertEquals(dexScore, Dex.getAbilityScore());

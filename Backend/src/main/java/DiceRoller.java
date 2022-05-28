@@ -1,5 +1,7 @@
 package main.java;
 
+import main.java.Dice;
+
 import java.util.Random;
 
 /**

@@ -22,14 +22,14 @@ public enum Dice {
     public final int range;
     public final String diceType;
 
-    private Dice(int range, String diceType) {
+    private Dice(final int range, String diceType) {
         this.range = range;
         this.diceType = diceType;
     }
 
-    public static Dice fromString(final String diceType) {
+    public static Dice fromString(final String enteredType) {
         for (Dice d : Dice.values()) {
-            if (d.diceType.equals(diceType)) {
+            if (d.diceType.equals(enteredType)) {
                 return d;
             }
         }
