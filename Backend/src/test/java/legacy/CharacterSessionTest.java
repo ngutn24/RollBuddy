@@ -1,6 +1,6 @@
-package test.java;
+package test.java.legacy;
 
-import main.java.CharacterSession;
+import main.java.legacy.CharacterSession;
 import org.junit.*;
 import org.junit.experimental.theories.*;
 import org.junit.runner.RunWith;

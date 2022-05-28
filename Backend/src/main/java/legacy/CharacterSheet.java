@@ -1,4 +1,4 @@
-package main.java;
+package main.java.legacy;
 
 import java.util.HashMap;
 
@@ -33,7 +33,7 @@ public class CharacterSheet {
     private CharClass mainClass, subClass;
 
     // The 6 main ability scores in 5E D&D
-    private Modifier STR, DEX, CON, INT, WIS, CHA;
+    private LegacyModifier STR, DEX, CON, INT, WIS, CHA;
 
     /**
      * The following is constructor meant to initalize the entire character sheet.
@@ -65,12 +65,12 @@ public class CharacterSheet {
             String mainClass, int mainLevel, String subClass, int subLevel) {
 
         // Generate the modifier objects
-        this.STR = new Modifier(STR);
-        this.DEX = new Modifier(DEX);
-        this.CON = new Modifier(CON);
-        this.INT = new Modifier(INT);
-        this.WIS = new Modifier(WIS);
-        this.CHA = new Modifier(CHA);
+        this.STR = new LegacyModifier(STR);
+        this.DEX = new LegacyModifier(DEX);
+        this.CON = new LegacyModifier(CON);
+        this.INT = new LegacyModifier(INT);
+        this.WIS = new LegacyModifier(WIS);
+        this.CHA = new LegacyModifier(CHA);
 
         this.name = name;
         this.race = race;
@@ -101,7 +101,7 @@ public class CharacterSheet {
      *
      * @return A Modifier object for character Strength
      */
-    public Modifier getSTR() {
+    public LegacyModifier getSTR() {
         return this.STR;
     }
 
@@ -110,7 +110,7 @@ public class CharacterSheet {
      *
      * @return A Modifier object for character Dexterity
      */
-    public Modifier getDEX() {
+    public LegacyModifier getDEX() {
         return this.DEX;
     }
 
@@ -119,7 +119,7 @@ public class CharacterSheet {
      *
      * @return A Modifier object for character Constitution
      */
-    public Modifier getCON() {
+    public LegacyModifier getCON() {
         return this.CON;
     }
 
@@ -128,7 +128,7 @@ public class CharacterSheet {
      *
      * @return A Modifier object for character Intelligence
      */
-    public Modifier getINT() {
+    public LegacyModifier getINT() {
         return this.INT;
     }
 
@@ -137,7 +137,7 @@ public class CharacterSheet {
      *
      * @return A Modifier object for character Wisdom
      */
-    public Modifier getWIS() {
+    public LegacyModifier getWIS() {
         return this.WIS;
     }
 
@@ -146,7 +146,7 @@ public class CharacterSheet {
      *
      * @return A Modifier object for character Charisma
      */
-    public Modifier getCHA() {
+    public LegacyModifier getCHA() {
         return this.CHA;
     }
 

@@ -1,4 +1,4 @@
-package test.java;
+package test.java.legacy;
 
 import main.java.Dice;
 import main.java.DiceRoller;

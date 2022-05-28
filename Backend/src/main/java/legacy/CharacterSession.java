@@ -1,8 +1,10 @@
-package main.java;
+package main.java.legacy;
 import java.time.Instant;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import main.java.Dice;
+import main.java.DiceRoller;
 
 /**
  * An object that represents a user's individual session with the Rollbuddy service.
@@ -99,30 +101,30 @@ public class CharacterSession {
             throw new RuntimeException("Invalid Dice Type Inputted");
         }
 
-        Modifier curModifier;
+        LegacyModifier curLegacyModifier;
         switch (modifierOption.toLowerCase()){
             case "str":
-                curModifier = characterSheet.getSTR();
+                curLegacyModifier = characterSheet.getSTR();
                 break;
             case "dex":
-                curModifier = characterSheet.getDEX();
+                curLegacyModifier = characterSheet.getDEX();
                 break;
             case "int":
-                curModifier = characterSheet.getINT();
+                curLegacyModifier = characterSheet.getINT();
                 break;
             case "cha":
-                curModifier = characterSheet.getCHA();
+                curLegacyModifier = characterSheet.getCHA();
                 break;
             case "con":
-                curModifier = characterSheet.getCON();
+                curLegacyModifier = characterSheet.getCON();
                 break;
             case "wis":
-                curModifier = characterSheet.getWIS();
+                curLegacyModifier = characterSheet.getWIS();
                 break;
             default:
                 throw new RuntimeException("Invalid Modifier Option Inputted");
         }
 
-        return diceRoller.Roll(count, curModifier.getMod(), diceType);
+        return diceRoller.Roll(count, curLegacyModifier.getMod(), diceType);
     }
 }

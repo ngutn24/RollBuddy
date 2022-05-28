@@ -1,6 +1,6 @@
-package test.java;
+package test.java.legacy;
 
-import main.java.Item;
+import main.java.legacy.Item;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

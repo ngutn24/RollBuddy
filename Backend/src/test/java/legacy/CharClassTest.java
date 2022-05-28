@@ -1,6 +1,6 @@
-package test.java;
+package test.java.legacy;
 
-import main.java.CharClass;
+import main.java.legacy.CharClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

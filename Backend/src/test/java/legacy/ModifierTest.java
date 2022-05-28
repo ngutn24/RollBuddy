@@ -1,6 +1,6 @@
-package test.java;
+package test.java.legacy;
 
-import main.java.Modifier;
+import main.java.legacy.LegacyModifier;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -15,7 +15,7 @@ public class ModifierTest {
      */
     @Test
     public void testBaseModifier() {
-        Modifier test = new Modifier(10);
+        LegacyModifier test = new LegacyModifier(10);
         assertEquals(10, test.getAbilityScore());
         assertEquals(0, test.getMod());
     }
@@ -26,16 +26,16 @@ public class ModifierTest {
      */
     @Test
     public void testPositiveMod() {
-        Modifier test = new Modifier(11);
+        LegacyModifier test = new LegacyModifier(11);
         assertEquals(0, test.getMod());
 
-        test = new Modifier(12);
+        test = new LegacyModifier(12);
         assertEquals(1, test.getMod());
 
-        test = new Modifier(13);
+        test = new LegacyModifier(13);
         assertEquals(1, test.getMod());
 
-        test = new Modifier(14);
+        test = new LegacyModifier(14);
         assertEquals(2, test.getMod());
     }
 
@@ -45,16 +45,16 @@ public class ModifierTest {
      */
     @Test
     public void testNegativeMod() {
-        Modifier test = new Modifier(9);
+        LegacyModifier test = new LegacyModifier(9);
         assertEquals(-1, test.getMod());
 
-        test = new Modifier(8);
+        test = new LegacyModifier(8);
         assertEquals(-1, test.getMod());
 
-        test = new Modifier(7);
+        test = new LegacyModifier(7);
         assertEquals(-2, test.getMod());
 
-        test = new Modifier(6);
+        test = new LegacyModifier(6);
         assertEquals(-2, test.getMod());
     }
 
@@ -64,7 +64,7 @@ public class ModifierTest {
      */
     @Test
     public void testSetAbilityScore() {
-        Modifier test = new Modifier(10);
+        LegacyModifier test = new LegacyModifier(10);
 
         test.setAbilityScore(16);
         assertEquals(16, test.getAbilityScore());

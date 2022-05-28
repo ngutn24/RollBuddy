@@ -1,10 +1,23 @@
-package main.java;
+package main.java.legacy;
 
+import com.google.api.core.ApiFuture;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.firestore.QuerySnapshot;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
+import com.google.firebase.cloud.FirestoreClient;
+import main.java.CORSFilter;
 import spark.Spark;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 /**
  * The backend server for RollBuddy which is used with Spark Java to send information 
@@ -17,7 +30,7 @@ public class Session {
      * main runs whenever a request is made to the backend server
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
         Map<String, CharacterSession> sess = new HashMap<>();
 
         /*
