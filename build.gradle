@@ -88,6 +88,11 @@ task run_backend(type: JavaExec, group: 'Rollbuddy Run (dev)') {
   main = "main.java.Session"
 }
 
+task run_frontend(type: NpmTask, group: 'Rollbuddy Run (dev)'){
+    dependsOn npmInstall
+    args = ['start']
+}
+
 node {
     npmWorkDir = file('.gradle/npm')
     nodeProjectDir = file('frontend/')
