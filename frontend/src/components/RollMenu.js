@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { useState } from "react";
 import { DropdownButton, Dropdown, ButtonGroup } from "react-bootstrap";
 import { baseURL } from "./CharacterSheet";
 import axios from "axios";
@@ -51,7 +51,7 @@ const RollMenu = ({ id }) => {
   const [rollCondition, setRollCondition] = useState("Normal");
   const [rollAbility, setRollAbility] = useState("Strength");
   const [rollProficiency, setRollProficiency] = useState("Proficent");
-  const [rollDice, setRollDice] = useState("4");
+  const [rollDice, setRollDice] = useState("6");
   // Roller States
   const [count, setCount] = useState(1);
   const [value, setValue] = useState(0);
@@ -100,32 +100,32 @@ const RollMenu = ({ id }) => {
       });
   };
 
-  // load state from local storage
-  useEffect(() => {
-    const localRollInfo = JSON.parse(localStorage.getItem("rollInfo"));
-    if (localRollInfo) {
-      console.log("Loading rollInfo from storage... ", localRollInfo);
-      setRollType(localRollInfo.rollType);
-      setRollCondition(localRollInfo.rollCondition);
-      setRollAbility(localRollInfo.rollAbility);
-      setRollProficiency(localRollInfo.rollProficiency);
-      setRollDice(localRollInfo.rollDice);
-      setCount(localRollInfo.count);
-    }
-  }, []);
+  // // load state from local storage
+  // useEffect(() => {
+  //   const localRollInfo = JSON.parse(localStorage.getItem("rollInfo"));
+  //   if (localRollInfo) {
+  //     console.log("Loading rollInfo from storage... ", localRollInfo);
+  //     setRollType(localRollInfo.rollType);
+  //     setRollCondition(localRollInfo.rollCondition);
+  //     setRollAbility(localRollInfo.rollAbility);
+  //     setRollProficiency(localRollInfo.rollProficiency);
+  //     setRollDice(localRollInfo.rollDice);
+  //     setCount(localRollInfo.count);
+  //   }
+  // }, []);
 
-  // store state to local storage
-  useEffect(() => {
-    const rollInfo = {
-      rollType: rollType,
-      rollCondition: rollCondition,
-      rollAbility: rollAbility,
-      rollProficiency: rollProficiency,
-      rollDice: rollDice,
-      count: count,
-    };
-    localStorage.setItem("rollInfo", JSON.stringify(rollInfo));
-  }, [rollType, rollCondition, rollAbility, rollProficiency, rollDice, count]);
+  // // store state to local storage
+  // useEffect(() => {
+  //   const rollInfo = {
+  //     rollType: rollType,
+  //     rollCondition: rollCondition,
+  //     rollAbility: rollAbility,
+  //     rollProficiency: rollProficiency,
+  //     rollDice: rollDice,
+  //     count: count,
+  //   };
+  //   localStorage.setItem("rollInfo", JSON.stringify(rollInfo));
+  // }, [rollType, rollCondition, rollAbility, rollProficiency, rollDice, count]);
 
   return (
     <div align="center" style={RollWindow}>
