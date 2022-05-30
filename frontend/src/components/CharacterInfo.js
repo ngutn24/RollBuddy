@@ -1,4 +1,3 @@
-// import { useState, useEffect } from "react";
 import { Row, Col, DropdownButton, Dropdown } from "react-bootstrap";
 import border from "../assets/window_bg.png";
 
@@ -38,17 +37,6 @@ var expInputStyle = {
 };
 
 const CharacterInfo = ({ attributes, setAttributes }) => {
-  // const [name, setName] = useState("");
-  // const [campaign, setCampaign] = useState("");
-  // const [charClass, setCharClass] = useState("");
-  // const [charClassLvl, setCharClassLvl] = useState(0);
-  // const [charSubClass, setCharSubClass] = useState("");
-  // const [charSubClassLvl, setCharSubClassLvl] = useState(0);
-  // const [race, setRace] = useState("");
-  // const [bg, setBg] = useState("");
-  // const [alignment, setAlignment] = useState("True Neutral");
-  // const [exp, setExp] = useState(0);
-
   let alignments = [
     { label: "Lawful Good" },
     { label: "Neutral Good" },
@@ -60,58 +48,6 @@ const CharacterInfo = ({ attributes, setAttributes }) => {
     { label: "True Evil" },
     { label: "Chaotic Evil" },
   ];
-
-  // useEffect(() => {
-  //   const localCharInfo = JSON.parse(localStorage.getItem("charInfo"));
-  //   if (localCharInfo) {
-  //     console.log("Loading charInfo from storage... ", localCharInfo);
-  //     setName(localCharInfo.name);
-  //     setCampaign(localCharInfo.campaign);
-  //     setCharClass(localCharInfo.charClass);
-  //     setCharClassLvl(localCharInfo.charClassLvl);
-  //     setCharSubClass(localCharInfo.charSubClass);
-  //     setCharSubClassLvl(localCharInfo.charSubClassLvl);
-  //     setRace(localCharInfo.race);
-  //     setBg(localCharInfo.bg);
-  //     setAlignment(localCharInfo.alignment);
-  //     setExp(localCharInfo.exp);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const charInfo = {
-  //     name: name,
-  //     campaign: campaign,
-  //     charClass: charClass,
-  //     charClassLvl: charClassLvl,
-  //     charSubClass: charSubClass,
-  //     charSubClassLvl: charSubClassLvl,
-  //     race: race,
-  //     bg: bg,
-  //     alignment: alignment,
-  //     exp: exp,
-  //   };
-  //   localStorage.setItem("charInfo", JSON.stringify(charInfo));
-  // }, [
-  //   name,
-  //   campaign,
-  //   charClass,
-  //   charClassLvl,
-  //   charSubClass,
-  //   charSubClassLvl,
-  //   race,
-  //   bg,
-  //   alignment,
-  //   exp,
-  // ]);
-
-  // const updateStateHandler = (setState) => (e) => {
-  //   setState(e.target.value);
-  // };
-
-  // const updateDropdownStateHandler = (setState) => (e) => {
-  //   setState(e);
-  // };
 
   // input: key must be a string, corresponding to the value's key you wish to update.
   const setAttributeHandler = (key) => (e) => {

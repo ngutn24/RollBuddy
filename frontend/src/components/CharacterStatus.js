@@ -1,4 +1,3 @@
-// import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import border from "../assets/window_bg.png";
 
@@ -40,36 +39,6 @@ var hpText = {
 };
 
 const CharacterStatus = ({ attributes, setAttributes }) => {
-  // const [currentHP, setCurrentHP] = useState("");
-  // const [maxHP, setMaxHP] = useState("");
-  // const [armorClass, setArmorClass] = useState("");
-  // const [speed, setSpeed] = useState("");
-
-  // useEffect(() => {
-  //   const localCharStatus = JSON.parse(localStorage.getItem("charStatus"));
-  //   if (localCharStatus) {
-  //     console.log("Loading charStatus from storage... ", localCharStatus);
-  //     setCurrentHP(localCharStatus.currentHP);
-  //     setMaxHP(localCharStatus.maxHP);
-  //     setArmorClass(localCharStatus.armorClass);
-  //     setSpeed(localCharStatus.speed);
-  //   }
-  // }, []);
-
-  // useEffect(() => {
-  //   const charStatus = {
-  //     currentHP: currentHP,
-  //     maxHP: maxHP,
-  //     armorClass: armorClass,
-  //     speed: speed,
-  //   };
-  //   localStorage.setItem("charStatus", JSON.stringify(charStatus));
-  // }, [currentHP, maxHP, armorClass, speed]);
-
-  // const updateStateHandler = (setState) => (e) => {
-  //   setState(e.target.value);
-  // };
-
   // input: key must be a string, corresponding to the value's key you wish to update.
   // TODO: consolidate duplicate code: this method is also defined in CharacterInfo
   const setAttributeIntHandler = (key) => (e) => {

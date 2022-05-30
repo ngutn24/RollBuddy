@@ -100,33 +100,6 @@ const RollMenu = ({ id }) => {
       });
   };
 
-  // // load state from local storage
-  // useEffect(() => {
-  //   const localRollInfo = JSON.parse(localStorage.getItem("rollInfo"));
-  //   if (localRollInfo) {
-  //     console.log("Loading rollInfo from storage... ", localRollInfo);
-  //     setRollType(localRollInfo.rollType);
-  //     setRollCondition(localRollInfo.rollCondition);
-  //     setRollAbility(localRollInfo.rollAbility);
-  //     setRollProficiency(localRollInfo.rollProficiency);
-  //     setRollDice(localRollInfo.rollDice);
-  //     setCount(localRollInfo.count);
-  //   }
-  // }, []);
-
-  // // store state to local storage
-  // useEffect(() => {
-  //   const rollInfo = {
-  //     rollType: rollType,
-  //     rollCondition: rollCondition,
-  //     rollAbility: rollAbility,
-  //     rollProficiency: rollProficiency,
-  //     rollDice: rollDice,
-  //     count: count,
-  //   };
-  //   localStorage.setItem("rollInfo", JSON.stringify(rollInfo));
-  // }, [rollType, rollCondition, rollAbility, rollProficiency, rollDice, count]);
-
   return (
     <div align="center" style={RollWindow}>
       <ButtonGroup>

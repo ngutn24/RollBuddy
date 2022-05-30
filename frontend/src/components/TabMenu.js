@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Tab, Tabs } from "react-bootstrap";
 import { calculateMod } from "./Helpers";
 import border from "../assets/window_bg.png";
@@ -40,25 +40,6 @@ const TabMenu = ({ attributes, setAttributes }) => {
     { label: "Stealth", abilityType: "DEX" },
     { label: "Survival", abilityType: "WIS" },
   ];
-
-  // // load state from local storage
-  // useEffect(() => {
-  //     const localtabInfo = JSON.parse(localStorage.getItem("tabInfo"));
-  //     if (localtabInfo) {
-  //         console.log("Loading tabInfo from storage... ", localtabInfo);
-  //         setKey(localtabInfo.key);
-  //         setItems(localtabInfo.items);
-  //     }
-  // }, []);
-
-  // // store state to local storage
-  // useEffect(() => {
-  //     const tabInfo = {
-  //         key: key,
-  //         items: items
-  //     };
-  //     localStorage.setItem("tabInfo", JSON.stringify(tabInfo));
-  // }, [key, items]);
 
   // input: key must be a string, corresponding to the value's key you wish to update.
   const setAttributeHandler = (key) => (e) => {
