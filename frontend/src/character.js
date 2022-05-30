@@ -1,7 +1,7 @@
 // defines default character attribute object
 export let Character = {
   profBonus: 3,
-  items: [],
+  items: "",
   name: "",
   race: "",
   campaign: "",

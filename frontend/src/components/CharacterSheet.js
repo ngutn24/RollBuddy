@@ -252,7 +252,7 @@ const CharacterSheet = () => {
               setAttributes={setCharAttributes}
             />
           </Row>
-          <Row className="flex-column-reverse flex-md-row">
+          <Row>
             <Col>
               <MiscMenu />
             </Col>
@@ -261,8 +261,11 @@ const CharacterSheet = () => {
             </Col>
           </Row>
         </Col>
-        <Col sm={4}>
-          <TabMenu />
+        <Col lg={4} md={12}>
+          <TabMenu
+            attributes={charAttributes}
+            setAttributes={setCharAttributes}
+          />
         </Col>
       </Row>
     </Container>
