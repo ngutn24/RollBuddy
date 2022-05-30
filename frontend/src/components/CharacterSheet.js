@@ -239,7 +239,10 @@ const CharacterSheet = () => {
         />
       </Row>
       <Row>
-        <CharacterStatus />
+        <CharacterStatus
+          attributes={charAttributes}
+          setAttributes={setCharAttributes}
+        />
       </Row>
       <Row>
         <Col sm={8}>
