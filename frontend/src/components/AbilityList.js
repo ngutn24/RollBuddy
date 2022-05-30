@@ -1,7 +1,6 @@
-import { React } from "react";
 import Ability from "./Ability.js";
 
-const AbilityList = ({ abilities, setAbilities }) => {
+export const AbilityList = ({ attributes, setAttributes }) => {
   // Map from key to display name
   const abilityDisplayNames = {
     STR: "Strength",
@@ -12,15 +11,26 @@ const AbilityList = ({ abilities, setAbilities }) => {
     CHA: "Charisma",
   };
 
+  const abilityKeys = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+
+  const setAbilityScore = (id, score) => {
+    setAttributes({
+      ...attributes,
+      [id]: {
+        ...attributes[id],
+        abilityScore: parseInt(score),
+      },
+    });
+  };
+
   return (
     <>
-      {Object.keys(abilities).map((item) => (
+      {abilityKeys.map((item) => (
         <Ability
           displayName={abilityDisplayNames[item]}
-          score={abilities[item]}
-          abilities={abilities}
+          score={attributes[item].abilityScore}
           id={item}
-          setAbilities={setAbilities}
+          setAbilityScore={setAbilityScore}
           key={item}
         />
       ))}
