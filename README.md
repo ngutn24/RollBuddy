@@ -8,36 +8,48 @@
 
 **Compared to other existing DND character sheet services, RollBuddy is a much more straightforward service that helps you create your character quickly and get you rolling to play the game. Besides the essential functionality, the character's information is stored on the server like many other systems, so it is easier for the user to access it anywhere.**
 
-## Software installation and set up
+## Running the application
+
+To use RollBuddy, simply visit: https://ngutn24.github.io/RollBuddy/
+
+And that's it! If you encounter any bugs, please submit a [bug repot](#How-to-report-a-bug).
+
+***Optionally***, if you wish to host the services yourself, please continue to the [following section](#software-installation-and-set-up) of this manual.
+
+### Software installation and set up
 
 To run this application, you will need to install the following software. Follow the links and download the appropriate version for your operating system:
 
-- ### JAVA JDK version 8 or above (https://adoptopenjdk.net/)
+- ### JAVA JDK version 8 or above (https://adoptium.net/temurin/releases/?version=11)
+
   In order to run **Gradle** and execute **Java** code of RollBuddy system, it requires at least **JAVA JDK version 8** or above. Follow the instructions in the link.
+   - NOTE: if you're installing the JDK on Windows, select the option *Set JAVA_HOME variable* to be installed as shown here: ![install_jdk_win](https://user-images.githubusercontent.com/19383474/169927940-a40a77cf-a731-4af9-8c26-87abb9d76b63.png)
 
 - ### Gradle version 7.1.1 or above (https://gradle.org/install/)
   **Gradle** will help you to install all other dependency Rollbuddy required. Running the `./gradlew` script for any task should install gradle. Follow the instructions in the link.
 
-### Running the application
+### Build and run the application
+
 Clone the repository and change to the repo's directory:
+
 ```sh
 git clone https://github.com/ngutn24/RollBuddy
 cd RollBuddy
 ```
 
 To run the backend, please run the following command:
+
 ```sh
 ./gradlew run_backend
-``` 
+```
 
-To run the frontend, please run the following command from *a separate* terminal window or tab:
+_After_ starting the backend, the frontend can be executed by the following command from a separate terminal window or tab:
+
 ```sh
-./gradlew npm_start
+./gradlew run_frontend
 ```
 
 You can now use the application by visiting [http://localhost:3000](http://localhost:3000) on your browser of choice. Enjoy, and please report any bugs you encounter ([see below](#How-to-report-a-bug)).
-
-> **NOTE:** the service is currently being hosted on the [GitHub Pages](https://ngutn24.github.io/RollBuddy/) of this repository, however it is *not currently functional*. Please follow the above above instructions to run the backend and frontend locally while we resolve these issues. Thank you 𓁹‿𓁹
 
 ## How to report a bug
 
@@ -151,7 +163,7 @@ Executing the systems of this service require different steps:
 #### Frontend
 
 1. The `build_frontend` task needs to be run, to create a static build
-2. Running the `npm_start` task will run a local server
+2. Running the `run_frontend` task will run a local server
 
 #### Backend
 

@@ -13,7 +13,8 @@ var ComponentWindow = {
     backgroundImage: `url(${border})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
-    boxShadow: "2px 2px 4px #000000"
+    boxShadow: "2px 2px 4px #000000",
+    border: "double",
 };
 
 const TabMenu = () => {
@@ -70,7 +71,11 @@ const TabMenu = () => {
                 <Tab eventKey="proficiencies" title="Proficiencies">
                     {skills.map((skill) => 
                         <div>
-                            <label>{skill.label} ({skill.abilityType})</label>
+                            <label
+                            style={{
+                                font: "bold 18px cursive",
+                            }}
+                            >{skill.label} ({skill.abilityType})</label>
                             <label>: +0</label> {/* TODO: replace with corresponding ability modifier */}
                         </div>
                     )}
