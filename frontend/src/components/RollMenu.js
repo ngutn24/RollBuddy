@@ -8,9 +8,6 @@ import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import 'react-awesome-button/dist/themes/theme-red.css';
 
-
-import border from '../assets/window_bg.png'
-
 const RollWindow = {
     display: "block",
     overflow: "auto",
