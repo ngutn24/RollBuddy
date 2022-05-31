@@ -12,8 +12,6 @@ import spark.Spark;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class RollbuddyServer {
 
@@ -22,8 +20,8 @@ public class RollbuddyServer {
         filter.apply();// make this easier to use in development
         // this would be disabled in production
 
-        // TODO: NEEDS TO BE CHANGE TO ACCESS ENV VARIABLES BEFORE PRODUCTION
-        FileInputStream serviceAccount = new FileInputStream("/Users/esauabraham/Downloads/rollbuddy-21bea-firebase-adminsdk-tssj9-c8d5b562d2.json");
+        // Firestore Credential file, change if local user
+        FileInputStream serviceAccount = new FileInputStream("Backend/RollbuddyFirestoreCredentials.json");
         FirebaseOptions options = FirebaseOptions.builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .build();
@@ -42,10 +40,8 @@ public class RollbuddyServer {
         Spark.get("/roll", (req, res) -> {
 
             String userId = req.queryParams("id");
-            int characterSheetIdx = 0;
             int count = 0;
             try{
-                characterSheetIdx = Integer.parseInt(req.queryParams("charactersheet"));
                 count = Integer.parseInt(req.queryParams("count"));
             }catch(NumberFormatException ex){
                 res.status(400);
@@ -67,28 +63,17 @@ public class RollbuddyServer {
                 return "Query Values Invalid";
             }
 
-            DocumentReference userInfo = db.collection("Users").document(userId);
+            DocumentReference userInfo = db.collection("CharacterSheets").document(userId);
 
             ApiFuture<DocumentSnapshot>  futureUserDoc = userInfo.get();
 
-            DocumentSnapshot userDoc = futureUserDoc.get();
+            DocumentSnapshot sheetDoc = futureUserDoc.get();
 
-            if(!userDoc.exists()){
+            if(!sheetDoc.exists()){
                 res.status(400);
-                return "User Doesn't Exist";
+                return "Character Sheet Doesn't Exist";
             }else{
-                @SuppressWarnings("unchecked")
-                ArrayList<DocumentReference> characterSheets = ((ArrayList<DocumentReference>) userDoc.get("CharacterSheets"));
-
-                if(characterSheetIdx < 0 || characterSheetIdx > characterSheets.size() - 1){
-                    res.status(400);
-                    return "Invalid Character Sheet Index";
-                }
-
-                ApiFuture<DocumentSnapshot> futureSheet = characterSheets.get(characterSheetIdx).get();
-                DocumentSnapshot sheet = futureSheet.get();
-
-                Long score = sheet.getLong(abilityType);
+                Long score = sheetDoc.getLong(abilityType);
                 if (score == null){
                     res.status(400);
                     return "Invalid Ability Type";

@@ -35,6 +35,7 @@ dependencies {
     testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.8.2")
     implementation "com.sparkjava:spark-core:2.9.3" // add to build.gradle (for Java users)
     implementation "org.slf4j:slf4j-simple:1.7.21"
+    implementation 'com.google.firebase:firebase-admin:8.1.0'
 }
 
 test {
@@ -85,7 +86,7 @@ task full_test(group: 'Rollbuddy test'){
 
 task run_backend(type: JavaExec, group: 'Rollbuddy Run (dev)') {
   classpath sourceSets.main.runtimeClasspath
-  main = "main.java.Session"
+  main = "main.java.legacy.Session"
 }
 
 task run_frontend(type: NpmTask, group: 'Rollbuddy Run (dev)'){

@@ -19,6 +19,9 @@ frontend/coverage
 frontend/build
 build
 
+# secrets
+Backend/RollbuddyFirestoreCredentials.json
+
 # misc
 .DS_Store
 .env.local
