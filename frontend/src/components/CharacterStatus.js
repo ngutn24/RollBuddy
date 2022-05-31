@@ -77,14 +77,14 @@ const CharacterStatus = ({ attributes, setAttributes }) => {
       </Col>
       <Col lg={2} align="center">
         <h4>
-          {attributes.profBonus > -1 ? "+" : "-"}
+          {attributes.profBonus > -1 ? "+" : ""}
           {attributes.profBonus}
         </h4>
         <h4>Profiency Bonus</h4>
       </Col>
       <Col lg={2} align="center">
         <h4>
-          {attributes.initiative > -1 ? "+" : "-"}
+          {attributes.initiative > -1 ? "+" : ""}
           {attributes.initiative}
         </h4>
         <h4>Initiative</h4>
