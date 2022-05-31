@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
-import border from '../assets/window_bg.png'
+import border from "../assets/window_bg.png";
 
 var statusRow = {
   width: "100%",
@@ -39,59 +38,63 @@ var hpText = {
   display: "inline",
 };
 
-const CharacterStatus = () => {
-  const [currentHP, setCurrentHP] = useState("");
-  const [maxHP, setMaxHP] = useState("");
-  const [armorClass, setArmorClass] = useState("");
-  const [speed, setSpeed] = useState("");
-
-  useEffect(() => {
-    const localCharStatus = JSON.parse(localStorage.getItem("charStatus"));
-    if (localCharStatus) {
-      console.log("Loading charStatus from storage... ", localCharStatus);
-      setCurrentHP(localCharStatus.currentHP);
-      setMaxHP(localCharStatus.maxHP);
-      setArmorClass(localCharStatus.armorClass);
-      setSpeed(localCharStatus.speed);
+const CharacterStatus = ({ attributes, setAttributes }) => {
+  // input: key must be a string, corresponding to the value's key you wish to update.
+  // TODO: consolidate duplicate code: this method is also defined in CharacterInfo
+  const setAttributeIntHandler = (key) => (e) => {
+    const re = RegExp(/^[0-9\b]+$/);
+    // if blank, set value to 0 (avoids NaN). otherwise, if the input value is a valid int, update states.
+    if (e.target.value === "") {
+      setAttributes({ ...attributes, [key]: 0 });
+    } else if (re.test(e.target.value)) {
+      setAttributes({ ...attributes, [key]: parseInt(e.target.value) });
     }
-  }, []);
-
-  useEffect(() => {
-    const charStatus = {
-      currentHP: currentHP,
-      maxHP: maxHP,
-      armorClass: armorClass,
-      speed: speed,
-    };
-    localStorage.setItem("charStatus", JSON.stringify(charStatus));
-  }, [currentHP, maxHP, armorClass, speed]);
-
-  const updateStateHandler = (setState) => (e) => {
-    setState(e.target.value);
   };
 
   return (
     <Row style={statusRow}>
-      <Col lg={4} style={{textAlign: "left"}}>
+      <Col lg={4} style={{ textAlign: "left" }}>
         <p style={hpText}>HP:</p>
-        <input style={hpInput} value={currentHP} onChange={updateStateHandler(setCurrentHP)} />
+        <input
+          style={hpInput}
+          value={attributes.currentHitPoints}
+          onChange={setAttributeIntHandler("currentHitPoints")}
+        />
         <p style={hpText}>/</p>
-        <input style={hpInput} value={maxHP} onChange={updateStateHandler(setMaxHP)} />
+        <input
+          style={hpInput}
+          value={attributes.hitPoints}
+          onChange={setAttributeIntHandler("hitPoints")}
+        />
       </Col>
       <Col lg={2} align="center">
-        <input style={input} value={armorClass} onChange={updateStateHandler(setArmorClass)} />
+        <input
+          style={input}
+          value={attributes.armorClass}
+          onChange={setAttributeIntHandler("armorClass")}
+        />
         <h4>Armor Class</h4>
       </Col>
       <Col lg={2} align="center">
-        <h4>+2</h4> {/* TODO: replace value with proficiency bonus calculated from backend */}
+        <h4>
+          {attributes.profBonus > -1 ? "+" : "-"}
+          {attributes.profBonus}
+        </h4>
         <h4>Profiency Bonus</h4>
       </Col>
       <Col lg={2} align="center">
-        <h4>+2</h4> {/* TODO: replace value with DEX modifier calcuated from backend */}
+        <h4>
+          {attributes.initiative > -1 ? "+" : "-"}
+          {attributes.initiative}
+        </h4>
         <h4>Initiative</h4>
       </Col>
       <Col lg={2} align="center">
-        <input style={input} value={speed} onChange={updateStateHandler(setSpeed)} />
+        <input
+          style={input}
+          value={attributes.speed}
+          onChange={setAttributeIntHandler("speed")}
+        />
         <h4>Speed</h4>
       </Col>
     </Row>
