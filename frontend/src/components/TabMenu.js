@@ -53,7 +53,7 @@ const TabMenu = ({ attributes, setAttributes }) => {
       <Tabs activeKey={key} onSelect={(k) => setKey(k)} className="mb-3">
         <Tab eventKey="proficiencies" title="Proficiencies">
           {skills.map((skill) => (
-            <div>
+            <div key={skill.label}>
               <label
                 style={{
                   font: "bold 18px cursive",

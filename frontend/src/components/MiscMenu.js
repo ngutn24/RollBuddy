@@ -94,11 +94,12 @@ const MiscMenu = () => {
     }
   };
 
-  function createDeathcheckBoxes(numRolled) {
+  function createDeathcheckBoxes(numRolled, type) {
     var outcomes = [];
     for (var i = 1; i <= 3; i++) {
       outcomes.push(
         <input
+          key={type + i}
           type="checkbox"
           checked={i <= numRolled}
           style={checkBox}
@@ -109,8 +110,8 @@ const MiscMenu = () => {
     return outcomes;
   }
 
-  var successes = createDeathcheckBoxes(deathSuccesses);
-  var faiilures = createDeathcheckBoxes(deathFailures);
+  var successes = createDeathcheckBoxes(deathSuccesses, "deathSuccesses");
+  var failures = createDeathcheckBoxes(deathFailures, "deathFailures");
 
   return (
     <div>
@@ -146,7 +147,7 @@ const MiscMenu = () => {
         <div>
           <div style={{ float: "right" }}>
             <label style={textLabel}>Failures</label>
-            {faiilures}
+            {failures}
             <Button
               style={buttonPlusAndMinus}
               onClick={decrementFailureHandler}
