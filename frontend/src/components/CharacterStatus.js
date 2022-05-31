@@ -1,4 +1,5 @@
 import { Row, Col } from "react-bootstrap";
+import { calculateMod } from "./Helpers";
 import border from "../assets/window_bg.png";
 
 var statusRow = {
@@ -84,8 +85,8 @@ const CharacterStatus = ({ attributes, setAttributes }) => {
       </Col>
       <Col lg={2} align="center">
         <h4>
-          {attributes.initiative > -1 ? "+" : ""}
-          {attributes.initiative}
+          {calculateMod(attributes.DEX) > -1 ? "+" : ""}
+          {calculateMod(attributes.DEX)}
         </h4>
         <h4>Initiative</h4>
       </Col>
