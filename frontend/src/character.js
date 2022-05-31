@@ -1,6 +1,6 @@
 // defines default character attribute object
 export let Character = {
-  profBonus: 3,
+  profBonus: 2,
   items: "",
   name: "",
   race: "",
@@ -15,7 +15,7 @@ export let Character = {
   goldCount: 0,
   exp: 0,
   mainClass: { charClass: "", level: 1 },
-  subClass: { charClass: "", level: 1 },
+  subClass: { charClass: "", level: 0 },
   STR: 10,
   DEX: 10,
   CON: 10,
