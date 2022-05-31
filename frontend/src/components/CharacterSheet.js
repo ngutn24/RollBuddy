@@ -68,13 +68,7 @@ const CharacterSheet = () => {
         charDoc.data()
       );
     } catch (e) {
-      const errorCode = e.code;
-      const errorMessage = e.message;
-      console.log(
-        "[ERROR] Failed to authenticate and initialize character.",
-        errorCode,
-        errorMessage
-      );
+      // TODO: alert user while respecting ASYNC calls.
     }
   };
 
