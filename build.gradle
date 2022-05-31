@@ -86,7 +86,7 @@ task full_test(group: 'Rollbuddy test'){
 
 task run_backend(type: JavaExec, group: 'Rollbuddy Run (dev)') {
   classpath sourceSets.main.runtimeClasspath
-  main = "main.java.legacy.Session"
+  main = "main.java.RollbuddyServer"
 }
 
 task run_frontend(type: NpmTask, group: 'Rollbuddy Run (dev)'){

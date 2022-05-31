@@ -29,20 +29,21 @@ const RollInputCount = {
   textAlign: "right",
 };
 
-const abilityCode = {
-  Strength: "str",
-  Dexterity: "dex",
-  Constitution: "con",
-  Intelligence: "int",
-  Wisdom: "wis",
-  Charisma: "cha",
-};
-
 const rollButtonFont = {
   margin: "1rem",
   width: "80%",
   height: "5rem",
   fontSize: "2rem",
+};
+
+// note: ability codes must be upper-case to match keys in firestore
+const abilityCode = {
+  Strength: "STR",
+  Dexterity: "DEX",
+  Constitution: "CON",
+  Intelligence: "INT",
+  Wisdom: "WIS",
+  Charisma: "CHA",
 };
 
 const RollMenu = ({ id }) => {
