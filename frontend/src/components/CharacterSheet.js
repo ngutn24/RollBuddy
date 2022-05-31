@@ -31,17 +31,20 @@ const CharacterSheet = () => {
       const id = auth.currentUser.uid;
       console.log("[DEBUG] Successfully Authenticated.", id);
       // use auth id to access corresponding document in the "user" collection
-      const userDoc = await getDoc(doc(db, "users", id));
-      let charRef = doc(db, "characterSheets", "0"); // this ref is invalid
+      const userDoc = await getDoc(doc(db, "Users", id));
+      let charRef = doc(db, "CharacterSheets", "0"); // this ref is invalid
       // attempt to read characterSheet reference from user doc.
       if (userDoc.exists()) {
         console.log(userDoc.data());
         let data = userDoc.data();
-        charRef = data.sheets[0]; // valid ref
+        charRef = data.CharacterSheets[0]; // valid ref
         setCharID(charRef.id);
       } else {
         // handle case where this is a user's first login and initialize user doc.
-        await setDoc(doc(db, "users", auth.currentUser.uid), { sheets: [] });
+        await setDoc(doc(db, "Users", auth.currentUser.uid), {
+          CharacterSheets: [],
+          DisplayName: "",
+        });
       }
       // attemps to read charachterSheet doc
       // TODO: subscribe to this doc for realtime updates (only makes sense with email/google auth)
@@ -52,12 +55,12 @@ const CharacterSheet = () => {
       } else {
         // c
         let charRef = await addDoc(
-          collection(db, "characterSheets"),
+          collection(db, "CharacterSheets"),
           charAttributes
         );
         setCharID(charRef.id);
-        await updateDoc(doc(db, "users", auth.currentUser.uid), {
-          sheets: [charRef],
+        await updateDoc(doc(db, "Users", auth.currentUser.uid), {
+          CharacterSheets: [charRef],
         });
       }
       console.log(
@@ -85,7 +88,7 @@ const CharacterSheet = () => {
   useEffect(() => {
     if (auth.currentUser && charID !== null) {
       console.log("Updated char sheet", charID, charAttributes);
-      setDoc(doc(db, "characterSheets", charID), charAttributes);
+      setDoc(doc(db, "CharacterSheets", charID), charAttributes);
     } else {
       console.log("Not yet authenticated");
     }

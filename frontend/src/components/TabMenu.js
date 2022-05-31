@@ -60,10 +60,8 @@ const TabMenu = ({ attributes, setAttributes }) => {
                 {skill.label} ({skill.abilityType}):
               </label>{" "}
               <label>
-                {calculateMod(attributes[skill.abilityType].abilityScore) > -1
-                  ? "+"
-                  : "-"}
-                {calculateMod(attributes[skill.abilityType].abilityScore)}
+                {calculateMod(attributes[skill.abilityType]) > -1 ? "+" : "-"}
+                {calculateMod(attributes[skill.abilityType])}
               </label>
             </div>
           ))}

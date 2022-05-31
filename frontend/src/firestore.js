@@ -8,12 +8,12 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAbncFVJg1v1hV8yDxdgj1paYLqXbDZkrs",
-  authDomain: "rollbuddy-test.firebaseapp.com",
-  projectId: "rollbuddy-test",
-  storageBucket: "rollbuddy-test.appspot.com",
-  messagingSenderId: "97427959120",
-  appId: "1:97427959120:web:aaeaeb2dd54786babcd055",
+  apiKey: "AIzaSyDiMNykw_U-2ypKcxptEmzLOBHd94wLy-Y",
+  authDomain: "rollbuddy-21bea.firebaseapp.com",
+  projectId: "rollbuddy-21bea",
+  storageBucket: "rollbuddy-21bea.appspot.com",
+  messagingSenderId: "428593318705",
+  appId: "1:428593318705:web:29ce7a302b4431d9aa7e10",
 };
 
 const app = initializeApp(firebaseConfig);

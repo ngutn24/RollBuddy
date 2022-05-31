@@ -14,13 +14,7 @@ export const AbilityList = ({ attributes, setAttributes }) => {
   const abilityKeys = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
 
   const setAbilityScore = (id, score) => {
-    setAttributes({
-      ...attributes,
-      [id]: {
-        ...attributes[id],
-        abilityScore: parseInt(score),
-      },
-    });
+    setAttributes({ ...attributes, [id]: parseInt(score) });
   };
 
   return (
@@ -28,7 +22,7 @@ export const AbilityList = ({ attributes, setAttributes }) => {
       {abilityKeys.map((item) => (
         <Ability
           displayName={abilityDisplayNames[item]}
-          score={attributes[item].abilityScore}
+          score={attributes[item]}
           id={item}
           setAbilityScore={setAbilityScore}
           key={item}
