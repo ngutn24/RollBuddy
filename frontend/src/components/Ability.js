@@ -66,7 +66,7 @@ const Ability = ({ displayName, score, setAbilityScore, id }) => {
         {displayName}
       </h1>
       <h1>
-        {calculateMod(score) >= 0 ? "+" : "-"}
+        {calculateMod(score) >= 0 ? "+" : ""}
         {calculateMod(score)}
       </h1>
       {/* This will be the ability score modifier */}

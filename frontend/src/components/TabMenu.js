@@ -26,12 +26,14 @@ const TabMenu = ({ attributes, setAttributes }) => {
     { label: "Acrobatics", abilityType: "STR" },
     { label: "Animal Handling", abilityType: "WIS" },
     { label: "Arcana", abilityType: "INT" },
+    { label: "Athletics", abilityType: "STR" },
     { label: "Deception", abilityType: "CHA" },
     { label: "History", abilityType: "INT" },
     { label: "Insight", abilityType: "WIS" },
     { label: "Intimidation", abilityType: "CHA" },
     { label: "Investigation", abilityType: "INT" },
     { label: "Medicine", abilityType: "WIS" },
+    { label: "Nature", abilityType: "INT" },
     { label: "Perception", abilityType: "WIS" },
     { label: "Performance", abilityType: "CHA" },
     { label: "Persuasion", abilityType: "CHA" },
@@ -51,7 +53,7 @@ const TabMenu = ({ attributes, setAttributes }) => {
       <Tabs activeKey={key} onSelect={(k) => setKey(k)} className="mb-3">
         <Tab eventKey="proficiencies" title="Proficiencies">
           {skills.map((skill) => (
-            <div>
+            <div key={skill.label}>
               <label
                 style={{
                   font: "bold 18px cursive",
@@ -60,7 +62,7 @@ const TabMenu = ({ attributes, setAttributes }) => {
                 {skill.label} ({skill.abilityType}):
               </label>{" "}
               <label>
-                {calculateMod(attributes[skill.abilityType]) > -1 ? "+" : "-"}
+                {calculateMod(attributes[skill.abilityType]) > -1 ? "+" : ""}
                 {calculateMod(attributes[skill.abilityType])}
               </label>
             </div>
