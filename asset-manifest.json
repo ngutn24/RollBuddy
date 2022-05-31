@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/RollBuddy/static/css/main.1f8e0836.css",
-    "main.js": "/RollBuddy/static/js/main.1e3455ca.js",
+    "main.js": "/RollBuddy/static/js/main.23decf92.js",
     "static/media/rollbuddy_bg.png": "/RollBuddy/static/media/rollbuddy_bg.48b229b743412166f532.png",
     "static/media/window_bg.png": "/RollBuddy/static/media/window_bg.49431a56b4c96189c1f6.png",
     "static/media/rollbuddy_logo.png": "/RollBuddy/static/media/rollbuddy_logo.8e713aa652e9e856cf04.png",
     "index.html": "/RollBuddy/index.html",
     "main.1f8e0836.css.map": "/RollBuddy/static/css/main.1f8e0836.css.map",
-    "main.1e3455ca.js.map": "/RollBuddy/static/js/main.1e3455ca.js.map"
+    "main.23decf92.js.map": "/RollBuddy/static/js/main.23decf92.js.map"
   },
   "entrypoints": [
     "static/css/main.1f8e0836.css",
-    "static/js/main.1e3455ca.js"
+    "static/js/main.23decf92.js"
   ]
 }
