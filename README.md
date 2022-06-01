@@ -69,7 +69,7 @@ To report a bug, visit the issues page on the repository and create an issue usi
 
 - [x] Rolling Dice: Users can do dice rolls which is affected by their character's current stats. They can specify which attribute to use for their dice roll.
 
-- [ ] Database Support: Character Sheets can exist in a DB non-volatile storage, meaning if the character is still held, the character can be pulled form a database.
+- [x] Database Support: Character Sheets can exist in a DB non-volatile storage, meaning if the character is still held, the character can be pulled form a database.
 
 - [ ] Account System: Users can have their own accounts which tie them to all the character sheets they have created.
 
@@ -100,7 +100,7 @@ Documentation for these two systems can be found in their READMEs:
 
 ## Recommended IDEs
 
-To conveniently edited, build and run the code, it is essential to have an IDE to handle those for you. There are a lot of choices, below are some suggestions. You could follow the download page instruction to install the corresponding version for your system:
+To conveniently edit, build and run the code, it is essential to have an IDE to handle those for you. There are a lot of choices, below are some suggestions. You could follow the download page instruction to install the corresponding version for your system:
 
 - ### [Jetbrains IntelliJ](https://www.jetbrains.com/idea/download) (Backend)
 
@@ -115,6 +115,18 @@ Rollbuddy uses **Gradle** to automate building, testing, and running the systems
 the platform
 
 Each process of the workflow is handled by a gradle task(ex: `assemble`)
+
+### Pre-build Setup
+
+Before building, a credentails file is required for the backend to access persistant data from Firestore.
+It is important that you initialize the Firebase Admin SDK for Java, which can be done as follows (see more details [here](https://firebase.google.com/docs/admin/setup#java):
+
+>To generate a private key file for your service account:
+> 1. In the Firebase console, open Settings > Service Accounts.
+> 2. Click Generate New Private Key, then confirm by clicking Generate Key.
+> 3. Securely store the JSON file containing the key.
+
+Save that JSON file as `RollbuddyFirestoreCredentials.json` in the `Backend` folder, and the credentials will now be included when building.
 
 ### Running gradle tasks
 
