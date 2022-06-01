@@ -8,7 +8,7 @@ RollBuddy is a virtual Dungeons and Dragons character sheet service that does mo
 
 Compared to other existing DND character sheet services, RollBuddy is a much more straightforward service that helps you create your character quickly and get you rolling to play the game. Besides the essential functionality, the character's information is stored on the server like many other systems, so it is easier for the user to access it anywhere.
 
-*Acknowledgements: this project is coursework for CSE403 at the University of Washington, Spring 2022. We would like to thank René Just, our instructor, and Ardi Madadi, our project manager, for their knowledge and support.*
+*Acknowledgments: This project is coursework for CSE403 at the University of Washington, Spring 2022. We would like to thank René Just, our instructor, and Ardi Madadi, our project manager, for their knowledge and support.*
 
 ### Useful Links:
 
